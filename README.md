@@ -17,14 +17,6 @@ irpf-cei
 
 O programa irá procurar o arquivo "InfoCEI.xls" na pasta atual (digite `pwd` no terminal para sabe qual é) ou na pasta downloads e exibirá na tela os resultados.
 
-Para que o programa crie um arquivo com os lançamentos em Bens e Direitos basta digitar:
-
-```sh
-irpf-cei nomedoarquivo.txt
-```
-
-E ele criará um arquivo com o nome que você colocou na pasta atual do seu terminal.
-
 ## Aviso legal (disclaimer)
 
 Esta é uma ferramenta com código aberto e gratuita, com licença MIT. Você pode alterar o código e distribuir, usar comercialmente como bem entender. Contribuições são muito bem vindas. A responsabilidade de conferência dos valores e do envio dessas informações à Receita Federal é total responsabilidade do usuário. Os desenvolvedores e colaboradores desse programa não se responsabilizam por quaisquer incorreções nos cálculos aqui efetuados.
