@@ -1,2 +1,30 @@
 # irpf-cei
-Programa auxiliar para calcular custos de ações, ETFs e FIIs.
+
+Programa auxiliar para calcular custos de ações, ETFs e FIIs. Este programa foi feito para calcular emolumentos, taxa de liquidação e custo total para a declaração de Bens e Direitos do Imposto de Renda Pessoa Física.
+
+**Essa aplicação foi testada e configurada para calcular tarifas referentes ao ano de 2019-2020 (IRPF 2020) e não faz cálculos para compra e venda no mesmo dia (Day Trade), contratos futuros e Índice Brasil 50.**
+
+## Como usar
+
+1. Entre no [site do CEI](https://cei.b3.com.br/), faça login e entre no menu Extratos e Informativos → Negociação de Ativos → Escolha uma corretora e as datas 1 de Janeiro e 31 de Dezembro do ano em que deseja declarar. Em seguida clique no botão “Exportar para EXCEL”. Ele irá baixar o arquivo “InfoCEI.xls”.
+2. Instale na sua máquina o Python 3.8.0 ou superior para o seu sistema operacional em http://python.org.
+3. Com o python instalado, execute em um terminal os comandos:
+
+```sh
+python -m pip install irpf-cei
+irpf-cei
+```
+
+O programa irá procurar o arquivo "InfoCEI.xls" na pasta atual (digite `pwd` no terminal para sabe qual é) ou na pasta downloads e exibirá na tela os resultados.
+
+Para que o programa crie um arquivo com os lançamentos em Bens e Direitos basta digitar:
+
+```sh
+irpf-cei nomedoarquivo.txt
+```
+
+E ele criará um arquivo com o nome que você colocou na pasta atual do seu terminal.
+
+## Aviso legal (disclaimer)
+
+Esta é uma ferramenta com código aberto e gratuita, com licença MIT. Você pode alterar o código e distribuir, usar comercialmente como bem entender. Contribuições são muito bem vindas. A responsabilidade de conferência dos valores e do envio dessas informações à Receita Federal é total responsabilidade do usuário. Os desenvolvedores e colaboradores desse programa não se responsabilizam por quaisquer incorreções nos cálculos aqui efetuados.
