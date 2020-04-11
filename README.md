@@ -1,5 +1,6 @@
 # irpf-cei
 
+[![Tests](https://github.com/staticdev/irpf-cei/workflows/Tests/badge.svg)](https://github.com/staticdev/irpf-cei/actions?workflow=Tests)
 ![PyPi](https://badge.fury.io/py/irpf-cei.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
