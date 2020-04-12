@@ -1,6 +1,7 @@
 # irpf-cei
 
 [![Tests](https://github.com/staticdev/irpf-cei/workflows/Tests/badge.svg)](https://github.com/staticdev/irpf-cei/actions?workflow=Tests)
+[![Codecov](https://codecov.io/gh/staticdev/irpf-cei/badge.svg?branch=master&service=github)](https://codecov.io/gh/staticdev/irpf-cei)
 ![PyPi](https://badge.fury.io/py/irpf-cei.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 

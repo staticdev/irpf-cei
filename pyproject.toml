@@ -36,7 +36,7 @@ source = ["irpf_cei"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under = 80
+fail_under = 100
 
 [build-system]
 requires = ["poetry>=0.12"]
