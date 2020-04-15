@@ -1,5 +1,6 @@
 """Test cases for the CEI module."""
 import datetime
+import os
 from unittest.mock import Mock
 
 import pytest
@@ -31,64 +32,22 @@ def test_read_xls(mock_pandas_read_excel) -> None:
 
 
 @pytest.fixture
-def mock_glob_glob_none(mocker: MockFixture) -> Mock:
-    """Fixture for mocking glob.glob."""
-    mock = mocker.patch("glob.glob")
-    mock.return_value = []
-    return mock
+def cwd(fs, monkeypatch):
+    fs.cwd = "/my/path"
+    monkeypatch.setenv("HOME", "/home/user")
 
 
-@pytest.fixture
-def mock_os_path_expanduser(mocker: MockFixture) -> Mock:
-    """Fixture for mocking os.path.expanduser."""
-    mock = mocker.patch("os.path.expanduser")
-    mock.return_value = "/home/user"
-    return mock
-
-
-def test_get_xls_filename_not_found(
-    mock_glob_glob_none, mock_os_path_expanduser
-) -> None:
+def test_get_xls_filename_not_found(fs, cwd) -> None:
     with pytest.raises(SystemExit):
         assert cei.get_xls_filename()
-        mock_glob_glob_none.assert_called()
-        mock_os_path_expanduser.assert_called_once()
 
 
-@pytest.fixture
-def mock_glob_glob_found(mocker: MockFixture) -> Mock:
-    """Fixture for mocking glob.glob."""
-    mock = mocker.patch("glob.glob")
-    mock.return_value = ["/current/path/InfoCEI.xls"]
-    return mock
+def test_get_xls_filename_current_folder(fs, cwd) -> None:
+    fs.create_file("/my/path/InfoCEI.xls")
+    assert cei.get_xls_filename() == "InfoCEI.xls"  # adapted to your implementation
 
 
-def test_get_xls_filename_current_folder(mock_glob_glob_found) -> None:
-    assert cei.get_xls_filename() == "/current/path/InfoCEI.xls"
-    mock_glob_glob_found.assert_called_once()
-
-
-@pytest.fixture
-def mock_glob_glob_found_download(mocker: MockFixture) -> Mock:
-    """Fixture for mocking glob.glob."""
-    values = {
-        "InfoCEI*.xls": [],
-        "/home/user/Downloads/InfoCEI*.xls": ["/home/user/Downloads/InfoCEI.xls"],
-    }
-
-    def side_effect(arg):
-        return values[arg]
-
-    mock = mocker.patch("glob.glob")
-    mock.side_effect = side_effect
-    return mock
-
-
-def test_get_xls_filename_download_folder(
-    mock_glob_glob_found_download, mock_os_path_expanduser
-) -> None:
-    assert cei.get_xls_filename() == "/home/user/Downloads/InfoCEI.xls"
-    mock_os_path_expanduser.assert_called_once()
-    mock_glob_glob_found_download.assert_called_with(
-        "/home/user/Downloads/InfoCEI*.xls"
-    )
+def test_get_xls_filename_download_folder(fs, cwd) -> None:
+    path = os.path.join("/home/user", "Downloads", "InfoCEI.xls")
+    fs.create_file(path)
+    assert cei.get_xls_filename() == path
