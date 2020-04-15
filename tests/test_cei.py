@@ -2,7 +2,6 @@
 import datetime
 from unittest.mock import Mock
 
-import pandas as pd
 import pytest
 from pytest_mock import MockFixture
 

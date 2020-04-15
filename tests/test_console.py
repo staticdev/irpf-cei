@@ -5,7 +5,7 @@ import click.testing
 import pytest
 from pytest_mock import MockFixture
 
-from irpf_cei import cei, console
+from irpf_cei import console
 
 
 @pytest.fixture
