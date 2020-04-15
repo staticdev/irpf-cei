@@ -9,44 +9,56 @@ from typing import Tuple
 
 import pandas as pd
 
+import irpf_cei.b3
 
-EMOLUMENTOS = {2019: 0.00004105, 2020: 0.00003006}
-LIQUIDACAO = 0.000275
-ETFS = {
-    "BBSD11",
-    "XBOV11",
-    "BOVB11",
-    "IVVB11",
-    "BOVA11",
-    "BRAX11",
-    "ECOO11",
-    "SMAL11",
-    "BOVV11",
-    "DIVO11",
-    "FIND11",
-    "GOVE11",
-    "MATB11",
-    "ISUS11",
-    "PIBB11",
-    "SMAC11",
-    "SPXI11",
-}
+
 FILE_ENCODING = "iso-8859-1"
+IRPF_INVESTIMENT_CODES = {"ETF": "74 (ETF)", "FII": "73 (FII)", "STOCKS": "31 (Ações)"}
 
 
-def get_inv_code(code: str) -> str:
-    if code in ETFS:
-        return "74 (ETF)"
-    if (len(code) == 6 and code.endswith("11")) or (
-        len(code) == 7 and code.endswith("11B")
-    ):
-        return "73 (FII)"
-    else:
-        return "31 (Ações)"
+def date_parse(value: str) -> datetime.datetime:
+    """Parse dates from CEI report.
+
+    Arguments:
+        value {str} -- some %d/%m/%y date eg. " 01/02/19 "
+
+    Returns:
+        datetime.datetime -- proper object with the day, month, year set
+    """
+    return datetime.datetime.strptime(value.strip(), "%d/%m/%y")
+
+
+def validate_header(filepath: str) -> Tuple[int, str]:
+    """Validates file header and
+    returns reference year and institution name if valid.
+
+    Arguments:
+        filepath {str} -- CEI report's full path
+
+    Returns:
+        Tuple[int, str] -- reference year for the report and institution
+    """
+    try:
+        basic_df = pd.read_excel(
+            filepath,
+            encoding=FILE_ENCODING,
+            usecols="B",
+            date_parser=date_parse,
+            skiprows=4,
+        )
+    # exits if empty
+    except pd.errors.EmptyDataError:
+        sys.exit("Erro: arquivo %s está vazio." % filepath)
+
+    periods = basic_df["Período de"].iloc[0].split(" a ")
+    ref_year = validate_period(periods[0], periods[1])
+
+    instutition = basic_df["Período de"].iloc[4]
+    return ref_year, instutition
 
 
 def read_xls(filename: str) -> pd.DataFrame:
-    return pd.read_excel(
+    df = pd.read_excel(
         filename,
         encoding=FILE_ENCODING,
         usecols="B:K",
@@ -55,6 +67,7 @@ def read_xls(filename: str) -> pd.DataFrame:
         skipfooter=4,
         skiprows=10,
     )
+    return df
 
 
 # Source: https://realpython.com/python-rounding/
@@ -63,7 +76,8 @@ def round_down(n: float, decimals: int = 2) -> float:
     return math.floor(n * multiplier) / multiplier
 
 
-def bens_e_direitos(source_df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
+def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
+    source_df = clean_table(source_df)
     # filter buy operations
     buy_df = source_df.drop(source_df[source_df["C/V"].str.contains("V")].index)
     # group by day and asset
@@ -80,67 +94,35 @@ def bens_e_direitos(source_df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
         .reset_index()
     )
     # calculate new fields
-    buy_df["Liquidação (R$)"] = (buy_df["Valor Total (R$)"] * LIQUIDACAO).apply(
-        round_down
-    )
+    buy_df["Liquidação (R$)"] = (
+        buy_df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
+    ).apply(round_down)
     buy_df["Emolumentos (R$)"] = (
-        buy_df["Valor Total (R$)"] * EMOLUMENTOS[ref_year]
+        buy_df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
     ).apply(round_down)
     buy_df["Custo Total (R$)"] = (
         buy_df["Valor Total (R$)"]
         + buy_df["Liquidação (R$)"]
         + buy_df["Emolumentos (R$)"]
     )
-    print("Valores calculados de emolumentos, liquidação e custo total:")
-    print(buy_df)
-    result_df = (
-        buy_df.groupby(["Código"])
-        .agg(
-            {
-                "Quantidade": "sum",
-                "Custo Total (R$)": "sum",
-                "Especificação do Ativo": "first",
-            }
-        )
-        .reset_index()
-    )
-    result_df["Preço Médio (R$)"] = (
-        result_df["Custo Total (R$)"] / result_df["Quantidade"]
-    ).round(decimals=3)
-    return result_df
-
-
-def output_bens_e_direitos(
-    source_df: pd.DataFrame, ref_year: int, institution: str
-) -> None:
     with pd.option_context("display.max_rows", None, "display.max_columns", None):
-        source_df = clean_table(source_df)
-        bens_direitos_df = bens_e_direitos(source_df, ref_year)
-        output(bens_direitos_df, ref_year, institution)
-
-
-def validate(filename: str) -> Tuple[int, str]:
-    """
-    Validates file and
-    returns reference year and institution name if valid
-    """
-    try:
-        basic_df = pd.read_excel(
-            filename,
-            encoding=FILE_ENCODING,
-            usecols="B",
-            date_parser=date_parse,
-            skiprows=4,
+        print("Valores calculados de emolumentos, liquidação e custo total:")
+        print(buy_df)
+        result_df = (
+            buy_df.groupby(["Código"])
+            .agg(
+                {
+                    "Quantidade": "sum",
+                    "Custo Total (R$)": "sum",
+                    "Especificação do Ativo": "first",
+                }
+            )
+            .reset_index()
         )
-    # exits if empty
-    except pd.errors.EmptyDataError:
-        sys.exit("Erro: arquivo %s está vazio." % filename)
-
-    periods = basic_df["Período de"].iloc[0].split(" a ")
-    ref_year = validate_period(periods[0], periods[1])
-
-    instutition = basic_df["Período de"].iloc[4]
-    return ref_year, instutition
+        result_df["Preço Médio (R$)"] = (
+            result_df["Custo Total (R$)"] / result_df["Quantidade"]
+        ).round(decimals=3)
+        output_assets(result_df, ref_year, institution)
 
 
 def get_xls_filename() -> str:
@@ -157,8 +139,8 @@ def get_xls_filename() -> str:
     )
 
 
-def output(df: pd.DataFrame, ref_year: int, institution: str) -> None:
-    """ Return a list of declarations """
+def output_assets(df: pd.DataFrame, ref_year: int, institution: str) -> None:
+    """ Return a list of assets """
     # get available locale from shell `locale -a`
     loc = "pt_BR.utf8"
     locale.setlocale(locale.LC_ALL, loc)
@@ -169,7 +151,9 @@ def output(df: pd.DataFrame, ref_year: int, institution: str) -> None:
         content = row[1]
         code = content["Código"]
         print("============= Ativo {} =============".format(idx + 1))
-        print("Código: " + get_inv_code(code))
+        print(
+            "Código: " + IRPF_INVESTIMENT_CODES[irpf_cei.b3.get_investment_type(code)]
+        )
         print(
             (
                 "Discriminação (sugerida): {} - Código: {} - Preço Médio Compra: R$"
@@ -186,10 +170,6 @@ def output(df: pd.DataFrame, ref_year: int, institution: str) -> None:
                 ref_year, str(content["Custo Total (R$)"])
             ).replace(".", ",")
         )
-
-
-def date_parse(value: str) -> datetime.datetime:
-    return datetime.datetime.strptime(value.strip(), "%d/%m/%y")
 
 
 def validate_period(first: str, second: str) -> int:
