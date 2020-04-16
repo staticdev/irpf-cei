@@ -32,7 +32,7 @@ def test_round_down() -> None:
 
 
 @pytest.fixture
-def cwd(fs: MockFixture, monkeypatch: pytest.MonkeyPatch):
+def cwd(fs: MockFixture, monkeypatch: Mock):
     fs.cwd = "/my/path"
     monkeypatch.setenv("HOME", "/home/user")
 
