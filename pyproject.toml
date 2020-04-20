@@ -1,8 +1,12 @@
 [tool.poetry]
 name = "irpf-cei"
-version = "1.1.1"
+version = "1.1.2"
 description = "Programa auxiliar para calcular custos de ações, ETFs e FIIs."
 authors = ["staticdev <thiagocavila@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/staticdev/irpf-cei"
+homepage = "https://github.com/staticdev/irpf-cei"
 
 [tool.poetry.dependencies]
 python = "^3.8"
