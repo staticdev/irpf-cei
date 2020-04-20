@@ -3,6 +3,7 @@ import datetime
 import os
 from unittest.mock import Mock
 
+import pandas as pd
 import pytest
 from pytest_mock import MockFixture
 
@@ -17,7 +18,12 @@ def test_date_parse() -> None:
 @pytest.fixture
 def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
     """Fixture for mocking pandas.read_excel."""
-    return mocker.patch("pandas.read_excel")
+    mock = mocker.patch("pandas.read_excel")
+    header = pd.DataFrame(
+        {"Período de": ["01/01/2019 a 31/12/2019", "NAN", "NAN", "NAN", "INSTITUTION"]}
+    )
+    mock.return_value = header
+    return mock
 
 
 def test_read_xls(mock_pandas_read_excel: Mock) -> None:
@@ -54,3 +60,52 @@ def test_get_xls_filename_download_folder(fs: MockFixture, cwd: Mock) -> None:
     path = os.path.join("/home/user", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
     assert cei.get_xls_filename() == path
+
+
+def test_validate_period_success() -> None:
+    """It returns reference year."""
+    assert cei.validate_period("01/01/2020", "31/12/2020") == 2020
+
+
+def test_validate_period_wrong_start_finish() -> None:
+    with pytest.raises(SystemExit):
+        assert cei.validate_period("01/12/2020", "31/12/2020")
+
+
+def test_validate_period_different_years() -> None:
+    with pytest.raises(SystemExit):
+        assert cei.validate_period("01/01/2019", "31/12/2020")
+
+
+def test_validate_header_empty_file(fs: MockFixture, cwd: Mock) -> None:
+    fs.create_file("/my/path/InfoCEI.xls")
+    with pytest.raises(SystemExit):
+        cei.validate_header("/my/path/InfoCEI.xls")
+
+
+@pytest.fixture
+def mock_validate_period(mocker: MockFixture) -> Mock:
+    """Fixture for mocking irpf_cei.cei.validate_period."""
+    mock = mocker.patch("irpf_cei.cei.validate_period")
+    mock.return_value = 2019
+    return mock
+
+
+def test_validate_header(
+    mock_pandas_read_excel: MockFixture, mock_validate_period: MockFixture
+) -> None:
+    assert cei.validate_header("/my/path/InfoCEI.xls") == (2019, "INSTITUTION")
+
+
+def test_clean_table_cols() -> None:
+    df = pd.DataFrame(
+        {
+            "full_valued": [1, 2, 3],
+            "all_missing1": [None, None, None],
+            "some_missing": [None, 2, 3],
+            "all_missing2": [None, None, None],
+        }
+    )
+    expected = pd.DataFrame({"full_valued": [1, 2, 3], "some_missing": [None, 2, 3]})
+    result = cei.clean_table_cols(df)
+    pd.testing.assert_frame_equal(result, expected)

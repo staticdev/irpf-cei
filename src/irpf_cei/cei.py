@@ -8,6 +8,7 @@ import sys
 from typing import Tuple
 
 import pandas as pd
+import xlrd
 
 import irpf_cei.b3
 
@@ -26,6 +27,23 @@ def date_parse(value: str) -> datetime.datetime:
         datetime.datetime -- proper object with the day, month, year set
     """
     return datetime.datetime.strptime(value.strip(), "%d/%m/%y")
+
+
+def validate_period(first: str, second: str) -> int:
+    """Considers the year from the first trade date """
+    if first.startswith("01/01") and second.startswith("31/12"):
+        first_year = int(first[-4:])
+        second_year = int(second[-4:])
+    else:
+        return sys.exit("Erro: emitir relatório do dia 1 de janeiro a 31 de dezembro.")
+    if first_year == second_year and first_year >= 2019:
+        return first_year
+    return sys.exit(
+        (
+            "Erro: o período de {} a {} não é válido, favor verificar instruções "
+            "na documentação."
+        )
+    )
 
 
 def validate_header(filepath: str) -> Tuple[int, str]:
@@ -47,8 +65,13 @@ def validate_header(filepath: str) -> Tuple[int, str]:
             skiprows=4,
         )
     # exits if empty
-    except pd.errors.EmptyDataError:
-        sys.exit("Erro: arquivo %s está vazio." % filepath)
+    except (pd.errors.EmptyDataError, xlrd.XLRDError):
+        sys.exit(
+            (
+                "Erro: arquivo {} não se encontra íntegro ou no formato de "
+                "relatórios do CEI."
+            ).format(filepath)
+        )
 
     periods = basic_df["Período de"].iloc[0].split(" a ")
     ref_year = validate_period(periods[0], periods[1])
@@ -76,8 +99,32 @@ def round_down(n: float, decimals: int = 2) -> float:
     return math.floor(n * multiplier) / multiplier
 
 
+def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
+    """Drop columns without values.
+
+    Args:
+        source_df (pd.DataFrame): full columns DataFrame.
+
+    Returns:
+        pd.DataFrame: DataFrame without columns with no value.
+    """
+    return source_df.dropna(axis="columns", how="all")
+
+
+def clean_table_rows(source_df: pd.DataFrame) -> pd.DataFrame:
+    """Drop rows without values.
+
+    Args:
+        source_df (pd.DataFrame): full columns DataFrame.
+
+    Returns:
+        pd.DataFrame: DataFrame without columns with no value
+    """
+    return source_df.dropna(axis="columns", how="all")
+
+
 def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
-    source_df = clean_table(source_df)
+    source_df = clean_table_cols(source_df)
     # filter buy operations
     buy_df = source_df.drop(source_df[source_df["C/V"].str.contains("V")].index)
     # group by day and asset
@@ -167,27 +214,6 @@ def output_assets(df: pd.DataFrame, ref_year: int, institution: str) -> None:
         )
         print(
             "Situação em 31/12/{}: R$ {}".format(
-                ref_year, str(content["Custo Total (R$)"])
+                ref_year, content["Custo Total (R$)"]
             ).replace(".", ",")
         )
-
-
-def validate_period(first: str, second: str) -> int:
-    """ Considers the year from the first trade date """
-    if first.startswith("01/01") and second.startswith("31/12"):
-        first_year = int(first[-4:])
-        second_year = int(second[-4:])
-    else:
-        return sys.exit("Erro: emitir relatório do dia 1 de janeiro a 31 de dezembro.")
-    if first_year == second_year and first_year >= 2019:
-        return first_year
-    return sys.exit(
-        (
-            "Erro: o período de {} a {} não é válido, favor verificar instruções "
-            "na documentação."
-        )
-    )
-
-
-def clean_table(source_df: pd.DataFrame) -> pd.DataFrame:
-    return source_df.loc[:, ~source_df.columns.str.contains("^Unnamed")]
