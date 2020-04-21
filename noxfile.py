@@ -94,6 +94,15 @@ def tests(session: Session) -> None:
     session.run("pytest", *args)
 
 
+@nox.session(python=["3.8"])
+def typeguard(session: Session) -> None:
+    """Runtime type checking using Typeguard."""
+    args = session.posargs or ["-m", "not e2e"]
+    session.run("poetry", "install", "--no-dev", external=True)
+    install_with_constraints(session, "pytest", "pytest-mock", "typeguard", "pyfakefs")
+    session.run("pytest", f"--typeguard-packages={package}", *args)
+
+
 @nox.session(python="3.8")
 def coverage(session: Session) -> None:
     """Upload coverage data."""
