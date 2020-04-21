@@ -100,7 +100,7 @@ def round_down(n: float, decimals: int = 2) -> float:
 
 
 def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
-    """Drop columns without values.
+    """Drops columns without values.
 
     Args:
         source_df (pd.DataFrame): full columns DataFrame.
@@ -111,25 +111,17 @@ def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
     return source_df.dropna(axis="columns", how="all")
 
 
-def clean_table_rows(source_df: pd.DataFrame) -> pd.DataFrame:
-    """Drop rows without values.
+def group_trades(df: pd.DataFrame) -> pd.DataFrame:
+    """Groups trades by day, asset and action.
 
     Args:
-        source_df (pd.DataFrame): full columns DataFrame.
+        df (pd.DataFrame): ungrouped trades.
 
     Returns:
-        pd.DataFrame: DataFrame without columns with no value
+        pd.DataFrame: grouped trades.
     """
-    return source_df.dropna(axis="columns", how="all")
-
-
-def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
-    source_df = clean_table_cols(source_df)
-    # filter buy operations
-    buy_df = source_df.drop(source_df[source_df["C/V"].str.contains("V")].index)
-    # group by day and asset
-    buy_df = (
-        buy_df.groupby(["Data Negócio", "Código"])
+    return (
+        df.groupby(["Data Negócio", "Código", "C/V"])
         .agg(
             {
                 "Quantidade": "sum",
@@ -140,34 +132,53 @@ def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -
         )
         .reset_index()
     )
+
+
+def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
+    source_df = clean_table_cols(source_df)
+    source_df = group_trades(source_df)
     # calculate new fields
-    buy_df["Liquidação (R$)"] = (
-        buy_df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
+    source_df["Liquidação (R$)"] = (
+        source_df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
     ).apply(round_down)
-    buy_df["Emolumentos (R$)"] = (
-        buy_df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
+    source_df["Emolumentos (R$)"] = (
+        source_df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
     ).apply(round_down)
-    buy_df["Custo Total (R$)"] = (
-        buy_df["Valor Total (R$)"]
-        + buy_df["Liquidação (R$)"]
-        + buy_df["Emolumentos (R$)"]
+    # sum totals of sells and buys
+    source_df["Quantidade Compra"] = source_df["Quantidade"].where(
+        source_df["C/V"].str.contains("C"), 0
+    )
+    source_df["Quantidade Venda"] = source_df["Quantidade"].where(
+        source_df["C/V"].str.contains("V"), 0
+    )
+    source_df["Custo Total Compra (R$)"] = (
+        source_df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
+        .sum(axis="columns")
+        .where(source_df["C/V"].str.contains("C"), 0)
+    )
+    source_df["Custo Total Venda (R$)"] = (
+        source_df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
+        .sum(axis="columns")
+        .where(source_df["C/V"].str.contains("V"), 0)
     )
     with pd.option_context("display.max_rows", None, "display.max_columns", None):
         print("Valores calculados de emolumentos, liquidação e custo total:")
-        print(buy_df)
+        print(source_df)
         result_df = (
-            buy_df.groupby(["Código"])
+            source_df.groupby(["Código"])
             .agg(
                 {
-                    "Quantidade": "sum",
-                    "Custo Total (R$)": "sum",
+                    "Quantidade Compra": "sum",
+                    "Quantidade Venda": "sum",
+                    "Custo Total Compra (R$)": "sum",
+                    "Custo Total Venda (R$)": "sum",
                     "Especificação do Ativo": "first",
                 }
             )
             .reset_index()
         )
         result_df["Preço Médio (R$)"] = (
-            result_df["Custo Total (R$)"] / result_df["Quantidade"]
+            result_df["Custo Total Compra (R$)"] / result_df["Quantidade Compra"]
         ).round(decimals=3)
         output_assets(result_df, ref_year, institution)
 
@@ -203,17 +214,19 @@ def output_assets(df: pd.DataFrame, ref_year: int, institution: str) -> None:
         )
         print(
             (
-                "Discriminação (sugerida): {} - Código: {} - Preço Médio Compra: R$"
-                " {} - Corretora: {}"
+                "Discriminação (sugerida): {} - Código: {} - Quantidade: {} - "
+                "Preço Médio Compra: R$ {} - Corretora: {}"
             ).format(
                 content["Especificação do Ativo"],
                 code,
+                str(content["Quantidade Compra"] - content["Quantidade Venda"]),
                 str(content["Preço Médio (R$)"]).replace(".", ","),
                 institution,
             )
         )
         print(
             "Situação em 31/12/{}: R$ {}".format(
-                ref_year, content["Custo Total (R$)"]
+                ref_year,
+                content["Custo Total Compra (R$)"] - content["Custo Total Venda (R$)"],
             ).replace(".", ",")
         )

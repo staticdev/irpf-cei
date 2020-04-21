@@ -106,6 +106,6 @@ def test_clean_table_cols() -> None:
             "all_missing2": [None, None, None],
         }
     )
-    expected = pd.DataFrame({"full_valued": [1, 2, 3], "some_missing": [None, 2, 3]})
-    result = cei.clean_table_cols(df)
-    pd.testing.assert_frame_equal(result, expected)
+    expected_df = pd.DataFrame({"full_valued": [1, 2, 3], "some_missing": [None, 2, 3]})
+    result_df = cei.clean_table_cols(df)
+    pd.testing.assert_frame_equal(result_df, expected_df)
