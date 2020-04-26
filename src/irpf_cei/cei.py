@@ -125,7 +125,6 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
         .agg(
             {
                 "Quantidade": "sum",
-                "Preço (R$)": "first",
                 "Valor Total (R$)": "sum",
                 "Especificação do Ativo": "first",
             }
@@ -134,16 +133,29 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+# TODO reproduce rounding calculation
+def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
+    """Groups emolumentos and liquidação taxes.
+
+    Args:
+        df (pd.DataFrame): grouped trades.
+
+    Returns:
+        pd.DataFrame: grouped trades with two new columns of calculated taxes.
+    """
+    df["Liquidação (R$)"] = (
+        df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
+    ).apply(round_down)
+    df["Emolumentos (R$)"] = (
+        df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
+    ).apply(round_down)
+    return df
+
+
 def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
     source_df = clean_table_cols(source_df)
     source_df = group_trades(source_df)
-    # calculate new fields
-    source_df["Liquidação (R$)"] = (
-        source_df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
-    ).apply(round_down)
-    source_df["Emolumentos (R$)"] = (
-        source_df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
-    ).apply(round_down)
+    source_df = calculate_taxes(source_df, ref_year)
     # sum totals of sells and buys
     source_df["Quantidade Compra"] = source_df["Quantidade"].where(
         source_df["C/V"].str.contains("C"), 0

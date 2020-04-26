@@ -109,3 +109,75 @@ def test_clean_table_cols() -> None:
     expected_df = pd.DataFrame({"full_valued": [1, 2, 3], "some_missing": [None, 2, 3]})
     result_df = cei.clean_table_cols(df)
     pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+def test_group_trades() -> None:
+    df = pd.DataFrame(
+        {
+            "Data Negócio": ["1", "1", "2", "2", "2", "2"],
+            "Código": ["BOVA11", "PETR4", "PETR4", "BOVA11", "BOVA11", "BOVA11"],
+            "C/V": [" C ", " V ", " V ", " V ", " C ", " C "],
+            "Quantidade": [20, 30, 50, 80, 130, 210],
+            "Valor Total (R$)": [10.20, 30.50, 80.13, 210.34, 550.89, 144.233],
+            "Especificação do Ativo": [
+                "ISHARES",
+                "PETRO",
+                "PETRO",
+                "ISHARES",
+                "ISHARES",
+                "ISHARES",
+            ],
+        }
+    )
+    expected_df = pd.DataFrame(
+        {
+            "Data Negócio": ["1", "1", "2", "2", "2"],
+            "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
+            "C/V": [" C ", " V ", " C ", " V ", " V "],
+            "Quantidade": [20, 30, 340, 80, 50],
+            "Valor Total (R$)": [10.20, 30.50, 695.123, 210.34, 80.13],
+            "Especificação do Ativo": [
+                "ISHARES",
+                "PETRO",
+                "ISHARES",
+                "ISHARES",
+                "PETRO",
+            ],
+        }
+    )
+    result_df = cei.group_trades(df)
+    pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+def test_calculate_taxes_2019() -> None:
+    ref_year = 2019
+    df = pd.DataFrame(
+        {
+            "Valor Total (R$)": [
+                4618.5,
+                935,
+                # 10956
+            ],
+        }
+    )
+    expected_df = pd.DataFrame(
+        {
+            "Valor Total (R$)": [
+                4618.5,
+                935,
+                # 10956
+            ],
+            "Liquidação (R$)": [
+                1.27,
+                0.25,
+                # 3.01
+            ],
+            "Emolumentos (R$)": [
+                0.18,
+                0.03,
+                # 0.45
+            ],
+        }
+    )
+    result_df = cei.calculate_taxes(df, ref_year)
+    pd.testing.assert_frame_equal(result_df, expected_df)
