@@ -24,4 +24,4 @@ O programa irá procurar o arquivo "InfoCEI.xls" na pasta atual (digite `pwd` no
 
 ## Aviso legal (disclaimer)
 
-Esta é uma ferramenta com código aberto e gratuita, com licença MIT. Você pode alterar o código e distribuir, usar comercialmente como bem entender. Contribuições são muito bem vindas. A responsabilidade de conferência dos valores e do envio dessas informações à Receita Federal é total responsabilidade do usuário. Os desenvolvedores e colaboradores desse programa não se responsabilizam por quaisquer incorreções nos cálculos aqui efetuados.
+Esta é uma ferramenta com código aberto e gratuita, com licença MIT. Você pode alterar o código e distribuir, usar comercialmente como bem entender. Contribuições são muito bem vindas. Toda a responsabilidade de conferência dos valores e do envio dessas informações à Receita Federal é do usuário. Os desenvolvedores e colaboradores desse programa não se responsabilizam por quaisquer incorreções nos cálculos e lançamentos gerados.
