@@ -17,6 +17,20 @@ FILE_ENCODING = "iso-8859-1"
 IRPF_INVESTIMENT_CODES = {"ETF": "74 (ETF)", "FII": "73 (FII)", "STOCKS": "31 (Ações)"}
 
 
+def get_xls_filename() -> str:
+    """Returns first xls filename in current folder or Downloads folder."""
+    csv_filenames = glob.glob("InfoCEI*.xls")
+    if csv_filenames:
+        return csv_filenames[0]
+    home = os.path.expanduser("~")
+    csv_filenames = glob.glob(home + "/Downloads/InfoCEI*.xls")
+    if csv_filenames:
+        return csv_filenames[0]
+    return sys.exit(
+        "Erro: arquivo não encontrado, confira a documentação para mais informações."
+    )
+
+
 def date_parse(value: str) -> datetime.datetime:
     """Parse dates from CEI report.
 
@@ -135,7 +149,7 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
 
 # TODO reproduce rounding calculation
 def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
-    """Groups emolumentos and liquidação taxes.
+    """Groups emolumentos and liquidação taxes based on reference year.
 
     Args:
         df (pd.DataFrame): grouped trades.
@@ -143,6 +157,7 @@ def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
     Returns:
         pd.DataFrame: grouped trades with two new columns of calculated taxes.
     """
+    df = group_trades(df)
     df["Liquidação (R$)"] = (
         df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
     ).apply(round_down)
@@ -152,93 +167,113 @@ def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
     return df
 
 
-def goods_and_rights(source_df: pd.DataFrame, ref_year: int, institution: str) -> None:
-    source_df = clean_table_cols(source_df)
-    source_df = group_trades(source_df)
-    source_df = calculate_taxes(source_df, ref_year)
-    # sum totals of sells and buys
-    source_df["Quantidade Compra"] = source_df["Quantidade"].where(
-        source_df["C/V"].str.contains("C"), 0
-    )
-    source_df["Quantidade Venda"] = source_df["Quantidade"].where(
-        source_df["C/V"].str.contains("V"), 0
-    )
-    source_df["Custo Total Compra (R$)"] = (
-        source_df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
+def buy_sell_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Create columns for buys and sells with quantity and total value.
+
+    Args:
+        df (pd.DataFrame): grouped trades.
+
+    Returns:
+        pd.DataFrame: grouped trades with four new columns of buys and sells.
+    """
+    df["Quantidade Compra"] = df["Quantidade"].where(df["C/V"].str.contains("C"), 0)
+    df["Custo Total Compra (R$)"] = (
+        df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
         .sum(axis="columns")
-        .where(source_df["C/V"].str.contains("C"), 0)
+        .where(df["C/V"].str.contains("C"), 0)
     )
-    source_df["Custo Total Venda (R$)"] = (
-        source_df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
+    df["Quantidade Venda"] = df["Quantidade"].where(df["C/V"].str.contains("V"), 0)
+    df["Custo Total Venda (R$)"] = (
+        df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
         .sum(axis="columns")
-        .where(source_df["C/V"].str.contains("V"), 0)
+        .where(df["C/V"].str.contains("V"), 0)
     )
-    with pd.option_context("display.max_rows", None, "display.max_columns", None):
-        print("Valores calculados de emolumentos, liquidação e custo total:")
-        print(source_df)
-        result_df = (
-            source_df.groupby(["Código"])
-            .agg(
-                {
-                    "Quantidade Compra": "sum",
-                    "Quantidade Venda": "sum",
-                    "Custo Total Compra (R$)": "sum",
-                    "Custo Total Venda (R$)": "sum",
-                    "Especificação do Ativo": "first",
-                }
-            )
-            .reset_index()
+    df.drop(["Quantidade", "Valor Total (R$)"], axis="columns", inplace=True)
+    return df
+
+
+def group_buys_sells(df: pd.DataFrame) -> pd.DataFrame:
+    """Groups buys and sells by asset.
+
+    Args:
+        df (pd.DataFrame): ungrouped buys and sells.
+
+    Returns:
+        pd.DataFrame: grouped buys and sells.
+    """
+    return (
+        df.groupby(["Código"])
+        .agg(
+            {
+                "Quantidade Compra": "sum",
+                "Custo Total Compra (R$)": "sum",
+                "Quantidade Venda": "sum",
+                "Custo Total Venda (R$)": "sum",
+                "Especificação do Ativo": "first",
+            }
         )
-        result_df["Preço Médio (R$)"] = (
-            result_df["Custo Total Compra (R$)"] / result_df["Quantidade Compra"]
-        ).round(decimals=3)
-        output_assets(result_df, ref_year, institution)
-
-
-def get_xls_filename() -> str:
-    """ Returns first xls filename in current folder or Downloads folder """
-    csv_filenames = glob.glob("InfoCEI*.xls")
-    if csv_filenames:
-        return csv_filenames[0]
-    home = os.path.expanduser("~")
-    csv_filenames = glob.glob(home + "/Downloads/InfoCEI*.xls")
-    if csv_filenames:
-        return csv_filenames[0]
-    return sys.exit(
-        "Erro: arquivo não encontrado, confira a documentação para mais informações."
+        .reset_index()
     )
 
 
-def output_assets(df: pd.DataFrame, ref_year: int, institution: str) -> None:
-    """ Return a list of assets """
+def average_price(df: pd.DataFrame) -> pd.DataFrame:
+    """Computes average price.
+
+    Args:
+        df (pd.DataFrame): buys and sells without average price.
+
+    Returns:
+        pd.DataFrame: buys and sells with average price.
+    """
+    df["Preço Médio (R$)"] = (
+        df["Custo Total Compra (R$)"] / df["Quantidade Compra"]
+    ).round(decimals=3)
+    return df
+
+
+def goods_and_rights(source_df: pd.DataFrame) -> pd.DataFrame:
+    result_df = buy_sell_columns(source_df)
+    result_df = group_buys_sells(source_df)
+    result_df = average_price(result_df)
+    return result_df
+
+
+def output_taxes(tax_df: pd.DataFrame):
+    with pd.option_context("display.max_rows", None, "display.max_columns", None):
+        print("Valores calculados de emolumentos, liquidação e custo total:\n", tax_df)
+
+
+def output_goods_and_rights(
+    result_df: pd.DataFrame, ref_year: int, institution: str
+) -> None:
+    """Returns a list of assets."""
     # get available locale from shell `locale -a`
     loc = "pt_BR.utf8"
     locale.setlocale(locale.LC_ALL, loc)
     pd.set_option("float_format", locale.currency)
     print("========= Bens e Direitos =========")
-    for row in df.iterrows():
+    for row in result_df.iterrows():
         idx = row[0]
         content = row[1]
         code = content["Código"]
-        print("============= Ativo {} =============".format(idx + 1))
-        print(
-            "Código: " + IRPF_INVESTIMENT_CODES[irpf_cei.b3.get_investment_type(code)]
-        )
         print(
             (
+                "============= Ativo {} =============\n"
+                "Código: {}\n"
                 "Discriminação (sugerida): {} - Código: {} - Quantidade: {} - "
-                "Preço Médio Compra: R$ {} - Corretora: {}"
-            ).format(
+                "Preço Médio Compra: R$ {} - Corretora: {}\n"
+                "Situação em 31/12/{}: R$ {}\n"
+            )
+            .format(
+                idx + 1,
+                IRPF_INVESTIMENT_CODES[irpf_cei.b3.get_investment_type(code)],
                 content["Especificação do Ativo"],
                 code,
                 str(content["Quantidade Compra"] - content["Quantidade Venda"]),
                 str(content["Preço Médio (R$)"]).replace(".", ","),
                 institution,
-            )
-        )
-        print(
-            "Situação em 31/12/{}: R$ {}".format(
                 ref_year,
                 content["Custo Total Compra (R$)"] - content["Custo Total Venda (R$)"],
-            ).replace(".", ",")
+            )
+            .replace(".", ",")
         )

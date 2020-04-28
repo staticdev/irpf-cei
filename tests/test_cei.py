@@ -1,8 +1,9 @@
 """Test cases for the CEI module."""
 import datetime
 import os
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
+import numpy as np
 import pandas as pd
 import pytest
 from pytest_mock import MockFixture
@@ -149,8 +150,10 @@ def test_group_trades() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
-def test_calculate_taxes_2019() -> None:
-    ref_year = 2019
+@pytest.fixture
+def mock_group_trades(mocker: MockFixture) -> Mock:
+    """Fixture for mocking cei.group_trades."""
+    mock = mocker.patch("irpf_cei.cei.group_trades")
     df = pd.DataFrame(
         {
             "Valor Total (R$)": [
@@ -160,6 +163,12 @@ def test_calculate_taxes_2019() -> None:
             ],
         }
     )
+    mock.return_value = df
+    return mock
+
+
+def test_calculate_taxes_2019(mock_group_trades) -> None:
+    ref_year = 2019
     expected_df = pd.DataFrame(
         {
             "Valor Total (R$)": [
@@ -179,5 +188,118 @@ def test_calculate_taxes_2019() -> None:
             ],
         }
     )
-    result_df = cei.calculate_taxes(df, ref_year)
+    result_df = cei.calculate_taxes(pd.DataFrame(), ref_year)
     pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+def test_buy_sell_columns() -> None:
+    df = pd.DataFrame(
+        {
+            "Data Negócio": ["1", "1", "2", "2", "2"],
+            "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
+            "C/V": [" C ", " V ", " C ", " V ", " V "],
+            "Quantidade": [20, 30, 340, 80, 50],
+            "Valor Total (R$)": [10.20, 30.50, 695.123, 210.34, 80.13],
+            "Liquidação (R$)": [1, 2, 5, 4, 3],
+            "Emolumentos (R$)": [0.2, 0.3, 1.3, 0.8, 0.5],
+        }
+    )
+    expected_df = pd.DataFrame(
+        {
+            "Data Negócio": ["1", "1", "2", "2", "2"],
+            "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
+            "C/V": [" C ", " V ", " C ", " V ", " V "],
+            "Liquidação (R$)": [1, 2, 5, 4, 3],
+            "Emolumentos (R$)": [0.2, 0.3, 1.3, 0.8, 0.5],
+            "Quantidade Compra": [20, 0, 340, 0, 0],
+            "Custo Total Compra (R$)": [11.40, 0, 701.423, 0, 0],
+            "Quantidade Venda": [0, 30, 0, 80, 50],
+            "Custo Total Venda (R$)": [0, 32.80, 0, 215.14, 83.63],
+        }
+    )
+    result_df = cei.buy_sell_columns(df)
+    pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+def test_group_buys_sells() -> None:
+    df = pd.DataFrame(
+        {
+            "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
+            "Quantidade Compra": [20, 0, 340, 0, 0],
+            "Custo Total Compra (R$)": [11.40, 0, 701.423, 0, 0],
+            "Quantidade Venda": [0, 30, 0, 80, 50],
+            "Custo Total Venda (R$)": [0, 32.80, 0, 215.14, 83.63],
+            "Especificação do Ativo": [
+                "ISHARES",
+                "PETRO",
+                "ISHARES",
+                "ISHARES",
+                "PETRO",
+            ],
+        }
+    )
+    expected_df = pd.DataFrame(
+        {
+            "Código": ["BOVA11", "PETR4"],
+            "Quantidade Compra": [360, 0],
+            "Custo Total Compra (R$)": [712.823, 0],
+            "Quantidade Venda": [80, 80],
+            "Custo Total Venda (R$)": [215.14, 116.43],
+            "Especificação do Ativo": ["ISHARES", "PETRO"],
+        }
+    )
+    result_df = cei.group_buys_sells(df)
+    pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+def test_average_price() -> None:
+    df = pd.DataFrame(
+        {
+            "Código": ["BOVA11", "PETR4"],
+            "Quantidade Compra": [360, 0],
+            "Custo Total Compra (R$)": [712.823, 0],
+        }
+    )
+    expected_df = pd.DataFrame(
+        {
+            "Código": ["BOVA11", "PETR4"],
+            "Quantidade Compra": [360, 0],
+            "Custo Total Compra (R$)": [712.823, 0],
+            "Preço Médio (R$)": [1.980, np.nan],
+        }
+    )
+    result_df = cei.average_price(df)
+    pd.testing.assert_frame_equal(result_df, expected_df)
+
+
+@patch("irpf_cei.cei.buy_sell_columns")
+@patch("irpf_cei.cei.group_buys_sells")
+@patch("irpf_cei.cei.average_price", return_value=pd.DataFrame())
+def test_goods_and_rights(
+    mock_average_price, mock_groups_buys_sells, mock_buy_sell_columns
+) -> None:
+    df = cei.goods_and_rights(pd.DataFrame())
+    assert type(df) is pd.DataFrame
+
+
+@patch("builtins.print")
+def test_output_taxes(mock_print) -> None:
+    cei.output_taxes(pd.DataFrame())
+    mock_print.assert_called_once()
+
+
+@patch("builtins.print")
+def test_output_goods_and_rights(mock_print) -> None:
+    df = pd.DataFrame(
+        {
+            "Código": ["BOVA11", "PETR4"],
+            "Quantidade Compra": [360, 0],
+            "Custo Total Compra (R$)": [712.823, 0],
+            "Quantidade Venda": [80, 80],
+            "Custo Total Venda (R$)": [215.14, 116.43],
+            "Preço Médio (R$)": [1.980, np.nan],
+            "Especificação do Ativo": ["ISHARES", "PETRO"],
+        }
+    )
+    cei.output_goods_and_rights(df, 2019, "XYZ")
+    assert mock_print.call_count == 3
