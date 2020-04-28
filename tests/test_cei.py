@@ -288,8 +288,9 @@ def test_output_taxes(mock_print) -> None:
     mock_print.assert_called_once()
 
 
+@patch("locale.setlocale")
 @patch("builtins.print")
-def test_output_goods_and_rights(mock_print) -> None:
+def test_output_goods_and_rights(mock_print, mock_setlocale) -> None:
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],
