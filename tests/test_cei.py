@@ -21,7 +21,15 @@ def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
     """Fixture for mocking pandas.read_excel."""
     mock = mocker.patch("pandas.read_excel")
     header = pd.DataFrame(
-        {"Período de": ["01/01/2019 a 31/12/2019", "NAN", "NAN", "NAN", "INSTITUTION"]}
+        {
+            "Período de": [
+                "01/01/2019 a 31/12/2019",
+                np.nan,
+                np.nan,
+                np.nan,
+                "INSTITUTION",
+            ]
+        }
     )
     mock.return_value = header
     return mock
@@ -150,45 +158,40 @@ def test_group_trades() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
-@pytest.fixture
-def mock_group_trades(mocker: MockFixture) -> Mock:
-    """Fixture for mocking cei.group_trades."""
-    mock = mocker.patch("irpf_cei.cei.group_trades")
-    df = pd.DataFrame(
+@patch(
+    "irpf_cei.cei.group_trades",
+    return_value=pd.DataFrame(
         {
-            "Valor Total (R$)": [
-                4618.5,
-                935,
-                # 10956
+            "Data Negócio": [
+                datetime.datetime(2019, 2, 20),
+                datetime.datetime(2019, 3, 6),
+                datetime.datetime(2019, 5, 14),
             ],
+            "Valor Total (R$)": [935, 10956, 8870],
         }
-    )
-    mock.return_value = df
-    return mock
-
-
-def test_calculate_taxes_2019(mock_group_trades) -> None:
-    ref_year = 2019
+    ),
+)
+@patch("irpf_cei.b3.get_trading_rate", return_value=0.000275)
+@patch(
+    "irpf_cei.b3.get_emoluments_rates",
+    return_value=[0.00004105, 0.00004105, 0.00004105],
+)
+def test_calculate_taxes_2019(
+    mock_get_emoluments_rates, mock_get_trading_rate, mock_group_trades
+) -> None:
     expected_df = pd.DataFrame(
         {
-            "Valor Total (R$)": [
-                4618.5,
-                935,
-                # 10956
+            "Data Negócio": [
+                datetime.datetime(2019, 2, 20),
+                datetime.datetime(2019, 3, 6),
+                datetime.datetime(2019, 5, 14),
             ],
-            "Liquidação (R$)": [
-                1.27,
-                0.25,
-                # 3.01
-            ],
-            "Emolumentos (R$)": [
-                0.18,
-                0.03,
-                # 0.45
-            ],
+            "Valor Total (R$)": [935, 10956, 8870],
+            "Liquidação (R$)": [0.25, 3.01, 2.43],
+            "Emolumentos (R$)": [0.03, 0.44, 0.36],
         }
     )
-    result_df = cei.calculate_taxes(pd.DataFrame(), ref_year)
+    result_df = cei.calculate_taxes(pd.DataFrame())
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 

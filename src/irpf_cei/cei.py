@@ -147,8 +147,7 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-# TODO reproduce rounding calculation
-def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
+def calculate_taxes(df: pd.DataFrame) -> pd.DataFrame:
     """Groups emolumentos and liquidação taxes based on reference year.
 
     Args:
@@ -162,7 +161,7 @@ def calculate_taxes(df: pd.DataFrame, ref_year: int) -> pd.DataFrame:
         df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
     ).apply(round_down)
     df["Emolumentos (R$)"] = (
-        df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rate(ref_year)
+        df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"])
     ).apply(round_down)
     return df
 
