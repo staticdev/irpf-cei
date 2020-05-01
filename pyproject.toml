@@ -32,7 +32,7 @@ pyfakefs = "^4.0.2"
 typeguard = "^2.7.1"
 
 [tool.poetry.scripts]
-irpf-cei = "irpf_cei.console:main"
+irpf-cei = "irpf_cei.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]

@@ -1,11 +1,11 @@
-"""Test cases for the console module."""
+"""Test cases for the __main__ module."""
 from unittest.mock import Mock
 
 import click.testing
 import pytest
 from pytest_mock import MockFixture
 
-from irpf_cei import console
+from irpf_cei import __main__
 
 
 @pytest.fixture
@@ -75,7 +75,7 @@ def test_main_succeeds(
     mock_cei_output_goods_and_rights,
 ):
     """It exits with a status code of zero."""
-    result = runner.invoke(console.main)
+    result = runner.invoke(__main__.main)
     assert result.output.startswith("Filename: ")
     mock_cei_calculate_taxes.assert_called_once()
     mock_cei_output_taxes.assert_called_once()
