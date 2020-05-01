@@ -1,7 +1,6 @@
 """Test cases for the B3 module."""
 import datetime
 
-import pandas as pd
 import pytest
 
 from irpf_cei import b3
@@ -24,20 +23,19 @@ def test_get_trading_rate() -> None:
 
 
 def test_get_emoluments_rates_sucess() -> None:
-    series = pd.Series(
-        [
-            datetime.datetime(2019, 2, 20),
-            datetime.datetime(2019, 3, 6),
-            datetime.datetime(2019, 5, 14),
-        ]
-    )
-    expected = [0.00004032, 0.00004157, 0.00004408]
+    series = [
+        datetime.datetime(2019, 2, 20),
+        datetime.datetime(2019, 3, 6),
+        datetime.datetime(2019, 5, 14),
+        datetime.datetime(2019, 12, 31),
+    ]
+    expected = [0.00004032, 0.00004157, 0.00004408, 0.00003802]
     result = b3.get_emoluments_rates(series)
     assert result == expected
 
 
 def test_get_emoluments_rates_error() -> None:
     """It raises `SystemExit` when date is not found."""
-    series = pd.Series([datetime.datetime(1930, 2, 20)])
+    series = [datetime.datetime(1930, 2, 20)]
     with pytest.raises(SystemExit):
         assert b3.get_emoluments_rates(series)

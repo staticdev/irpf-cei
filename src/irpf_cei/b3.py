@@ -81,11 +81,17 @@ def get_trading_rate() -> float:
 
 def get_emoluments_rates(dates: List[datetime.datetime]) -> List[float]:
     rates = []
-    for idx, date in enumerate(dates, 1):
-        for period in EMOLUMENTOS_PERIODS:
+    last_period = 0
+    for date in dates:
+        for idx_period, period in enumerate(
+            EMOLUMENTOS_PERIODS[last_period:], start=last_period
+        ):
             if period.start_date <= date <= period.end_date:
+                last_period = idx_period
                 rates.append(period.rate)
                 break
-        if len(rates) < idx:
-            sys.exit("No period found for date: {}".format(date))
+        else:
+            sys.exit(
+                "Nenhum período de emolumentos encontrado para a data: {}".format(date)
+            )
     return rates

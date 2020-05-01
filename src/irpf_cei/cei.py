@@ -108,7 +108,7 @@ def read_xls(filename: str) -> pd.DataFrame:
 
 
 # Source: https://realpython.com/python-rounding/
-def round_down(n: float, decimals: int = 2) -> float:
+def round_down_money(n: float, decimals: int = 2) -> float:
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
 
@@ -159,10 +159,11 @@ def calculate_taxes(df: pd.DataFrame) -> pd.DataFrame:
     df = group_trades(df)
     df["Liquidação (R$)"] = (
         df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
-    ).apply(round_down)
+    ).apply(round_down_money)
     df["Emolumentos (R$)"] = (
-        df["Valor Total (R$)"] * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"])
-    ).apply(round_down)
+        df["Valor Total (R$)"]
+        * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"].array)
+    ).apply(round_down_money)
     return df
 
 

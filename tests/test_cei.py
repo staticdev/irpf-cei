@@ -40,10 +40,16 @@ def test_read_xls(mock_pandas_read_excel: Mock) -> None:
     mock_pandas_read_excel.assert_called_once()
 
 
-def test_round_down() -> None:
-    assert cei.round_down(5.999) == 5.99
-    assert cei.round_down(8.5) == 8.50
-    assert cei.round_down(5.555) == 5.55
+def test_round_down_money_more_than_half() -> None:
+    assert cei.round_down_money(5.999) == 5.99
+
+
+def test_round_down_money_on_half() -> None:
+    assert cei.round_down_money(5.555) == 5.55
+
+
+def test_round_down_money_one_digit() -> None:
+    assert cei.round_down_money(8.5) == 8.50
 
 
 @pytest.fixture
