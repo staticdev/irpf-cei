@@ -4,6 +4,7 @@
 [![Codecov](https://codecov.io/gh/staticdev/irpf-cei/badge.svg?branch=master&service=github)](https://codecov.io/gh/staticdev/irpf-cei)
 ![PyPi](https://badge.fury.io/py/irpf-cei.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 Programa auxiliar para calcular custos de ações, ETFs e FIIs. Este programa foi feito para calcular emolumentos, taxa de liquidação e custo total para a declaração de Bens e Direitos do Imposto de Renda Pessoa Física.
 
