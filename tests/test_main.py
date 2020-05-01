@@ -76,7 +76,7 @@ def test_main_succeeds(
 ):
     """It exits with a status code of zero."""
     result = runner.invoke(__main__.main)
-    assert result.output.startswith("Filename: ")
+    assert result.output.startswith("Nome do arquivo: ")
     mock_cei_calculate_taxes.assert_called_once()
     mock_cei_output_taxes.assert_called_once()
     mock_cei_goods_and_rights.assert_called_once()
