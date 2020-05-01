@@ -9,7 +9,7 @@ import irpf_cei.cei
 def main() -> None:
     """ Gets csv from current folder and sort  """
     filename = irpf_cei.cei.get_xls_filename()
-    click.secho("Filename: {}".format(filename), fg="blue")
+    click.secho("Nome do arquivo: {}".format(filename), fg="blue")
 
     ref_year, institution = irpf_cei.cei.validate_header(filename)
     source_df = irpf_cei.cei.read_xls(filename)
