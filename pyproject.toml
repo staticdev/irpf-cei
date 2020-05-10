@@ -13,6 +13,7 @@ python = "^3.8"
 pandas = "^1.0.3"
 click = "^7.1.1"
 xlrd = "^1.2.0"
+inquirer = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"

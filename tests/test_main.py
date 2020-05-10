@@ -1,11 +1,26 @@
 """Test cases for the __main__ module."""
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import click.testing
 import pytest
 from pytest_mock import MockFixture
 
 from irpf_cei import __main__
+
+
+@patch(
+    "inquirer.prompt",
+    side_effect=[{"trades": []}, {"": "Não"}, {"trades": []}, {"": "Sim"}],
+)
+def test_select_trades_empty(mock_inquirer_prompt) -> None:
+    trades = [("trade 1", 0), ("trade 2", 1)]
+    assert __main__.select_trades(trades) == []
+
+
+@patch("inquirer.prompt", return_value={"trades": [1]})
+def test_select_trades_some_selected(mock_inquirer_prompt) -> None:
+    trades = [("trade 1", 0), ("trade 2", 1)]
+    assert __main__.select_trades(trades) == [1]
 
 
 @pytest.fixture
@@ -40,6 +55,18 @@ def mock_cei_clean_table_cols(mocker: MockFixture) -> Mock:
 
 
 @pytest.fixture
+def mock_select_trades(mocker: MockFixture) -> Mock:
+    """Fixture for mocking __main__.select_trades."""
+    return mocker.patch("irpf_cei.__main__.select_trades")
+
+
+@pytest.fixture
+def mock_cei_get_trades(mocker: MockFixture) -> Mock:
+    """Fixture for mocking cei.get_trades."""
+    return mocker.patch("irpf_cei.cei.get_trades")
+
+
+@pytest.fixture
 def mock_cei_calculate_taxes(mocker: MockFixture) -> Mock:
     """Fixture for mocking cei.calculate_taxes."""
     return mocker.patch("irpf_cei.cei.calculate_taxes")
@@ -69,6 +96,8 @@ def test_main_succeeds(
     mock_cei_validate_header,
     mock_cei_read_xls,
     mock_cei_clean_table_cols,
+    mock_select_trades,
+    mock_cei_get_trades,
     mock_cei_calculate_taxes,
     mock_cei_output_taxes,
     mock_cei_goods_and_rights,

@@ -42,6 +42,7 @@ EMOLUMENTOS_PERIODS = [
         datetime.datetime(2019, 12, 3), datetime.datetime(2020, 1, 2), 0.00003802
     ),
 ]
+EMOLUMENTOS_AUCTION_RATE = 0.00007
 LIQUIDACAO_RATE = 0.000275
 ETFS = {
     "BBSD11",
@@ -79,7 +80,18 @@ def get_trading_rate() -> float:
     return LIQUIDACAO_RATE
 
 
-def get_emoluments_rates(dates: List[datetime.datetime]) -> List[float]:
+def get_emoluments_rates(
+    dates: List[datetime.datetime], auction_trades: List[int]
+) -> List[float]:
+    """Get the list of emuluments rates.
+
+    Args:
+        dates (List[datetime.datetime]): list of trade days.
+        auction_trades (List[int]): list of indexes of trades in auction.
+
+    Returns:
+        List[float]: list of rates.
+    """
     rates = []
     last_period = 0
     for date in dates:
@@ -94,4 +106,6 @@ def get_emoluments_rates(dates: List[datetime.datetime]) -> List[float]:
             sys.exit(
                 "Nenhum período de emolumentos encontrado para a data: {}".format(date)
             )
+    for trade in auction_trades:
+        rates[trade] = EMOLUMENTOS_AUCTION_RATE
     return rates

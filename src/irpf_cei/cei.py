@@ -5,7 +5,7 @@ import locale
 import math
 import os
 import sys
-from typing import Tuple
+from typing import List, Tuple
 
 import pandas as pd
 import xlrd
@@ -125,6 +125,26 @@ def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
     return source_df.dropna(axis="columns", how="all")
 
 
+def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
+    """Returns trades representations.
+
+    Args:
+        source_df (pd.DataFrame): trades DataFrame.
+
+    Returns:
+        trades: list of df indexes and string representations.
+    """
+    df["unit_cost_rs"] = df["Preço (R$)"].apply(
+        lambda x: "R$ " + str("{:.2f}".format(x).replace(".", ","))
+    )
+    df["total_cost_rs"] = df["Valor Total (R$)"].apply(
+        lambda x: "R$ " + str("{:.2f}".format(x).replace(".", ","))
+    )
+    df = df.drop(columns=["Preço (R$)", "Valor Total (R$)"])
+    list_of_list = df.astype(str).values.tolist()
+    return [(" ".join(x), i) for i, x in enumerate(list_of_list)]
+
+
 def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     """Groups trades by day, asset and action.
 
@@ -147,11 +167,12 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def calculate_taxes(df: pd.DataFrame) -> pd.DataFrame:
+def calculate_taxes(df: pd.DataFrame, auction_trades: List[int]) -> pd.DataFrame:
     """Groups emolumentos and liquidação taxes based on reference year.
 
     Args:
         df (pd.DataFrame): grouped trades.
+        auction_trades (List[int]): list of auction trades.
 
     Returns:
         pd.DataFrame: grouped trades with two new columns of calculated taxes.
@@ -162,7 +183,7 @@ def calculate_taxes(df: pd.DataFrame) -> pd.DataFrame:
     ).apply(round_down_money)
     df["Emolumentos (R$)"] = (
         df["Valor Total (R$)"]
-        * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"].array)
+        * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"].array, auction_trades)
     ).apply(round_down_money)
     return df
 

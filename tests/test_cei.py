@@ -126,6 +126,24 @@ def test_clean_table_cols() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
+def test_get_trades() -> None:
+    df = pd.DataFrame(
+        {
+            "Data": ["10/10/2019", "12/11/2019"],
+            "Operação": ["B   ", "S   "],
+            "Quantidade": [10, 100],
+            "Preço (R$)": [10.20, 30.50],
+            "Valor Total (R$)": [102.0, 3050],
+        }
+    )
+    expected_result = [
+        ("10/10/2019 B    10 R$ 10,20 R$ 102,00", 0),
+        ("12/11/2019 S    100 R$ 30,50 R$ 3050,00", 1),
+    ]
+    result = cei.get_trades(df)
+    assert expected_result == result
+
+
 def test_group_trades() -> None:
     df = pd.DataFrame(
         {
@@ -197,7 +215,7 @@ def test_calculate_taxes_2019(
             "Emolumentos (R$)": [0.03, 0.44, 0.36],
         }
     )
-    result_df = cei.calculate_taxes(pd.DataFrame())
+    result_df = cei.calculate_taxes(pd.DataFrame(), [])
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
