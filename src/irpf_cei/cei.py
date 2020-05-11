@@ -5,7 +5,8 @@ import locale
 import math
 import os
 import sys
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
 import pandas as pd
 import xlrd

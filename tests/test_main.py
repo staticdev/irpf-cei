@@ -1,5 +1,6 @@
 """Test cases for the __main__ module."""
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
+from unittest.mock import patch
 
 import click.testing
 import pytest
