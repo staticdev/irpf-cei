@@ -62,7 +62,7 @@ def test_round_down_money_one_digit() -> None:
 def cwd(fs: MockFixture, monkeypatch: Mock):
     """Fixture for pyfakefs fs."""
     fs.cwd = "/path"
-    monkeypatch.setenv("HOME", "home")
+    monkeypatch.setenv("HOME", "/home")
 
 
 def test_get_xls_filename_not_found(fs: MockFixture, cwd: Mock) -> None:
@@ -79,7 +79,7 @@ def test_get_xls_filename_current_folder(fs: MockFixture, cwd: Mock) -> None:
 
 def test_get_xls_filename_download_folder(fs: MockFixture, cwd: Mock) -> None:
     """It returns filename found in downloads folder."""
-    path = os.path.join("home", "Downloads", "InfoCEI.xls")
+    path = os.path.join("/home", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
     assert cei.get_xls_filename() == path
 
@@ -103,9 +103,10 @@ def test_validate_period_different_years() -> None:
 
 def test_validate_header_empty_file(fs: MockFixture, cwd: Mock) -> None:
     """It raises `SystemExit` from empty file."""
-    fs.create_file("/my/path/InfoCEI.xls")
+    path = os.path.join("path", "InfoCEI.xls")
+    fs.create_file(path)
     with pytest.raises(SystemExit):
-        cei.validate_header("/my/path/InfoCEI.xls")
+        cei.validate_header(path)
 
 
 @pytest.fixture
