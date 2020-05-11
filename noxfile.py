@@ -48,12 +48,7 @@ def lint(session: Session) -> None:
     """Lint using flake8."""
     args = session.posargs or locations
     install_with_constraints(
-        session,
-        "flake8",
-        "flake8-bandit",
-        "flake8-black",
-        "flake8-bugbear",
-        "flake8-import-order",
+        session, "flake8", "flake8-bandit", "flake8-black", "flake8-bugbear",
     )
     session.run("flake8", *args)
 
