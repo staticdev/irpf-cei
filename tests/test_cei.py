@@ -13,6 +13,7 @@ from irpf_cei import cei
 
 
 def test_date_parse() -> None:
+    """It returns datetime."""
     expected = datetime.datetime(day=1, month=2, year=2019)
     assert cei.date_parse(" 01/02/19 ") == expected
 
@@ -37,24 +38,29 @@ def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
 
 
 def test_read_xls(mock_pandas_read_excel: Mock) -> None:
+    """It calls read_excel."""
     cei.read_xls("my.xls")
     mock_pandas_read_excel.assert_called_once()
 
 
 def test_round_down_money_more_than_half() -> None:
+    """It retuns rounded down two decimals."""
     assert cei.round_down_money(5.999) == 5.99
 
 
 def test_round_down_money_on_half() -> None:
+    """It retuns rounded down two decimals second case."""
     assert cei.round_down_money(5.555) == 5.55
 
 
 def test_round_down_money_one_digit() -> None:
+    """It retuns rounded down two decimals third case."""
     assert cei.round_down_money(8.5) == 8.50
 
 
 @pytest.fixture
 def cwd(fs: MockFixture, monkeypatch: Mock):
+    """Fixture for pyfakefs fs."""
     fs.cwd = "/my/path"
     monkeypatch.setenv("HOME", "/home/user")
 
@@ -84,16 +90,19 @@ def test_validate_period_success() -> None:
 
 
 def test_validate_period_wrong_start_finish() -> None:
+    """It raises `SystemExit` from wrong start date."""
     with pytest.raises(SystemExit):
         assert cei.validate_period("01/12/2020", "31/12/2020")
 
 
 def test_validate_period_different_years() -> None:
+    """It raises `SystemExit` from different years."""
     with pytest.raises(SystemExit):
         assert cei.validate_period("01/01/2019", "31/12/2020")
 
 
 def test_validate_header_empty_file(fs: MockFixture, cwd: Mock) -> None:
+    """It raises `SystemExit` from empty file."""
     fs.create_file("/my/path/InfoCEI.xls")
     with pytest.raises(SystemExit):
         cei.validate_header("/my/path/InfoCEI.xls")
@@ -110,10 +119,12 @@ def mock_validate_period(mocker: MockFixture) -> Mock:
 def test_validate_header(
     mock_pandas_read_excel: MockFixture, mock_validate_period: MockFixture
 ) -> None:
+    """It returns year and institution."""
     assert cei.validate_header("/my/path/InfoCEI.xls") == (2019, "INSTITUTION")
 
 
 def test_clean_table_cols() -> None:
+    """It returns cleaned DataFrame."""
     df = pd.DataFrame(
         {
             "full_valued": [1, 2, 3],
@@ -128,6 +139,7 @@ def test_clean_table_cols() -> None:
 
 
 def test_get_trades() -> None:
+    """It returns list of trade tuples."""
     df = pd.DataFrame(
         {
             "Data": ["10/10/2019", "12/11/2019"],
@@ -145,6 +157,7 @@ def test_get_trades() -> None:
 
 
 def test_group_trades() -> None:
+    """It returns DataFrame of grouped trades."""
     df = pd.DataFrame(
         {
             "Data Negócio": ["1", "1", "2", "2", "2", "2"],
@@ -188,6 +201,7 @@ def test_group_trades() -> None:
     return_value=[0.00004105, 0.00004105, 0.00004105],
 )
 def test_calculate_taxes_2019(mock_get_emoluments_rates, mock_get_trading_rate) -> None:
+    """It returns calculated taxes."""
     df = pd.DataFrame(
         {
             "Data Negócio": [
@@ -215,6 +229,7 @@ def test_calculate_taxes_2019(mock_get_emoluments_rates, mock_get_trading_rate) 
 
 
 def test_buy_sell_columns() -> None:
+    """It returns DataFrame with separated buy/sell columns."""
     df = pd.DataFrame(
         {
             "Data Negócio": ["1", "1", "2", "2", "2"],
@@ -244,6 +259,7 @@ def test_buy_sell_columns() -> None:
 
 
 def test_group_buys_sells() -> None:
+    """It returns DataFrame with grouped buy/sell trades."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
@@ -275,6 +291,7 @@ def test_group_buys_sells() -> None:
 
 
 def test_average_price() -> None:
+    """It returns DataFrame with average price column."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],
@@ -300,12 +317,14 @@ def test_average_price() -> None:
 def test_goods_and_rights(
     mock_average_price, mock_groups_buys_sells, mock_buy_sell_columns
 ) -> None:
+    """It returns DataFrame."""
     df = cei.goods_and_rights(pd.DataFrame())
     assert type(df) is pd.DataFrame
 
 
 @patch("builtins.print")
 def test_output_taxes(mock_print) -> None:
+    """It prints out taxes."""
     cei.output_taxes(pd.DataFrame())
     mock_print.assert_called_once()
 
@@ -313,6 +332,7 @@ def test_output_taxes(mock_print) -> None:
 @patch("locale.setlocale")
 @patch("builtins.print")
 def test_output_goods_and_rights(mock_print, mock_setlocale) -> None:
+    """It prints out goods and rights."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],

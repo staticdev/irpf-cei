@@ -7,18 +7,22 @@ from irpf_cei import b3
 
 
 def test_get_investment_type_etf() -> None:
+    """It returns ETF."""
     assert b3.get_investment_type("BOVA11") == "ETF"
 
 
 def test_get_investment_type_fii() -> None:
+    """It returns FII."""
     assert b3.get_investment_type("KNRI11") == "FII"
 
 
 def test_get_investment_type_stock() -> None:
+    """It returns STOCKS."""
     assert b3.get_investment_type("PETR4") == "STOCKS"
 
 
 def test_get_trading_rate() -> None:
+    """It returns fixed float value."""
     assert b3.get_trading_rate() == 0.000275
 
 
@@ -30,6 +34,7 @@ def test_get_emoluments_rates_error() -> None:
 
 
 def test_get_emoluments_rates_sucess_no_auction() -> None:
+    """It returns date rates."""
     series = [
         datetime.datetime(2019, 2, 20),
         datetime.datetime(2019, 3, 6),
@@ -42,6 +47,7 @@ def test_get_emoluments_rates_sucess_no_auction() -> None:
 
 
 def test_get_emoluments_rates_sucess_with_auction() -> None:
+    """It returns date rates and auction rates."""
     series = [
         datetime.datetime(2019, 2, 20),
         datetime.datetime(2019, 3, 6),

@@ -31,6 +31,7 @@ pytest-mock = "^3.0.0"
 pyfakefs = "^4.0.2"
 typeguard = "^2.7.1"
 reorder-python-imports = "^2.3.1"
+pre-commit = "^2.3.0"
 
 [tool.poetry.scripts]
 irpf-cei = "irpf_cei.__main__:main"

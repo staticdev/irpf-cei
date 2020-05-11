@@ -33,19 +33,12 @@ def get_xls_filename() -> str:
 
 
 def date_parse(value: str) -> datetime.datetime:
-    """Parse dates from CEI report.
-
-    Arguments:
-        value {str} -- some %d/%m/%y date eg. " 01/02/19 "
-
-    Returns:
-        datetime.datetime -- proper object with the day, month, year set
-    """
+    """Parse dates from CEI report."""
     return datetime.datetime.strptime(value.strip(), "%d/%m/%y")
 
 
 def validate_period(first: str, second: str) -> int:
-    """Considers the year from the first trade date """
+    """Considers the year from the first trade date."""
     if first.startswith("01/01") and second.startswith("31/12"):
         first_year = int(first[-4:])
         second_year = int(second[-4:])
@@ -62,14 +55,13 @@ def validate_period(first: str, second: str) -> int:
 
 
 def validate_header(filepath: str) -> Tuple[int, str]:
-    """Validates file header and
-    returns reference year and institution name if valid.
+    """Validates file header.
 
     Arguments:
-        filepath {str} -- CEI report's full path
+        filepath: CEI report's full path
 
     Returns:
-        Tuple[int, str] -- reference year for the report and institution
+        Tuple[int, str]: reference year for the report and institution name if valid.
     """
     try:
         basic_df = pd.read_excel(
@@ -96,6 +88,14 @@ def validate_header(filepath: str) -> Tuple[int, str]:
 
 
 def read_xls(filename: str) -> pd.DataFrame:
+    """Reads xls.
+
+    Args:
+        filename (str): name of XLS file.
+
+    Returns:
+        pd.DataFrame: content of the file.
+    """
     df = pd.read_excel(
         filename,
         encoding=FILE_ENCODING,
@@ -110,6 +110,15 @@ def read_xls(filename: str) -> pd.DataFrame:
 
 # Source: https://realpython.com/python-rounding/
 def round_down_money(n: float, decimals: int = 2) -> float:
+    """Rounds float on second decimal cases.
+
+    Args:
+        n (float): number.
+        decimals (int): Number of decimal cases. Defaults to 2.
+
+    Returns:
+        float: rounded number.
+    """
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
 
@@ -130,7 +139,7 @@ def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
     """Returns trades representations.
 
     Args:
-        source_df (pd.DataFrame): trades DataFrame.
+        df (pd.DataFrame): trades DataFrame.
 
     Returns:
         trades: list of df indexes and string representations.
@@ -252,6 +261,14 @@ def average_price(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def goods_and_rights(source_df: pd.DataFrame) -> pd.DataFrame:
+    """Calls methods for goods and rights.
+
+    Args:
+        source_df (pd.DataFrame): raw DataFrame.
+
+    Returns:
+        pd.DataFrame: goods and rights DataFrame.
+    """
     result_df = buy_sell_columns(source_df)
     result_df = group_buys_sells(source_df)
     result_df = average_price(result_df)
@@ -259,6 +276,11 @@ def goods_and_rights(source_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def output_taxes(tax_df: pd.DataFrame):
+    """Prints tax DataFrame.
+
+    Args:
+        tax_df (pd.DataFrame): calculated tax columns.
+    """
     with pd.option_context("display.max_rows", None, "display.max_columns", None):
         print("Valores calculados de emolumentos, liquidação e custo total:\n", tax_df)
 
