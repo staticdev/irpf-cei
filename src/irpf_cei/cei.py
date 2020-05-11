@@ -282,8 +282,7 @@ def output_goods_and_rights(
                 "Discriminação (sugerida): {} - Código: {} - Quantidade: {} - "
                 "Preço Médio Compra: R$ {} - Corretora: {}\n"
                 "Situação em 31/12/{}: R$ {}\n"
-            )
-            .format(
+            ).format(
                 idx + 1,
                 IRPF_INVESTIMENT_CODES[irpf_cei.b3.get_investment_type(code)],
                 content["Especificação do Ativo"],
@@ -292,7 +291,9 @@ def output_goods_and_rights(
                 str(content["Preço Médio (R$)"]).replace(".", ","),
                 institution,
                 ref_year,
-                content["Custo Total Compra (R$)"] - content["Custo Total Venda (R$)"],
+                str(
+                    content["Custo Total Compra (R$)"]
+                    - content["Custo Total Venda (R$)"]
+                ).replace(".", ","),
             )
-            .replace(".", ",")
         )
