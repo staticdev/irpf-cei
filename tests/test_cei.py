@@ -61,8 +61,8 @@ def test_round_down_money_one_digit() -> None:
 @pytest.fixture
 def cwd(fs: MockFixture, monkeypatch: Mock):
     """Fixture for pyfakefs fs."""
-    fs.cwd = "/my/path"
-    monkeypatch.setenv("HOME", "/home/user")
+    fs.cwd = "/path"
+    monkeypatch.setenv("HOME", "home")
 
 
 def test_get_xls_filename_not_found(fs: MockFixture, cwd: Mock) -> None:
@@ -73,13 +73,13 @@ def test_get_xls_filename_not_found(fs: MockFixture, cwd: Mock) -> None:
 
 def test_get_xls_filename_current_folder(fs: MockFixture, cwd: Mock) -> None:
     """It returns filename found in current folder."""
-    fs.create_file("/my/path/InfoCEI.xls")
-    assert cei.get_xls_filename() == "InfoCEI.xls"  # adapted to your implementation
+    fs.create_file("/path/InfoCEI.xls")
+    assert cei.get_xls_filename() == "InfoCEI.xls"
 
 
 def test_get_xls_filename_download_folder(fs: MockFixture, cwd: Mock) -> None:
     """It returns filename found in downloads folder."""
-    path = os.path.join("/home/user", "Downloads", "InfoCEI.xls")
+    path = os.path.join("home", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
     assert cei.get_xls_filename() == path
 
