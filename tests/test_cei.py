@@ -77,7 +77,10 @@ def test_get_xls_filename_current_folder(fs: MockFixture, cwd: Mock) -> None:
     assert cei.get_xls_filename() == "InfoCEI.xls"
 
 
-def test_get_xls_filename_download_folder(fs: MockFixture, cwd: Mock) -> None:
+@patch("os.path.expanduser", return_value="/home")
+def test_get_xls_filename_download_folder(
+    mock_os_expanduser: Mock, fs: MockFixture, cwd: Mock
+) -> None:
     """It returns filename found in downloads folder."""
     path = os.path.join("/home", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
