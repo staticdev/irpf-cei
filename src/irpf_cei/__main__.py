@@ -24,7 +24,6 @@ def select_trades(trades: List[Tuple[str, int]]) -> List[int]:
         ),
         fg="green",
     )
-    selection = []
     while True:
         selection = inquirer.prompt(
             [
@@ -51,8 +50,7 @@ def select_trades(trades: List[Tuple[str, int]]) -> List[int]:
             if answer == "Sim":
                 return []
         else:
-            break
-    return selection
+            return selection
 
 
 @click.command()
@@ -65,6 +63,7 @@ def main() -> None:
     ref_year, institution = irpf_cei.cei.validate_header(filename)
     source_df = irpf_cei.cei.read_xls(filename)
     source_df = irpf_cei.cei.clean_table_cols(source_df)
+    source_df = irpf_cei.cei.group_trades(source_df)
     trades = irpf_cei.cei.get_trades(source_df)
     auction_trades = select_trades(trades)
     tax_df = irpf_cei.cei.calculate_taxes(source_df, auction_trades)

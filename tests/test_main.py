@@ -55,6 +55,12 @@ def mock_cei_clean_table_cols(mocker: MockFixture) -> Mock:
 
 
 @pytest.fixture
+def mock_cei_group_trades(mocker: MockFixture) -> Mock:
+    """Fixture for mocking cei.group_trades."""
+    return mocker.patch("irpf_cei.cei.group_trades")
+
+
+@pytest.fixture
 def mock_select_trades(mocker: MockFixture) -> Mock:
     """Fixture for mocking __main__.select_trades."""
     return mocker.patch("irpf_cei.__main__.select_trades")
@@ -96,6 +102,7 @@ def test_main_succeeds(
     mock_cei_validate_header,
     mock_cei_read_xls,
     mock_cei_clean_table_cols,
+    mock_cei_group_trades,
     mock_select_trades,
     mock_cei_get_trades,
     mock_cei_calculate_taxes,
