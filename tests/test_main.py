@@ -1,5 +1,6 @@
 """Test cases for the __main__ module."""
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
+from unittest.mock import patch
 
 import click.testing
 import pytest
@@ -13,18 +14,21 @@ from irpf_cei import __main__
     side_effect=[{"trades": []}, {"": "Não"}, {"trades": []}, {"": "Sim"}],
 )
 def test_select_trades_empty(mock_inquirer_prompt) -> None:
+    """It returns empty list."""
     trades = [("trade 1", 0), ("trade 2", 1)]
     assert __main__.select_trades(trades) == []
 
 
 @patch("inquirer.prompt", return_value={"trades": [1]})
 def test_select_trades_some_selected(mock_inquirer_prompt) -> None:
+    """It returns list with id 1."""
     trades = [("trade 1", 0), ("trade 2", 1)]
     assert __main__.select_trades(trades) == [1]
 
 
 @pytest.fixture
 def runner():
+    """Fixture for invoking command-line interfaces."""
     return click.testing.CliRunner()
 
 

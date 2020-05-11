@@ -1,3 +1,4 @@
+"""B3 module."""
 import collections
 import datetime
 import sys
@@ -66,6 +67,14 @@ ETFS = {
 
 
 def get_investment_type(code: str) -> str:
+    """Checks if code is ETF, FII or STOCKS.
+
+    Args:
+        code (str): asset code.
+
+    Returns:
+        str: ETF, FII or STOCKS.
+    """
     if code in ETFS:
         return "ETF"
     if (len(code) == 6 and code.endswith("11")) or (
@@ -77,6 +86,11 @@ def get_investment_type(code: str) -> str:
 
 
 def get_trading_rate() -> float:
+    """Return fixes trading rate.
+
+    Returns:
+        float: constant float.
+    """
     return LIQUIDACAO_RATE
 
 
