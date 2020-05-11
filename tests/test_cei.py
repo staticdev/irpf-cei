@@ -126,6 +126,23 @@ def test_clean_table_cols() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
+def test_get_trades() -> None:
+    df = pd.DataFrame(
+        {
+            "Data": ["10/10/2019", "12/11/2019"],
+            "Operação": ["B   ", "S   "],
+            "Quantidade": [10, 100],
+            "Valor Total (R$)": [102.0, 3050],
+        }
+    )
+    expected_result = [
+        ("10/10/2019 B    10 R$ 102,00", 0),
+        ("12/11/2019 S    100 R$ 3050,00", 1),
+    ]
+    result = cei.get_trades(df)
+    assert expected_result == result
+
+
 def test_group_trades() -> None:
     df = pd.DataFrame(
         {
@@ -164,9 +181,13 @@ def test_group_trades() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
+@patch("irpf_cei.b3.get_trading_rate", return_value=0.000275)
 @patch(
-    "irpf_cei.cei.group_trades",
-    return_value=pd.DataFrame(
+    "irpf_cei.b3.get_emoluments_rates",
+    return_value=[0.00004105, 0.00004105, 0.00004105],
+)
+def test_calculate_taxes_2019(mock_get_emoluments_rates, mock_get_trading_rate) -> None:
+    df = pd.DataFrame(
         {
             "Data Negócio": [
                 datetime.datetime(2019, 2, 20),
@@ -175,16 +196,7 @@ def test_group_trades() -> None:
             ],
             "Valor Total (R$)": [935, 10956, 8870],
         }
-    ),
-)
-@patch("irpf_cei.b3.get_trading_rate", return_value=0.000275)
-@patch(
-    "irpf_cei.b3.get_emoluments_rates",
-    return_value=[0.00004105, 0.00004105, 0.00004105],
-)
-def test_calculate_taxes_2019(
-    mock_get_emoluments_rates, mock_get_trading_rate, mock_group_trades
-) -> None:
+    )
     expected_df = pd.DataFrame(
         {
             "Data Negócio": [
@@ -197,7 +209,7 @@ def test_calculate_taxes_2019(
             "Emolumentos (R$)": [0.03, 0.44, 0.36],
         }
     )
-    result_df = cei.calculate_taxes(pd.DataFrame())
+    result_df = cei.calculate_taxes(df, [])
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 

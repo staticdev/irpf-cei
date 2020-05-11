@@ -5,7 +5,7 @@ import locale
 import math
 import os
 import sys
-from typing import Tuple
+from typing import List, Tuple
 
 import pandas as pd
 import xlrd
@@ -125,6 +125,24 @@ def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
     return source_df.dropna(axis="columns", how="all")
 
 
+def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
+    """Returns trades representations.
+
+    Args:
+        source_df (pd.DataFrame): trades DataFrame.
+
+    Returns:
+        trades: list of df indexes and string representations.
+    """
+    df["total_cost_rs"] = df["Valor Total (R$)"].apply(
+        lambda x: "R$ " + str("{:.2f}".format(x).replace(".", ","))
+    )
+    df = df.drop(columns=["Valor Total (R$)"])
+    list_of_list = df.astype(str).values.tolist()
+    df = df.drop(columns=["total_cost_rs"])
+    return [(" ".join(x), i) for i, x in enumerate(list_of_list)]
+
+
 def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     """Groups trades by day, asset and action.
 
@@ -147,22 +165,22 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def calculate_taxes(df: pd.DataFrame) -> pd.DataFrame:
-    """Groups emolumentos and liquidação taxes based on reference year.
+def calculate_taxes(df: pd.DataFrame, auction_trades: List[int]) -> pd.DataFrame:
+    """Calculates emolumentos and liquidação taxes based on reference year.
 
     Args:
         df (pd.DataFrame): grouped trades.
+        auction_trades (List[int]): list of auction trades.
 
     Returns:
-        pd.DataFrame: grouped trades with two new columns of calculated taxes.
+        pd.DataFrame: trades with two new columns of calculated taxes.
     """
-    df = group_trades(df)
     df["Liquidação (R$)"] = (
         df["Valor Total (R$)"] * irpf_cei.b3.get_trading_rate()
     ).apply(round_down_money)
     df["Emolumentos (R$)"] = (
         df["Valor Total (R$)"]
-        * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"].array)
+        * irpf_cei.b3.get_emoluments_rates(df["Data Negócio"].array, auction_trades)
     ).apply(round_down_money)
     return df
 
@@ -181,13 +199,13 @@ def buy_sell_columns(df: pd.DataFrame) -> pd.DataFrame:
         df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
         .sum(axis="columns")
         .where(df["C/V"].str.contains("C"), 0)
-    )
+    ).round(decimals=2)
     df["Quantidade Venda"] = df["Quantidade"].where(df["C/V"].str.contains("V"), 0)
     df["Custo Total Venda (R$)"] = (
         df[["Valor Total (R$)", "Liquidação (R$)", "Emolumentos (R$)"]]
         .sum(axis="columns")
         .where(df["C/V"].str.contains("V"), 0)
-    )
+    ).round(decimals=2)
     df.drop(["Quantidade", "Valor Total (R$)"], axis="columns", inplace=True)
     return df
 
@@ -212,6 +230,7 @@ def group_buys_sells(df: pd.DataFrame) -> pd.DataFrame:
                 "Especificação do Ativo": "first",
             }
         )
+        .round(decimals=2)
         .reset_index()
     )
 
