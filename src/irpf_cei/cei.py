@@ -19,13 +19,13 @@ IRPF_INVESTIMENT_CODES = {"ETF": "74 (ETF)", "FII": "73 (FII)", "STOCKS": "31 (A
 
 def get_xls_filename() -> str:
     """Returns first xls filename in current folder or Downloads folder."""
-    csv_filenames = glob.glob("InfoCEI*.xls")
-    if csv_filenames:
-        return csv_filenames[0]
+    filenames = glob.glob("InfoCEI*.xls")
+    if filenames:
+        return filenames[0]
     home = os.path.expanduser("~")
-    csv_filenames = glob.glob(home + "/Downloads/InfoCEI*.xls")
-    if csv_filenames:
-        return csv_filenames[0]
+    filenames = glob.glob(os.path.join(home, "Downloads", "InfoCEI*.xls"))
+    if filenames:
+        return filenames[0]
     return sys.exit(
         "Erro: arquivo não encontrado, confira a documentação para mais informações."
     )
