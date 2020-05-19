@@ -1,19 +1,44 @@
 name: Tests
+
 on: [push, pull_request]
+
 jobs:
   tests:
-    strategy:
-      matrix:
-        os: ["ubuntu-latest", "macos-latest"]
-        python-version: ["3.8"]
+    name: Tests (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    name: Python ${{ matrix.python-version }} (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { python-version: 3.8, os: ubuntu-latest }
+          # - { python-version: 3.8, os: windows-latest }
+          - { python-version: 3.8, os: macos-latest }
+          - { python-version: 3.7, os: ubuntu-latest }
+
     steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: actions/setup-python@v1.2.0
+      - name: Check out the repository
+        uses: actions/checkout@v2.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - run: |
+
+      - name: Upgrade pip
+        run: |
           pip install --constraint=.github/workflows/constraints.txt pip
-          pip install --constraint=.github/workflows/constraints.txt nox poetry
-      - run: nox --force-color
+          pip --version
+
+      - name: Install Poetry
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt poetry
+          poetry --version
+
+      - name: Install Nox
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt nox
+          nox --version
+
+      - name: Run Nox
+        run: |
+          nox --force-color
