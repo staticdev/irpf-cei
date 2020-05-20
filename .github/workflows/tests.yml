@@ -13,7 +13,6 @@ jobs:
           - { python-version: 3.8, os: ubuntu-latest }
           # - { python-version: 3.8, os: windows-latest }
           - { python-version: 3.8, os: macos-latest }
-          - { python-version: 3.7, os: ubuntu-latest }
 
     steps:
       - name: Check out the repository
