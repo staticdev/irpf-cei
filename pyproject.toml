@@ -26,7 +26,6 @@ pytest = "^5.4.2"
 codecov = "^2.1.1"
 mypy = "^0.770"
 coverage = {extras = ["toml"], version = "^5.0.4"}
-pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
 pyfakefs = "^4.0.2"
 typeguard = "^2.7.1"
