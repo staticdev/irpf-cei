@@ -41,3 +41,12 @@ jobs:
       - name: Run Nox
         run: |
           nox --force-color
+
+      - name: Create coverage report
+        if: always() && matrix.session == 'tests'
+        run: |
+          nox --force-color --session=coverage -- xml
+
+      - name: Upload coverage report
+        if: always() && matrix.session == 'tests'
+        uses: codecov/codecov-action@v1.0.7
