@@ -10,14 +10,30 @@ Programa auxiliar para calcular custos de ações, ETFs e FIIs. Este programa fo
 
 **Essa aplicação foi testada e configurada para calcular tarifas referentes ao ano de 2019-2020 (IRPF 2020) e não faz cálculos para compra e venda no mesmo dia (Day Trade), contratos futuros e Índice Brasil 50.**
 
-## Como usar
+## Requisitos
 
-1. Entre no [site do CEI](https://cei.b3.com.br/), faça login e entre no menu Extratos e Informativos → Negociação de Ativos → Escolha uma corretora e as datas 1 de Janeiro e 31 de Dezembro do ano em que deseja declarar. Em seguida clique no botão “Exportar para EXCEL”. Ele irá baixar o arquivo “InfoCEI.xls”.
-2. Instale na sua máquina o Python 3.8.0 ou superior para o seu sistema operacional em http://python.org.
-3. Com o python instalado, execute em um terminal os comandos:
+Instale na sua máquina o Python 3.8.0 ou superior para o seu sistema operacional em http://python.org.
+
+Usuários do Windows devem baixar a versão `Windows x86-64 executable installer` e na tela de instalação marcar a opção `Add Python 3.8 to PATH`:
+
+![Checkbox PATH na instalação Windows](docs/_images/winpath.png)
+
+## Instalação
+
+Você pode instalar o _Irpf Cei_ via [pip](https://pip.pypa.io/) pelo [PyPI](https://pypi.org/):
 
 ```sh
-python -m pip install irpf-cei
+pip install pdf-split-tool
+```
+
+Nota: no Windows você pode digitar o comando acima pelo programa `cmd`.
+
+## Uso
+
+1. Entre no [site do CEI](https://cei.b3.com.br/), faça login e entre no menu Extratos e Informativos → Negociação de Ativos → Escolha uma corretora e as datas 1 de Janeiro e 31 de Dezembro do ano em que deseja declarar. Em seguida clique no botão “Exportar para EXCEL”. Ele irá baixar o arquivo “InfoCEI.xls”.
+2. Execute o programa através do comando:
+
+```sh
 irpf-cei
 ```
 
