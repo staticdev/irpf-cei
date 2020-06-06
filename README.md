@@ -23,7 +23,7 @@ Usuários do Windows devem baixar a versão `Windows x86-64 executable installer
 Você pode instalar o _Irpf Cei_ via [pip](https://pip.pypa.io/) pelo [PyPI](https://pypi.org/):
 
 ```sh
-pip install pdf-split-tool
+pip install irpf-cei
 ```
 
 Nota: no Windows você pode digitar o comando acima pelo programa `cmd`.
