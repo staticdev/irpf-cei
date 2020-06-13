@@ -1,0 +1,104 @@
+[
+  {
+    "RazaoSocial": "BB ETF S&P DIVIDENDOS BRASIL FUNDO DE INDICE",
+    "Fundo": "BB ETF SP DV",
+    "Cnpj": "17.817.528/0001-50",
+    "Codigo": "BBSD"
+  },
+  {
+    "RazaoSocial": "CAIXA ETF IBOVESPA FUNDO DE INDICE",
+    "Fundo": "CAIXAETFXBOV",
+    "Cnpj": "14.120.533/0001-11",
+    "Codigo": "XBOV"
+  },
+  {
+    "RazaoSocial": "ETF BRADESCO IBOVESPA FDO DE INDICE",
+    "Fundo": "ETF BRAD BOV",
+    "Cnpj": "32.203.211/0001-18",
+    "Codigo": "BOVB"
+  },
+  {
+    "RazaoSocial": "ISHARES S&P 500 FDO INV COTAS FDO INDICE",
+    "Fundo": "ISHARE SP500",
+    "Cnpj": "19.909.560/0001-91",
+    "Codigo": "IVVB"
+  },
+  {
+    "RazaoSocial": "ISHARES IBOVESPA FUNDO DE INDICE",
+    "Fundo": "ISHARES BOVA",
+    "Cnpj": "10.406.511/0001-61",
+    "Codigo": "BOVA"
+  },
+  {
+    "RazaoSocial": "ISHARES IBRX - INDICE BRASIL (IBRX-100) FDO INDICE",
+    "Fundo": "ISHARES BRAX",
+    "Cnpj": "11.455.378/0001-04",
+    "Codigo": "BRAX"
+  },
+  {
+    "RazaoSocial": "ISHARES INDICE CARBONO EFIC. (ICO2) BRASIL-FDO IND",
+    "Fundo": "ISHARES ECOO",
+    "Cnpj": "15.562.377/0001-01",
+    "Codigo": "ECOO"
+  },
+  {
+    "RazaoSocial": "ISHARES BMFBOVESPA SMALL CAP FUNDO DE INDICE",
+    "Fundo": "ISHARES SMAL",
+    "Cnpj": "10.406.600/0001-08",
+    "Codigo": "SMAL"
+  },
+  {
+    "RazaoSocial": "IT NOW IBOVESPA FUNDO DE INDICE",
+    "Fundo": "IT NOW IBOV",
+    "Cnpj": "21.407.758/0001-19",
+    "Codigo": "BOVV"
+  },
+  {
+    "RazaoSocial": "IT NOW IDIV FUNDO DE INDICE",
+    "Fundo": "IT NOW IDIV",
+    "Cnpj": "13.416.245/0001-46",
+    "Codigo": "DIVO"
+  },
+  {
+    "RazaoSocial": "IT NOW IFNC FUNDO DE INDICE",
+    "Fundo": "IT NOW IFNC",
+    "Cnpj": "11.961.094/0001-81",
+    "Codigo": "FIND"
+  },
+  {
+    "RazaoSocial": "IT NOW IGCT FUNDO DE INDICE",
+    "Fundo": "IT NOW IGCT",
+    "Cnpj": "11.184.136/0001-15",
+    "Codigo": "GOVE"
+  },
+  {
+    "RazaoSocial": "IT NOW IMAT FUNDO DE INDICE",
+    "Fundo": "IT NOW IMAT",
+    "Cnpj": "13.416.228/0001-09",
+    "Codigo": "MATB"
+  },
+  {
+    "RazaoSocial": "IT NOW ISE FUNDO DE INDICE",
+    "Fundo": "IT NOW ISE",
+    "Cnpj": "12.984.444/0001-98",
+    "Codigo": "ISUS"
+  },
+  {
+    "RazaoSocial": "IT NOW PIBB IBRX-50 - FUNDO DE INDICE",
+    "Fundo": "IT NOW PIBB",
+    "Cnpj": "06.323.688/0001-27",
+    "Codigo": "PIBB"
+  },
+  {
+    "RazaoSocial": "IT NOW SMALL FDO INDICE",
+    "Fundo": "IT NOW SMALL",
+    "Cnpj": "34.803.814/0001-86",
+    "Codigo": "SMAC"
+  },
+  {
+    "RazaoSocial": "IT NOW S&P500 TRN FUNDO DE INDICE",
+    "Fundo": "IT NOW SPXI",
+    "Cnpj": "17.036.289/0001-00",
+    "Codigo": "SPXI"
+  }
+]

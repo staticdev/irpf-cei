@@ -1,0 +1,1542 @@
+[
+  {
+    "codigo": "ALZR",
+    "nome": "ALIANZA TRUST RENDA IMOBILIÁRIA",
+    "cnpj": "28.737.771/0001-85",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "AQLL",
+    "nome": "ÁQUILLA",
+    "cnpj": "13.555.918/0001-49",
+    "nome_adm": "FOCO DTVM LTDA.",
+    "cnpj_adm": "00.329.598/0001-67"
+  },
+  {
+    "codigo": "BCRI",
+    "nome": "BANESTES RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "22.219.335/0001-38",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "BNFS",
+    "nome": "BANRISUL NOVAS FRONTEIRAS",
+    "cnpj": "15.570.431/0001-60",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "BBPO",
+    "nome": "BB PROGRESSIVO II",
+    "cnpj": "14.410.722/0001-29",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "BBIM",
+    "nome": "BB RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "20.716.161/0001-93",
+    "nome_adm": "BB GESTAO DE RECURSOS DTVM S.A",
+    "cnpj_adm": "30.822.936/0001-69"
+  },
+  {
+    "codigo": "BBRC",
+    "nome": "BB RENDA CORPORATIVA",
+    "cnpj": "12.681.340/0001-04",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "RDPD",
+    "nome": "BB RENDA DE PAPEIS IMOBILIÁRIOS II",
+    "cnpj": "23.120.027/0001-13",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "RNDP",
+    "nome": "BB RENDA DE PAPÉIS IMOBILIÁRIOS",
+    "cnpj": "15.394.563/0001-89",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "BCIA",
+    "nome": "BRADESCO CARTEIRA IMOBILIÁRIA ATIVA",
+    "cnpj": "20.216.935/0001-17",
+    "nome_adm": "BANCO BRADESCO S.A.",
+    "cnpj_adm": "60.746.948/0001-12"
+  },
+  {
+    "codigo": "BZLI",
+    "nome": "BRAZIL REALTY",
+    "cnpj": "14.074.706/0001-02",
+    "nome_adm": "FOCO DTVM LTDA.",
+    "cnpj_adm": "00.329.598/0001-67"
+  },
+  {
+    "codigo": "CARE",
+    "nome": "BRAZILIAN GRAVEYARD AND DEATH CARE",
+    "cnpj": "13.584.584/0001-31",
+    "nome_adm": "PLANNER TRUSTEE DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "67.030.395/0001-46"
+  },
+  {
+    "codigo": "BRCO",
+    "nome": "FII BRESCO",
+    "cnpj": "20.748.515/0001-81",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "BTLG",
+    "nome": "FII BTLG",
+    "cnpj": "11.839.593/0001-09",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "CRFF",
+    "nome": "FII CX RBRA2",
+    "cnpj": "31.887.401/0001-39",
+    "nome_adm": "CAIXA ECONOMICA FEDERAL",
+    "cnpj_adm": "00.360.305/0001-04"
+  },
+  {
+    "codigo": "CXRI",
+    "nome": "CAIXA RIO BRAVO",
+    "cnpj": "17.098.794/0001-70",
+    "nome_adm": "CAIXA ECONOMICA FEDERAL",
+    "cnpj_adm": "00.360.305/0001-04"
+  },
+  {
+    "codigo": "CPFF",
+    "nome": "FII CAP REIT",
+    "cnpj": "34.081.611/0001-23",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "CBOP",
+    "nome": "CASTELLO BRANCO OFFICE PARK",
+    "cnpj": "17.144.039/0001-85",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "GRLV",
+    "nome": "CSHG GR LOUVEIRA",
+    "cnpj": "17.143.998/0001-86",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGFF",
+    "nome": "FII CSHG FOF",
+    "cnpj": "32.784.898/0001-22",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGLG",
+    "nome": "CGHG LOGÍSTICA",
+    "cnpj": "11.728.688/0001-47",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGPO",
+    "nome": "FII CSHGPRIM",
+    "cnpj": "11.260.134/0001-68",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGRE",
+    "nome": "CSHG REAL ESTATE",
+    "cnpj": "09.072.017/0001-29",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGCR",
+    "nome": "CGHG RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "11.160.521/0001-22",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "HGRU",
+    "nome": "CSHG RENDA URBANA",
+    "cnpj": "29.641.226/0001-53",
+    "nome_adm": "CREDIT SUISSE HEDGING-GRIFFO CORRETORA DE VALORES S.A.",
+    "cnpj_adm": "61.809.182/0001-30"
+  },
+  {
+    "codigo": "ERPA",
+    "nome": "FII EUROPA",
+    "cnpj": "31.469.385/0001-64",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "KINP",
+    "nome": "EVEN PERMUTA KINEA",
+    "cnpj": "24.070.076/0001-51",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "VRTA",
+    "nome": "FATOR VERITA",
+    "cnpj": "11.664.201/0001-00",
+    "nome_adm": "BANCO FATOR S/A",
+    "cnpj_adm": "33.644.196/0001-06"
+  },
+  {
+    "codigo": "BMII",
+    "nome": "BRASILIO MACHADO",
+    "cnpj": "02.027.437/0001-44",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "BTCR",
+    "nome": "BTG PACTUAL CRÉDITO IMOBILIÁRIO",
+    "cnpj": "29.787.928/0001-40",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "FAED",
+    "nome": "ANHANGUERA EDUCACIONAL",
+    "cnpj": "11.179.118/0001-45",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "BPRP",
+    "nome": "FII BRLPROP",
+    "cnpj": "29.800.650/0001-01",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "BRCR",
+    "nome": "BTG PACTUAL CORPORATE OFFICE",
+    "cnpj": "08.924.783/0001-01",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "FEXC",
+    "nome": "BTG PACTUAL FUNDO DE CRI",
+    "cnpj": "09.552.812/0001-14",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "BCFF",
+    "nome": "BTG FUNDO DE FUNDOS",
+    "cnpj": "11.026.627/0001-38",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "FCFL",
+    "nome": "CAMPUS FARIA LIMA",
+    "cnpj": "11.602.654/0001-01",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "CNES",
+    "nome": "CENESP",
+    "cnpj": "13.551.286/0001-45",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "CEOC",
+    "nome": "CYRELA COMMERCIAL PROPERTIES",
+    "cnpj": "15.799.397/0001-09",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "THRA",
+    "nome": "CYRELA THERA CORPORATE",
+    "cnpj": "13.966.653/0001-71",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "EDGA",
+    "nome": "EDIFÍCIO GALERIA",
+    "cnpj": "15.333.306/0001-37",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "FLRP",
+    "nome": "FLORIPA SHOPPING",
+    "cnpj": "10.375.382/0001-91",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "HCRI",
+    "nome": "HOSPITAL DA CRIANÇA",
+    "cnpj": "04.066.582/0001-60",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "NSLU",
+    "nome": "HOSPITAL NOSSA SRA LOURDES",
+    "cnpj": "08.014.513/0001-63",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "HTMX",
+    "nome": "HOTEL MAXINVEST",
+    "cnpj": "08.706.065/0001-69",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "MAXR",
+    "nome": "MAX RETAIL",
+    "cnpj": "11.274.415/0001-70",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "NCHB",
+    "nome": "NCH BRASIL RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "18.085.673/0001-57",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "NVHO",
+    "nome": "NOVO HORIZONTE",
+    "cnpj": "17.025.970/0001-44",
+    "nome_adm": "PLURAL S.A. BANCO MÚLTIPLO",
+    "cnpj_adm": "45.246.410/0001-55"
+  },
+  {
+    "codigo": "PQDP",
+    "nome": "PARQUE DOM PEDRO SHOPPING CENTER",
+    "cnpj": "10.869.155/0001-12",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "PRSV",
+    "nome": "PRESIDENTE VARGAS",
+    "cnpj": "11.281.322/0001-72",
+    "nome_adm": "BEM - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "00.066.670/0001-00"
+  },
+  {
+    "codigo": "RBRM",
+    "nome": "FII RBR DES",
+    "cnpj": "26.314.437/0001-93",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "RBRR",
+    "nome": "RBR RENDIMENTO HIGH GRADE",
+    "cnpj": "29.467.977/0001-03",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "JRDM",
+    "nome": "SHOPPING JARDIM SUL ",
+    "cnpj": "14.879.856/0001-93",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "TBOF",
+    "nome": "TB OFFICE",
+    "cnpj": "17.365.105/0001-47",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "ALMI",
+    "nome": "TORRE ALMIRANTE",
+    "cnpj": "07.122.725/0001-00",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "TRNT",
+    "nome": "TORRE NORTE",
+    "cnpj": "04.722.883/0001-02",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "RECT",
+    "nome": "FII UBSOFFIC",
+    "cnpj": "32.274.163/0001-59",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "UBSR",
+    "nome": "UBS BR RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "28.152.272/0001-26",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "VLOL",
+    "nome": "VILA OLÍMPIA CORPORATE",
+    "cnpj": "15.296.696/0001-12",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "OUFF",
+    "nome": "FII OURI FOF",
+    "cnpj": "30.791.386/0001-68",
+    "nome_adm": "BANCO OURINVEST S.A.",
+    "cnpj_adm": "78.632.767/0001-20"
+  },
+  {
+    "codigo": "VVPR",
+    "nome": "FII V2 PROP",
+    "cnpj": "33.045.581/0001-37",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "LVBI",
+    "nome": "FII VBI LOG",
+    "cnpj": "30.629.603/0001-18",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "BARI",
+    "nome": "FII BARIGUI",
+    "cnpj": "29.267.567/0001-00",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "BBVJ",
+    "nome": "BB VOTORANTIM CIDADE JARDIM CONTINENTAL TOWER",
+    "cnpj": "10.347.985/0001-80",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "BPFF",
+    "nome": "BRASIL PLURAL ABSOLUTO FUNDO DE FUNDOS",
+    "cnpj": "17.324.357/0001-28",
+    "nome_adm": "GENIAL INVESTIMENTOS CORRETORA DE VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "27.652.684/0001-62"
+  },
+  {
+    "codigo": "BVAR",
+    "nome": "BRASIL VAREJO",
+    "cnpj": "21.126.204/0001-43",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "BPML",
+    "nome": "FII BTG SHOP",
+    "cnpj": "33.046.142/0001-49",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "CXTL",
+    "nome": "CAIXA TRX LOGÍSTICA RENDA",
+    "cnpj": "12.887.506/0001-43",
+    "nome_adm": "CAIXA ECONOMICA FEDERAL",
+    "cnpj_adm": "00.360.305/0001-04"
+  },
+  {
+    "codigo": "CTXT",
+    "nome": "CENTRO TÊXTIL INTERNACIONAL",
+    "cnpj": "00.762.723/0001-28",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "FLMA",
+    "nome": "CONTINENTAL SQUARE FARIA LIMA",
+    "cnpj": "04.141.645/0001-03",
+    "nome_adm": "BR-CAPITAL DTVM S.A.",
+    "cnpj_adm": "44.077.014/0001-89"
+  },
+  {
+    "codigo": "EURO",
+    "nome": "EUROPAR",
+    "cnpj": "05.437.916/0001-27",
+    "nome_adm": "COINVALORES CCVM LTDA",
+    "cnpj_adm": "00.336.036/0001-40"
+  },
+  {
+    "codigo": "FIGS",
+    "nome": "GENERAL SHOPPING ATIVO E RENDA",
+    "cnpj": "17.590.518/0001-25",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "ABCP",
+    "nome": "GRAND PLAZA SHOPPING",
+    "cnpj": "01.201.140/0001-90",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "GTWR",
+    "nome": "FII G TOWERS",
+    "cnpj": "23.740.527/0001-58",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "HBTT",
+    "nome": "HABITAT I",
+    "cnpj": "26.846.202/0001-42",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "HUSC",
+    "nome": "HOSPITAL UNIMED SUL CAPIXABA",
+    "cnpj": "28.851.767/0001-43",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "FIIB",
+    "nome": "INDUSTRIAL DO BRASIL",
+    "cnpj": "14.217.108/0001-45",
+    "nome_adm": "COINVALORES CCVM LTDA",
+    "cnpj_adm": "00.336.036/0001-40"
+  },
+  {
+    "codigo": "FINF",
+    "nome": "INFRA REAL STATE",
+    "cnpj": "18.369.510/0001-04",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "FMOF",
+    "nome": "MEMORIAL OFFICE",
+    "cnpj": "01.633.741/0001-72",
+    "nome_adm": "COIN - DTVM LTDA.",
+    "cnpj_adm": "61.384.004/0001-05"
+  },
+  {
+    "codigo": "MBRF",
+    "nome": "MERCANTIL DO BRASIL",
+    "cnpj": "13.500.306/0001-59",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "MGFF",
+    "nome": "MOGNO FUNDO DE FUNDOS",
+    "cnpj": "29.216.463/0001-77",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "NPAR",
+    "nome": "NESTPAR",
+    "cnpj": "24.814.916/0001-43",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "PABY",
+    "nome": "PANAMBY",
+    "cnpj": "00.613.094/0001-74",
+    "nome_adm": "BRKB DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "33.923.111/0001-29"
+  },
+  {
+    "codigo": "FPNG",
+    "nome": "PEDRA NEGRA RENDA IMOBILIÁRIA",
+    "cnpj": "17.161.979/0001-82",
+    "nome_adm": "BR-CAPITAL DTVM S.A.",
+    "cnpj_adm": "44.077.014/0001-89"
+  },
+  {
+    "codigo": "VPSI",
+    "nome": "POLO SHOPPING INDAIATUBA",
+    "cnpj": "14.721.889/0001-00",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "FPAB",
+    "nome": "PROJETO ÁGUA BRANCA",
+    "cnpj": "03.251.720/0001-18",
+    "nome_adm": "COIN - DTVM LTDA.",
+    "cnpj_adm": "61.384.004/0001-05"
+  },
+  {
+    "codigo": "RBRY",
+    "nome": "FII RBR PCRI",
+    "cnpj": "30.166.700/0001-11",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "RBRP",
+    "nome": "RBR PROPERTIES",
+    "cnpj": "21.408.063/0001-51",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "RCRB",
+    "nome": "FII RIOB RC",
+    "cnpj": "03.683.056/0001-86",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "RBED",
+    "nome": "FII RIOB ED",
+    "cnpj": "13.873.457/0001-52",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "RBVA",
+    "nome": "FII RIOB VA",
+    "cnpj": "15.576.907/0001-70",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "RNGO",
+    "nome": "RIO NEGRO",
+    "cnpj": "15.006.286/0001-90",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "SFND",
+    "nome": "SÃO FERNANDO",
+    "cnpj": "09.350.920/0001-04",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "FISC",
+    "nome": "FII SC 401",
+    "cnpj": "12.804.013/0001-00",
+    "nome_adm": "CORRETORA GERAL DE VALORES E CAMBIO LTDA",
+    "cnpj_adm": "92.858.380/0001-18"
+  },
+  {
+    "codigo": "SCPF",
+    "nome": "SCP",
+    "cnpj": "01.657.856/0001-05",
+    "nome_adm": "BR-CAPITAL DTVM S.A.",
+    "cnpj_adm": "44.077.014/0001-89"
+  },
+  {
+    "codigo": "SDIL",
+    "nome": "SDI LOGÍSTICA RIO",
+    "cnpj": "16.671.412/0001-93",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "SHPH",
+    "nome": "SHOPPING PATIO HIGIENOPOLIS",
+    "cnpj": "03.507.519/0001-59",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "TGAR",
+    "nome": "TG ATIVO REAL",
+    "cnpj": "25.032.881/0001-53",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "ONEF",
+    "nome": "THE ONE",
+    "cnpj": "12.948.291/0001-23",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "TOUR",
+    "nome": "FII TOUR II",
+    "cnpj": "30.578.316/0001-26",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "FVBI",
+    "nome": "VBI FL 4440",
+    "cnpj": "13.022.993/0001-44",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "VERE",
+    "nome": "VEREDA",
+    "cnpj": "08.693.497/0001-82",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "FVPQ",
+    "nome": "VIA PARQUE SHOPPING",
+    "cnpj": "00.332.266/0001-31",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "FIVN",
+    "nome": "VIDA NOVA",
+    "cnpj": "17.854.016/0001-64",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "VTLT",
+    "nome": "VOTORANTIM LOGÍSTICA",
+    "cnpj": "27.368.600/0001-63",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "VSHO",
+    "nome": "FII VOT SHOP",
+    "cnpj": "23.740.595/0001-17",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "IBFF",
+    "nome": "FII FOF BREI",
+    "cnpj": "33.721.517/0001-29",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "PLCR",
+    "nome": "FII PLURAL R",
+    "cnpj": "32.527.683/0001-26",
+    "nome_adm": "PLURAL S.A. BANCO MÚLTIPLO",
+    "cnpj_adm": "45.246.410/0001-55"
+  },
+  {
+    "codigo": "CVBI",
+    "nome": "FII VBI CRI",
+    "cnpj": "28.729.197/0001-13",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "MCCI",
+    "nome": "FII MAUA",
+    "cnpj": "23.648.935/0001-84",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "ARRI",
+    "nome": "FII ATRIO",
+    "cnpj": "32.006.821/0001-21",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "HOSI",
+    "nome": "FII HOUSI",
+    "cnpj": "34.081.631/0001-02",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "IRDM",
+    "nome": "IRIDIUM RECEBÍVEIS IMOBILIÁRIOS",
+    "cnpj": "28.830.325/0001-10",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "KFOF",
+    "nome": "FII KINEAFOF",
+    "cnpj": "30.091.444/0001-40",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "OUCY",
+    "nome": "OURINVEST CYRELA",
+    "cnpj": "28.516.650/0001-03",
+    "nome_adm": "BANCO OURINVEST S.A.",
+    "cnpj_adm": "78.632.767/0001-20"
+  },
+  {
+    "codigo": "GSFI",
+    "nome": "FII GENERAL",
+    "cnpj": "11.769.604/0001-13",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "GGRC",
+    "nome": "GGR COVEPI RENDA",
+    "cnpj": "26.614.291/0001-00",
+    "nome_adm": "CM CAPITAL MARKETS DTVM LTDA",
+    "cnpj_adm": "02.671.743/0001-19"
+  },
+  {
+    "codigo": "RCFA",
+    "nome": "FII GP RCFA",
+    "cnpj": "27.771.586/0001-44",
+    "nome_adm": "FRAM CAPITAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "13.673.855/0001-25"
+  },
+  {
+    "codigo": "HABT",
+    "nome": "FII HABIT II",
+    "cnpj": "30.578.417/0001-05",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "ATCR",
+    "nome": "HAZ",
+    "cnpj": "14.631.148/0001-39",
+    "nome_adm": "RJI CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA",
+    "cnpj_adm": "42.066.258/0001-30"
+  },
+  {
+    "codigo": "HCTR",
+    "nome": "FII HECTARE",
+    "cnpj": "30.248.180/0001-96",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "ATSA",
+    "nome": "HEDGE ATRIUM SHOPPING SANTO ANDRÉ",
+    "cnpj": "12.809.972/0001-00",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HGBS",
+    "nome": "CSHG BRASIL SHOPPING",
+    "cnpj": "08.431.747/0001-06",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HLOG",
+    "nome": "FII HEDGELOG",
+    "cnpj": "27.486.542/0001-72",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HRDF",
+    "nome": "FII HREALTY",
+    "cnpj": "16.929.519/0001-99",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HPDP",
+    "nome": "FII HEDGE RE",
+    "cnpj": "35.586.415/0001-73",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HMOC",
+    "nome": "FII HEDMOCA",
+    "cnpj": "14.733.211/0001-48",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HFOF",
+    "nome": "HEDGE TOP FOFII 3",
+    "cnpj": "18.307.582/0001-19",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "TFOF",
+    "nome": "HEDGE TOP FOFII ",
+    "cnpj": "20.834.884/0001-97",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "HSML",
+    "nome": "FII HSI MALL",
+    "cnpj": "32.892.018/0001-31",
+    "nome_adm": "SANTANDER SECURITIES SERVICES BRASIL DTVM S.A",
+    "cnpj_adm": "62.318.407/0001-19"
+  },
+  {
+    "codigo": "BICR",
+    "nome": "FII INTER",
+    "cnpj": "34.007.109/0001-72",
+    "nome_adm": "INTER DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS",
+    "cnpj_adm": "18.945.670/0001-46"
+  },
+  {
+    "codigo": "RBBV",
+    "nome": "JHSF RIO BRAVO FAZENDA BOA VISTA CAPITAL PROTEGIDO",
+    "cnpj": "16.915.868/0001-51",
+    "nome_adm": "CAIXA ECONOMICA FEDERAL",
+    "cnpj_adm": "00.360.305/0001-04"
+  },
+  {
+    "codigo": "JPPA",
+    "nome": "FII JPPMOGNO",
+    "cnpj": "30.982.880/0001-00",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "JPPC",
+    "nome": "JPP CAPITAL",
+    "cnpj": "17.216.625/0001-98",
+    "nome_adm": "BANCO FINAXIS S.A.",
+    "cnpj_adm": "11.758.741/0001-52"
+  },
+  {
+    "codigo": "JSRE",
+    "nome": "JS REAL ESTATE MULTIGESTÃO",
+    "cnpj": "13.371.132/0001-71",
+    "nome_adm": "BANCO J. SAFRA S.A.",
+    "cnpj_adm": "03.017.677/0001-20"
+  },
+  {
+    "codigo": "JTPR",
+    "nome": "JT PREV FII DESENVOLVIMENTO HABITACIONAL",
+    "cnpj": "23.876.086/0001-16",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "KNHY",
+    "nome": "KINEA HIGH YIELD CRI",
+    "cnpj": "30.130.708/0001-28",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "KNRE",
+    "nome": "KINEA II REAL ESTATE EQUITY",
+    "cnpj": "14.423.780/0001-97",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "KNIP",
+    "nome": "KINEA ÍNDICE DE PREÇOS",
+    "cnpj": "24.960.430/0001-13",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "KNRI",
+    "nome": "KINEA RENDA IMOBILIÁRIA",
+    "cnpj": "12.005.956/0001-65",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "KNCR",
+    "nome": "KINEA RENDIMENTOS IMOBILIÁRIOS",
+    "cnpj": "16.706.958/0001-32",
+    "nome_adm": "INTRAG DTVM LTDA.",
+    "cnpj_adm": "62.418.140/0001-31"
+  },
+  {
+    "codigo": "LGCP",
+    "nome": "FII LGCP INT",
+    "cnpj": "34.598.181/0001-11",
+    "nome_adm": "INTER DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS",
+    "cnpj_adm": "18.945.670/0001-46"
+  },
+  {
+    "codigo": "LUGG",
+    "nome": "FII LUGGO",
+    "cnpj": "34.835.191/0001-23",
+    "nome_adm": "INTER DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS",
+    "cnpj_adm": "18.945.670/0001-46"
+  },
+  {
+    "codigo": "DMAC",
+    "nome": "FII MAC",
+    "cnpj": "30.579.348/0001-46",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "MALL",
+    "nome": "MALLS BRASIL PLURAL",
+    "cnpj": "26.499.833/0001-32",
+    "nome_adm": "GENIAL INVESTIMENTOS CORRETORA DE VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "27.652.684/0001-62"
+  },
+  {
+    "codigo": "MXRF",
+    "nome": "MAXI RENDA",
+    "cnpj": "97.521.225/0001-25",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "MFII",
+    "nome": "MÉRITO DESENVOLVIMENTO IMOBILIÁRIO",
+    "cnpj": "16.915.968/0001-88",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "PRTS",
+    "nome": "MULTI PROPERTIES FII",
+    "cnpj": "22.957.521/0001-74",
+    "nome_adm": "BANCO MODAL S.A.",
+    "cnpj_adm": "30.723.886/0001-62"
+  },
+  {
+    "codigo": "SHOP",
+    "nome": "MULTI SHOPPINGS",
+    "cnpj": "22.459.737/0001-00",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "NEWL",
+    "nome": "FII NEWPORT",
+    "cnpj": "32.527.626/0001-47",
+    "nome_adm": "PLURAL S.A. BANCO MÚLTIPLO",
+    "cnpj_adm": "45.246.410/0001-55"
+  },
+  {
+    "codigo": "OUJP",
+    "nome": "OURINVEST JPP",
+    "cnpj": "26.091.656/0001-50",
+    "nome_adm": "FINAXIS CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "03.317.692/0001-94"
+  },
+  {
+    "codigo": "ORPD",
+    "nome": "OURO PRETO DESENVOLVIMENTO IMOBILIÁRIO I",
+    "cnpj": "19.107.604/0001-60",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "PATC",
+    "nome": "FII PATRIA",
+    "cnpj": "30.048.651/0001-12",
+    "nome_adm": "MODAL D.T.V.M. LTDA",
+    "cnpj_adm": "05.389.174/0001-01"
+  },
+  {
+    "codigo": "PLRI",
+    "nome": "POLO RECEBÍVEIS IMOBILIÁRIOS I",
+    "cnpj": "14.080.689/0001-16",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "PORD",
+    "nome": "POLO RECEBÍVEIS IMOBILIÁRIOS II",
+    "cnpj": "17.156.502/0001-09",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "PBLV",
+    "nome": "FII PROLOGIS",
+    "cnpj": "31.962.875/0001-06",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "QAGR",
+    "nome": "FII QUASAR A",
+    "cnpj": "32.754.734/0001-52",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "RSPD",
+    "nome": "FII RBRESID3",
+    "cnpj": "19.249.989/0001-08",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "RBDS",
+    "nome": "RB CAPITAL DESENVOLVIMENTO RESIDENCIAL II",
+    "cnpj": "11.945.604/0001-27",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "RBGS",
+    "nome": "RB CAPITAL GENERAL SHOPPING SULACAP",
+    "cnpj": "13.652.006/0001-95",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "RBCO",
+    "nome": "FII R INCOME",
+    "cnpj": "31.894.369/0001-19",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "RBRD",
+    "nome": "RB CAPITAL RENDA II",
+    "cnpj": "09.006.914/0001-34",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "RBTS",
+    "nome": "FII RB TFO",
+    "cnpj": "29.299.737/0001-39",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "RBRF",
+    "nome": "RBR ALPHA FUNDO DE FUNDOS - FII",
+    "cnpj": "27.529.279/0001-51",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "DOMC",
+    "nome": "REAG RENDA IMOBILIÁRIA",
+    "cnpj": "17.374.696/0001-19",
+    "nome_adm": "MONETAR DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "12.063.256/0001-27"
+  },
+  {
+    "codigo": "RBVO",
+    "nome": "RIO BRAVO CRÉDITO IMOBILIÁRIO II",
+    "cnpj": "15.769.670/0001-44",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "RBFF",
+    "nome": "FII RIOB FF",
+    "cnpj": "17.329.029/0001-14",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "SAAG",
+    "nome": "SANTANDER AGÊNCIAS",
+    "cnpj": "16.915.840/0001-14",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "SADI",
+    "nome": "FII SANT PAP",
+    "cnpj": "32.903.521/0001-45",
+    "nome_adm": "SANTANDER SECURITIES SERVICES BRASIL DTVM S.A",
+    "cnpj_adm": "62.318.407/0001-19"
+  },
+  {
+    "codigo": "SARE",
+    "nome": "FII SANT REN",
+    "cnpj": "32.903.702/0001-71",
+    "nome_adm": "SANTANDER SECURITIES SERVICES BRASIL DTVM S.A",
+    "cnpj_adm": "62.318.407/0001-19"
+  },
+  {
+    "codigo": "FISD",
+    "nome": "SÃO DOMINGOS",
+    "cnpj": "16.543.270/0001-89",
+    "nome_adm": "RJI CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA",
+    "cnpj_adm": "42.066.258/0001-30"
+  },
+  {
+    "codigo": "WPLZ",
+    "nome": "SHOPPING WEST PLAZA",
+    "cnpj": "09.326.861/0001-39",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  },
+  {
+    "codigo": "REIT",
+    "nome": "SOCOPA FUNDO DE INVESTIMENTO IMOBILIÁRIO",
+    "cnpj": "16.841.067/0001-99",
+    "nome_adm": "SOCOPA SOCIEDADE CORRETORA PAULISTA SA",
+    "cnpj_adm": "62.285.390/0001-40"
+  },
+  {
+    "codigo": "SPTW",
+    "nome": "SP DOWNTOWN",
+    "cnpj": "15.538.445/0001-05",
+    "nome_adm": "GENIAL INVESTIMENTOS CORRETORA DE VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "27.652.684/0001-62"
+  },
+  {
+    "codigo": "SPAF",
+    "nome": "SPA FUNDO DE INVESTIMENTO IMOBILIÁRIO - FII",
+    "cnpj": "18.311.024/0001-27",
+    "nome_adm": "PLURAL S.A. BANCO MÚLTIPLO",
+    "cnpj_adm": "45.246.410/0001-55"
+  },
+  {
+    "codigo": "STRX",
+    "nome": "FII STARX",
+    "cnpj": "11.044.355/0001-07",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "TSNC",
+    "nome": "TRANSINC",
+    "cnpj": "17.007.443/0001-07",
+    "nome_adm": "BANCO FINAXIS S.A.",
+    "cnpj_adm": "11.758.741/0001-52"
+  },
+  {
+    "codigo": "TCPF",
+    "nome": "FII TREECORP",
+    "cnpj": "26.990.011/0001-50",
+    "nome_adm": "BR-CAPITAL DTVM S.A.",
+    "cnpj_adm": "44.077.014/0001-89"
+  },
+  {
+    "codigo": "XTED",
+    "nome": "TRX EDIFÍCIOS CORPORATIVOS",
+    "cnpj": "15.006.267/0001-63",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "TRXF",
+    "nome": "FII TRX REAL",
+    "cnpj": "28.548.288/0001-52",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "VGIR",
+    "nome": "VALORA RE III",
+    "cnpj": "29.852.732/0001-91",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "VLJS",
+    "nome": "VECTOR QUELUZ LAJES CORPORATIVAS",
+    "cnpj": "13.842.683/0001-76",
+    "nome_adm": "PLANNER CORRETORA DE VALORES SA",
+    "cnpj_adm": "00.806.535/0001-54"
+  },
+  {
+    "codigo": "VILG",
+    "nome": "FII VINCILOG",
+    "cnpj": "24.853.044/0001-22",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "VINO",
+    "nome": "FII VINC COR",
+    "cnpj": "12.516.185/0001-70",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "VISC",
+    "nome": "VINCI SHOPPING CENTERS",
+    "cnpj": "17.554.274/0001-25",
+    "nome_adm": "BRL TRUST DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "13.486.793/0001-42"
+  },
+  {
+    "codigo": "VOTS",
+    "nome": "VOTORANTIM SECURITIES MASTER",
+    "cnpj": "17.870.926/0001-30",
+    "nome_adm": "VOTORANTIM ASSET MANAGEMENT DTVM LTDA.",
+    "cnpj_adm": "03.384.738/0001-98"
+  },
+  {
+    "codigo": "XPCM",
+    "nome": "XP CORPORATE MACAÉ",
+    "cnpj": "16.802.320/0001-03",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "XPCI",
+    "nome": "FII XP CRED",
+    "cnpj": "28.516.301/0001-91",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "XPHT",
+    "nome": "FII XP HOT",
+    "cnpj": "18.308.516/0001-63",
+    "nome_adm": "GENIAL INVESTIMENTOS CORRETORA DE VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "27.652.684/0001-62"
+  },
+  {
+    "codigo": "XPIN",
+    "nome": "XP INDUSTRIAL",
+    "cnpj": "28.516.325/0001-40",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "XPLG",
+    "nome": "XP LOG",
+    "cnpj": "26.502.794/0001-85",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "XPML",
+    "nome": "XP MALLS",
+    "cnpj": "28.757.546/0001-00",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "XPPR",
+    "nome": "FII XP PROP",
+    "cnpj": "30.654.849/0001-40",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "XPSF",
+    "nome": "FII XP SELEC",
+    "cnpj": "30.983.020/0001-90",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "YCHY",
+    "nome": "FII YAGUARA",
+    "cnpj": "28.267.696/0001-36",
+    "nome_adm": "VORTX DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA.",
+    "cnpj_adm": "22.610.500/0001-88"
+  },
+  {
+    "codigo": "ARFI",
+    "nome": "ÁQUILLA RENDA",
+    "cnpj": "14.069.202/0001-02",
+    "nome_adm": "FOCO DTVM LTDA.",
+    "cnpj_adm": "00.329.598/0001-67"
+  },
+  {
+    "codigo": "BBFI",
+    "nome": "BB PROGRESSIVO",
+    "cnpj": "07.000.400/0001-46",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "CPTS",
+    "nome": "CAPITANIA SECURITIES II",
+    "cnpj": "18.979.895/0001-13",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "DAMT",
+    "nome": "FII DIAMANTE",
+    "cnpj": "26.642.727/0001-66",
+    "nome_adm": "BANCO MODAL S.A.",
+    "cnpj_adm": "30.723.886/0001-62"
+  },
+  {
+    "codigo": "DOVL",
+    "nome": "FII DOVEL",
+    "cnpj": "10.522.648/0001-81",
+    "nome_adm": "BNY MELLON SERVICOS FINANCEIROS DTVM S.A.",
+    "cnpj_adm": "02.201.501/0001-61"
+  },
+  {
+    "codigo": "ANCR",
+    "nome": "ANCAR CI",
+    "cnpj": "07.789.135/0001-27",
+    "nome_adm": "GENIAL INVESTIMENTOS CORRETORA DE VALORES MOBILIÁRIOS S.A.",
+    "cnpj_adm": "27.652.684/0001-62"
+  },
+  {
+    "codigo": "BMLC",
+    "nome": "BM BRASCAN LAJES CORPORATIVAS",
+    "cnpj": "14.376.247/0001-11",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "FAMB",
+    "nome": "EDIFÍCIO ALMIRANTE BARROSO",
+    "cnpj": "05.562.312/0001-02",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "ELDO",
+    "nome": "ELDORADO",
+    "cnpj": "13.022.994/0001-99",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "SHDP",
+    "nome": "SHOPPING PARQUE DOM PEDRO",
+    "cnpj": "07.224.019/0001-60",
+    "nome_adm": "BTG PACTUAL SERVIÇOS FINANCEIROS S/A DTVM",
+    "cnpj_adm": "59.281.253/0001-23"
+  },
+  {
+    "codigo": "SAIC",
+    "nome": "SIA CORPORATE",
+    "cnpj": "17.311.079/0001-74",
+    "nome_adm": "BRB DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS S.A.",
+    "cnpj_adm": "33.850.686/0001-69"
+  },
+  {
+    "codigo": "WTSP",
+    "nome": "OURINVEST RE I",
+    "cnpj": "28.693.595/0001-27",
+    "nome_adm": "BANCO OURINVEST S.A.",
+    "cnpj_adm": "78.632.767/0001-20"
+  },
+  {
+    "codigo": "BRHT",
+    "nome": "BR HOTÉIS",
+    "cnpj": "15.461.076/0001-91",
+    "nome_adm": "ELITE CCVM LTDA",
+    "cnpj_adm": "28.048.783/0001-00"
+  },
+  {
+    "codigo": "CXCE",
+    "nome": "CAIXA CEDAE",
+    "cnpj": "10.991.914/0001-15",
+    "nome_adm": "CAIXA ECONOMICA FEDERAL",
+    "cnpj_adm": "00.360.305/0001-04"
+  },
+  {
+    "codigo": "EDFO",
+    "nome": "EDIFÍCIO OUROINVEST",
+    "cnpj": "06.175.262/0001-73",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "GESE",
+    "nome": "FII GEN SEV",
+    "cnpj": "17.007.528/0001-95",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "OULG",
+    "nome": "FII OURILOG",
+    "cnpj": "13.974.819/0001-00",
+    "nome_adm": "BANCO OURINVEST S.A.",
+    "cnpj_adm": "78.632.767/0001-20"
+  },
+  {
+    "codigo": "LATR",
+    "nome": "LATERES",
+    "cnpj": "17.209.378/0001-00",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "LOFT",
+    "nome": "FII LOFT I",
+    "cnpj": "19.722.048/0001-31",
+    "nome_adm": "MODAL D.T.V.M. LTDA",
+    "cnpj_adm": "05.389.174/0001-01"
+  },
+  {
+    "codigo": "DRIT",
+    "nome": "MULTIGESTÃO RENDA COMERCIAL",
+    "cnpj": "10.456.810/0001-00",
+    "nome_adm": "RIO BRAVO INVESTIMENTOS - DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA",
+    "cnpj_adm": "72.600.026/0001-81"
+  },
+  {
+    "codigo": "NVIF",
+    "nome": "FII NOVA I",
+    "cnpj": "22.003.469/0001-17",
+    "nome_adm": "MODAL D.T.V.M. LTDA",
+    "cnpj_adm": "05.389.174/0001-01"
+  },
+  {
+    "codigo": "FTCE",
+    "nome": "OPORTUNITY",
+    "cnpj": "01.235.622/0001-61",
+    "nome_adm": "BNY MELLON SERVICOS FINANCEIROS DTVM S.A.",
+    "cnpj_adm": "02.201.501/0001-61"
+  },
+  {
+    "codigo": "PRSN",
+    "nome": "LATERES",
+    "cnpj": "14.056.001/0001-62",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "FIIP",
+    "nome": "RB CAPITAL RENDA I",
+    "cnpj": "08.696.175/0001-97",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "RCRI",
+    "nome": "FII RB CRI",
+    "cnpj": "26.511.274/0001-39",
+    "nome_adm": "OLIVEIRA TRUST DTVM S.A.",
+    "cnpj_adm": "36.113.876/0001-91"
+  },
+  {
+    "codigo": "FOFT",
+    "nome": "Hedge TOP FOFII 2",
+    "cnpj": "16.875.388/0001-04",
+    "nome_adm": "HEDGE INVESTMENTS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "cnpj_adm": "07.253.654/0001-76"
+  }
+]
