@@ -13,12 +13,17 @@ def test_get_investment_type_etf() -> None:
 
 def test_get_investment_type_fii() -> None:
     """It returns FII."""
-    assert b3.get_investment_type("KNRI11") == "FII"
+    assert b3.get_investment_type("DOVL11B") == "FII"
 
 
 def test_get_investment_type_stock() -> None:
     """It returns STOCKS."""
     assert b3.get_investment_type("PETR4") == "STOCKS"
+
+
+def test_get_investment_not_found() -> None:
+    """It returns NOT_FOUND."""
+    assert b3.get_investment_type("OMG3M3") == "NOT_FOUND"
 
 
 def test_get_trading_rate() -> None:
