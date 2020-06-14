@@ -2,26 +2,24 @@
 import json
 
 
-def convert_list_to_dict(assets, key):
+def convert_list_to_dict(assets, key, value_key):
     """Break down into dictionary."""
     result = {}
     for asset in assets:
         codes = asset[key].split("-")
-        # delete key from value
-        del asset[key]
         for code in codes:
-            result[code] = asset
+            result[code] = asset[value_key]
     return result
 
 
 # with open("etfs.json", "r") as json_file:
-#     result = convert_list_to_dict(json.load(json_file), "Codigo")
+#     result = convert_list_to_dict(json.load(json_file), "Codigo", "Cnpj")
 #     print(result)
 
 # with open("fiis.json", "r") as json_file:
-#     result = convert_list_to_dict(json.load(json_file), "codigo")
+#     result = convert_list_to_dict(json.load(json_file), "codigo", "cnpj")
 #     print(result)
 
 with open("empresas.json", "r") as json_file:
-    result = convert_list_to_dict(json.load(json_file), "codigo")
+    result = convert_list_to_dict(json.load(json_file), "codigo", "cnpj")
     print(result)

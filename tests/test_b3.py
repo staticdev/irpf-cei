@@ -6,24 +6,31 @@ import pytest
 from irpf_cei import b3
 
 
-def test_get_investment_type_etf() -> None:
+def test_get_asset_info_etf() -> None:
     """It returns ETF."""
-    assert b3.get_investment_type("BOVA11") == "ETF"
+    asset_info = b3.get_asset_info("BOVA11")
+    assert asset_info.category == "ETF"
+    assert asset_info.cnpj == "10.406.511/0001-61"
 
 
-def test_get_investment_type_fii() -> None:
+def test_get_asset_info_fii() -> None:
     """It returns FII."""
-    assert b3.get_investment_type("DOVL11B") == "FII"
+    asset_info = b3.get_asset_info("DOVL11B")
+    assert asset_info.category == "FII"
+    assert asset_info.cnpj == "10.522.648/0001-81"
 
 
-def test_get_investment_type_stock() -> None:
+def test_get_asset_info_stock() -> None:
     """It returns STOCKS."""
-    assert b3.get_investment_type("PETR4") == "STOCKS"
+    asset_info = b3.get_asset_info("PETR4")
+    assert asset_info.category == "STOCKS"
+    assert asset_info.cnpj == "33.000.167/0001-01"
 
 
-def test_get_investment_not_found() -> None:
+def test_get_asset_info_not_found() -> None:
     """It returns NOT_FOUND."""
-    assert b3.get_investment_type("OMG3M3") == "NOT_FOUND"
+    asset_info = b3.get_asset_info("OMG3M3")
+    assert asset_info.category == "NOT_FOUND"
 
 
 def test_get_trading_rate() -> None:
