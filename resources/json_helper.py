@@ -20,6 +20,11 @@ def convert_list_to_dict(assets, key, value_key):
 #     result = convert_list_to_dict(json.load(json_file), "codigo", "cnpj")
 #     print(result)
 
-with open("empresas.json", "r") as json_file:
-    result = convert_list_to_dict(json.load(json_file), "codigo", "cnpj")
+# with open("empresas.json", "r") as json_file:
+#     result = convert_list_to_dict(json.load(json_file), "codigo", "cnpj")
+#     print(result)
+
+with open("corretoras.json", "r") as json_file:
+    result = convert_list_to_dict(json.load(json_file), "CodB3", "Cnpj")
+    print(len(result))
     print(result)

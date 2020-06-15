@@ -69,3 +69,17 @@ def test_get_emoluments_rates_sucess_with_auction() -> None:
     expected = [0.00004032, 0.00007, 0.00007, 0.00003802]
     result = b3.get_emoluments_rates(series, [1, 2])
     assert result == expected
+
+
+def test_get_cnpj_institution_found() -> None:
+    """It returns a known CNPJ."""
+    institution = "90 - EASYNVEST - TITULO CV S.A."
+    result = b3.get_cnpj_institution(institution)
+    assert result == "62.169.875/0001-79"
+
+
+def test_get_cnpj_institution_not_found() -> None:
+    """It returns a known CNPJ."""
+    institution = "9999 - UNKNOWN S.A."
+    result = b3.get_cnpj_institution(institution)
+    assert result == "não encontrado"
