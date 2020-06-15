@@ -15,7 +15,12 @@ import irpf_cei.b3
 
 
 FILE_ENCODING = "iso-8859-1"
-IRPF_INVESTIMENT_CODES = {"ETF": "74 (ETF)", "FII": "73 (FII)", "STOCKS": "31 (Ações)"}
+IRPF_INVESTIMENT_CODES = {
+    "ETF": "74 (ETF)",
+    "FII": "73 (FII)",
+    "STOCKS": "31 (Ações)",
+    "NOT_FOUND": "Não encontrado",
+}
 
 
 def get_xls_filename() -> str:
@@ -298,16 +303,19 @@ def output_goods_and_rights(
         idx = row[0]
         content = row[1]
         code = content["Código"]
+        asset_info = irpf_cei.b3.get_asset_info(code)
         print(
             (
                 "============= Ativo {} =============\n"
                 "Código: {}\n"
-                "Discriminação (sugerida): {} - Código: {} - Quantidade: {} - "
-                "Preço Médio Compra: R$ {} - Corretora: {}\n"
+                "CNPJ: {}\n"
+                "Discriminação (sugerida): {}, código: {}, quantidade: {}, "
+                "preço médio de compra: R$ {}, corretora: {}\n"
                 "Situação em 31/12/{}: R$ {}\n"
             ).format(
                 idx + 1,
-                IRPF_INVESTIMENT_CODES[irpf_cei.b3.get_investment_type(code)],
+                IRPF_INVESTIMENT_CODES[asset_info.category],
+                asset_info.cnpj if asset_info.cnpj else "Não encontrado",
                 content["Especificação do Ativo"],
                 code,
                 str(content["Quantidade Compra"] - content["Quantidade Venda"]),
