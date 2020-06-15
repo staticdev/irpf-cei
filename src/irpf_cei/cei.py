@@ -310,7 +310,7 @@ def output_goods_and_rights(
                 "Código: {}\n"
                 "CNPJ: {}\n"
                 "Discriminação (sugerida): {}, código: {}, quantidade: {}, "
-                "preço médio de compra: R$ {}, corretora: {}\n"
+                "preço médio de compra: R$ {}, corretora: {} - CNPJ {}\n"
                 "Situação em 31/12/{}: R$ {}\n"
             ).format(
                 idx + 1,
@@ -321,6 +321,7 @@ def output_goods_and_rights(
                 str(content["Quantidade Compra"] - content["Quantidade Venda"]),
                 str(content["Preço Médio (R$)"]).replace(".", ","),
                 institution,
+                irpf_cei.b3.get_cnpj_institution(institution),
                 ref_year,
                 str(
                     content["Custo Total Compra (R$)"]
