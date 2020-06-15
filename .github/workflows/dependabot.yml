@@ -9,13 +9,13 @@ jobs:
   automerge:
     name: Merge Dependabot pull request
     runs-on: ubuntu-latest
-    if: github.base_ref == 'master' && (github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]')
+    if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
     steps:
       - uses: actions/github-script@v2
         with:
-          github-token: ${{github.token}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            github.pullRequests.merge({
+            github.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
