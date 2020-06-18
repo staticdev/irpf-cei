@@ -1,5 +1,6 @@
 """Nox sessions."""
 import contextlib
+import sys
 import tempfile
 from pathlib import Path
 from typing import cast
@@ -11,7 +12,6 @@ from nox.sessions import Session
 package = "irpf_cei"
 python_versions = ["3.8"]
 nox.options.sessions = "pre-commit", "safety", "mypy", "tests"
-locations = "src", "tests", "noxfile.py"
 
 
 class Poetry:
@@ -127,10 +127,12 @@ def safety(session: Session) -> None:
 @nox.session(python=python_versions)
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
-    args = session.posargs or locations
+    args = session.posargs or ["src", "tests", "docs/conf.py"]
     install_package(session)
     install(session, "mypy")
     session.run("mypy", *args)
+    if not session.posargs:
+        session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
 
 
 @nox.session(python=python_versions)
