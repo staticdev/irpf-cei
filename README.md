@@ -1,4 +1,4 @@
-# irpf-cei
+# IRPF CEI
 
 [![Tests](https://github.com/staticdev/irpf-cei/workflows/Tests/badge.svg)](https://github.com/staticdev/irpf-cei/actions?workflow=Tests)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/irpf-cei.svg)](https://pypi.python.org/pypi/irpf-cei)
