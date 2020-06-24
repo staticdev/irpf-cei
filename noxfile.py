@@ -12,7 +12,7 @@ from nox.sessions import Session
 
 package = "irpf_cei"
 python_versions = ["3.8"]
-nox.options.sessions = "pre-commit", "safety", "mypy", "tests"
+nox.options.sessions = "pre-commit", "safety", "mypy", "tests", "typeguard"
 
 
 class Poetry:
