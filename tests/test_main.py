@@ -13,21 +13,21 @@ from irpf_cei import __main__
     "inquirer.prompt",
     side_effect=[{"trades": []}, {"": "Não"}, {"trades": []}, {"": "Sim"}],
 )
-def test_select_trades_empty(mock_inquirer_prompt) -> None:
+def test_select_trades_empty(mock_inquirer_prompt: Mock) -> None:
     """It returns empty list."""
     trades = [("trade 1", 0), ("trade 2", 1)]
     assert __main__.select_trades(trades) == []
 
 
 @patch("inquirer.prompt", return_value={"trades": [1]})
-def test_select_trades_some_selected(mock_inquirer_prompt) -> None:
+def test_select_trades_some_selected(mock_inquirer_prompt: Mock) -> None:
     """It returns list with id 1."""
     trades = [("trade 1", 0), ("trade 2", 1)]
     assert __main__.select_trades(trades) == [1]
 
 
 @pytest.fixture
-def runner():
+def runner() -> click.testing.CliRunner:
     """Fixture for invoking command-line interfaces."""
     return click.testing.CliRunner()
 
@@ -101,19 +101,19 @@ def mock_cei_output_goods_and_rights(mocker: MockFixture) -> Mock:
 
 
 def test_main_succeeds(
-    runner,
-    mock_cei_get_xls_filename,
-    mock_cei_validate_header,
-    mock_cei_read_xls,
-    mock_cei_clean_table_cols,
-    mock_cei_group_trades,
-    mock_select_trades,
-    mock_cei_get_trades,
-    mock_cei_calculate_taxes,
-    mock_cei_output_taxes,
-    mock_cei_goods_and_rights,
-    mock_cei_output_goods_and_rights,
-):
+    runner: click.testing.CliRunner,
+    mock_cei_get_xls_filename: Mock,
+    mock_cei_validate_header: Mock,
+    mock_cei_read_xls: Mock,
+    mock_cei_clean_table_cols: Mock,
+    mock_cei_group_trades: Mock,
+    mock_select_trades: Mock,
+    mock_cei_get_trades: Mock,
+    mock_cei_calculate_taxes: Mock,
+    mock_cei_output_taxes: Mock,
+    mock_cei_goods_and_rights: Mock,
+    mock_cei_output_goods_and_rights: Mock,
+) -> None:
     """It exits with a status code of zero."""
     result = runner.invoke(__main__.main)
     assert result.output.startswith("Nome do arquivo: ")

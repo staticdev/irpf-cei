@@ -59,19 +59,19 @@ def test_round_down_money_one_digit() -> None:
 
 
 @pytest.fixture
-def cwd(fs: MockFixture, monkeypatch: Mock):
+def cwd(fs: Mock, monkeypatch: Mock) -> None:
     """Fixture for pyfakefs fs."""
     fs.cwd = "/path"
     monkeypatch.setenv("HOME", "/home")
 
 
-def test_get_xls_filename_not_found(fs: MockFixture, cwd: Mock) -> None:
+def test_get_xls_filename_not_found(fs: Mock, cwd: Mock) -> None:
     """It raises `SystemExit` when file is not found."""
     with pytest.raises(SystemExit):
         assert cei.get_xls_filename()
 
 
-def test_get_xls_filename_current_folder(fs: MockFixture, cwd: Mock) -> None:
+def test_get_xls_filename_current_folder(fs: Mock, cwd: Mock) -> None:
     """It returns filename found in current folder."""
     fs.create_file("/path/InfoCEI.xls")
     assert cei.get_xls_filename() == "InfoCEI.xls"
@@ -79,7 +79,7 @@ def test_get_xls_filename_current_folder(fs: MockFixture, cwd: Mock) -> None:
 
 @patch("os.path.expanduser", return_value="/home")
 def test_get_xls_filename_download_folder(
-    mock_os_expanduser: Mock, fs: MockFixture, cwd: Mock
+    mock_os_expanduser: Mock, fs: Mock, cwd: Mock
 ) -> None:
     """It returns filename found in downloads folder."""
     path = os.path.join("/home", "Downloads", "InfoCEI.xls")
@@ -104,7 +104,7 @@ def test_validate_period_different_years() -> None:
         assert cei.validate_period("01/01/2019", "31/12/2020")
 
 
-def test_validate_header_empty_file(fs: MockFixture, cwd: Mock) -> None:
+def test_validate_header_empty_file(fs: Mock, cwd: Mock) -> None:
     """It raises `SystemExit` from empty file."""
     path = os.path.join("path", "InfoCEI.xls")
     fs.create_file(path)
@@ -204,7 +204,9 @@ def test_group_trades() -> None:
     "irpf_cei.b3.get_emoluments_rates",
     return_value=[0.00004105, 0.00004105, 0.00004105],
 )
-def test_calculate_taxes_2019(mock_get_emoluments_rates, mock_get_trading_rate) -> None:
+def test_calculate_taxes_2019(
+    mock_get_emoluments_rates: Mock, mock_get_trading_rate: Mock
+) -> None:
     """It returns calculated taxes."""
     df = pd.DataFrame(
         {
@@ -319,7 +321,7 @@ def test_average_price() -> None:
 @patch("irpf_cei.cei.group_buys_sells")
 @patch("irpf_cei.cei.average_price", return_value=pd.DataFrame())
 def test_goods_and_rights(
-    mock_average_price, mock_groups_buys_sells, mock_buy_sell_columns
+    mock_average_price: Mock, mock_groups_buys_sells: Mock, mock_buy_sell_columns: Mock
 ) -> None:
     """It returns DataFrame."""
     df = cei.goods_and_rights(pd.DataFrame())
@@ -327,7 +329,7 @@ def test_goods_and_rights(
 
 
 @patch("builtins.print")
-def test_output_taxes(mock_print) -> None:
+def test_output_taxes(mock_print: Mock) -> None:
     """It prints out taxes."""
     cei.output_taxes(pd.DataFrame())
     mock_print.assert_called_once()
@@ -335,7 +337,7 @@ def test_output_taxes(mock_print) -> None:
 
 @patch("locale.setlocale")
 @patch("builtins.print")
-def test_output_goods_and_rights(mock_print, mock_setlocale) -> None:
+def test_output_goods_and_rights(mock_print: Mock, mock_setlocale: Mock) -> None:
     """It prints out goods and rights."""
     df = pd.DataFrame(
         {
