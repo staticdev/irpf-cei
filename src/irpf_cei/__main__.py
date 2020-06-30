@@ -1,4 +1,5 @@
 """Command-line interface."""
+from typing import Any
 from typing import List
 from typing import Tuple
 
@@ -8,14 +9,14 @@ import inquirer
 import irpf_cei.cei
 
 
-def select_trades(trades: List[Tuple[str, int]]) -> List[int]:
+def select_trades(trades: List[Tuple[str, int]]) -> Any:
     """Checkbox selection of auction trades.
 
     Args:
         trades (List[Tuple[str, int]]): list of all trades and indexes.
 
     Returns:
-        List[int]: list of indexes of selected auction trades.
+        Any: list of indexes of selected auction trades.
     """
     click.secho(
         (
