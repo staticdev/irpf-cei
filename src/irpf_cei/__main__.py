@@ -7,6 +7,7 @@ import click
 import inquirer
 
 import irpf_cei.cei
+import irpf_cei.formatting
 
 
 def select_trades(trades: List[Tuple[str, int]]) -> Any:
@@ -59,8 +60,20 @@ def select_trades(trades: List[Tuple[str, int]]) -> Any:
 @click.version_option()
 def main() -> None:
     """Sequecence of operations for trades."""
+    needed_locale = irpf_cei.formatting.set_locale()
+    if needed_locale:
+        click.secho(
+            (
+                f"Erro: locale {needed_locale} não encontrado, "
+                f"confira a documentação para mais informações."
+            ),
+            fg="red",
+            err=True,
+        )
+        # Raises SystemExit
+        raise click.ClickException("")
     filename = irpf_cei.cei.get_xls_filename()
-    click.secho("Nome do arquivo: {}".format(filename), fg="blue")
+    click.secho(f"Nome do arquivo: {filename}", fg="blue")
 
     ref_year, institution = irpf_cei.cei.validate_header(filename)
     source_df = irpf_cei.cei.read_xls(filename)

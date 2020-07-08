@@ -1,7 +1,6 @@
 """CEI XLS reader."""
 import datetime
 import glob
-import locale
 import math
 import os
 import sys
@@ -12,6 +11,7 @@ import pandas as pd
 import xlrd
 
 import irpf_cei.b3
+import irpf_cei.formatting
 
 
 FILE_ENCODING = "iso-8859-1"
@@ -296,10 +296,7 @@ def output_goods_and_rights(
     result_df: pd.DataFrame, ref_year: int, institution: str
 ) -> None:
     """Returns a list of assets."""
-    # get available locale from shell `locale -a`
-    loc = "pt_BR.utf8"
-    locale.setlocale(locale.LC_ALL, loc)
-    pd.set_option("float_format", locale.currency)
+    pd.set_option("float_format", irpf_cei.formatting.get_currency_format())
     print("========= Bens e Direitos =========")
     for row in result_df.iterrows():
         idx = row[0]
