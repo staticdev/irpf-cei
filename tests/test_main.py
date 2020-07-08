@@ -100,7 +100,9 @@ def mock_cei_output_goods_and_rights(mocker: MockFixture) -> Mock:
     return mocker.patch("irpf_cei.cei.output_goods_and_rights")
 
 
+@patch("irpf_cei.formatting.set_locale", return_value="")
 def test_main_succeeds(
+    mock_formatting_set_locale: Mock,
     runner: click.testing.CliRunner,
     mock_cei_get_xls_filename: Mock,
     mock_cei_validate_header: Mock,
@@ -114,7 +116,7 @@ def test_main_succeeds(
     mock_cei_goods_and_rights: Mock,
     mock_cei_output_goods_and_rights: Mock,
 ) -> None:
-    """It exits with a status code of zero."""
+    """Exit with a status code of zero."""
     result = runner.invoke(__main__.main)
     assert result.output.startswith("Nome do arquivo: ")
     mock_cei_calculate_taxes.assert_called_once()
@@ -122,3 +124,25 @@ def test_main_succeeds(
     mock_cei_goods_and_rights.assert_called_once()
     mock_cei_output_goods_and_rights.assert_called_once()
     assert result.exit_code == 0
+
+
+@patch("irpf_cei.formatting.set_locale", return_value="xyz")
+def test_main_locale_fail(
+    mock_formatting_set_locale: Mock,
+    runner: click.testing.CliRunner,
+    mock_cei_get_xls_filename: Mock,
+    mock_cei_validate_header: Mock,
+    mock_cei_read_xls: Mock,
+    mock_cei_clean_table_cols: Mock,
+    mock_cei_group_trades: Mock,
+    mock_select_trades: Mock,
+    mock_cei_get_trades: Mock,
+    mock_cei_calculate_taxes: Mock,
+    mock_cei_output_taxes: Mock,
+    mock_cei_goods_and_rights: Mock,
+    mock_cei_output_goods_and_rights: Mock,
+) -> None:
+    """Exit with `SystemExit` when locale not found."""
+    result = runner.invoke(__main__.main)
+    assert result.output.startswith("Erro: locale xyz não encontrado")
+    assert type(result.exception) == SystemExit

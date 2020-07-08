@@ -13,7 +13,7 @@ from irpf_cei import cei
 
 
 def test_date_parse() -> None:
-    """It returns datetime."""
+    """Return datetime."""
     expected = datetime.datetime(day=1, month=2, year=2019)
     assert cei.date_parse(" 01/02/19 ") == expected
 
@@ -38,23 +38,23 @@ def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
 
 
 def test_read_xls(mock_pandas_read_excel: Mock) -> None:
-    """It calls read_excel."""
+    """Call read_excel."""
     cei.read_xls("my.xls")
     mock_pandas_read_excel.assert_called_once()
 
 
 def test_round_down_money_more_than_half() -> None:
-    """It retuns rounded down two decimals."""
+    """Return rounded down two decimals."""
     assert cei.round_down_money(5.999) == 5.99
 
 
 def test_round_down_money_on_half() -> None:
-    """It retuns rounded down two decimals second case."""
+    """Return rounded down two decimals second case."""
     assert cei.round_down_money(5.555) == 5.55
 
 
 def test_round_down_money_one_digit() -> None:
-    """It retuns rounded down two decimals third case."""
+    """Return rounded down two decimals third case."""
     assert cei.round_down_money(8.5) == 8.50
 
 
@@ -66,13 +66,13 @@ def cwd(fs: Mock, monkeypatch: Mock) -> None:
 
 
 def test_get_xls_filename_not_found(fs: Mock, cwd: Mock) -> None:
-    """It raises `SystemExit` when file is not found."""
+    """Raise `SystemExit` when file is not found."""
     with pytest.raises(SystemExit):
         assert cei.get_xls_filename()
 
 
 def test_get_xls_filename_current_folder(fs: Mock, cwd: Mock) -> None:
-    """It returns filename found in current folder."""
+    """Return filename found in current folder."""
     fs.create_file("/path/InfoCEI.xls")
     assert cei.get_xls_filename() == "InfoCEI.xls"
 
@@ -81,31 +81,31 @@ def test_get_xls_filename_current_folder(fs: Mock, cwd: Mock) -> None:
 def test_get_xls_filename_download_folder(
     mock_os_expanduser: Mock, fs: Mock, cwd: Mock
 ) -> None:
-    """It returns filename found in downloads folder."""
+    """Return filename found in downloads folder."""
     path = os.path.join("/home", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
     assert cei.get_xls_filename() == path
 
 
 def test_validate_period_success() -> None:
-    """It returns reference year."""
+    """Return reference year."""
     assert cei.validate_period("01/01/2020", "31/12/2020") == 2020
 
 
 def test_validate_period_wrong_start_finish() -> None:
-    """It raises `SystemExit` from wrong start date."""
+    """Raise `SystemExit` from wrong start date."""
     with pytest.raises(SystemExit):
         assert cei.validate_period("01/12/2020", "31/12/2020")
 
 
 def test_validate_period_different_years() -> None:
-    """It raises `SystemExit` from different years."""
+    """Raise `SystemExit` from different years."""
     with pytest.raises(SystemExit):
         assert cei.validate_period("01/01/2019", "31/12/2020")
 
 
 def test_validate_header_empty_file(fs: Mock, cwd: Mock) -> None:
-    """It raises `SystemExit` from empty file."""
+    """Raise `SystemExit` from empty file."""
     path = os.path.join("path", "InfoCEI.xls")
     fs.create_file(path)
     with pytest.raises(SystemExit):
@@ -123,12 +123,12 @@ def mock_validate_period(mocker: MockFixture) -> Mock:
 def test_validate_header(
     mock_pandas_read_excel: MockFixture, mock_validate_period: MockFixture
 ) -> None:
-    """It returns year and institution."""
+    """Return year and institution."""
     assert cei.validate_header("/my/path/InfoCEI.xls") == (2019, "INSTITUTION")
 
 
 def test_clean_table_cols() -> None:
-    """It returns cleaned DataFrame."""
+    """Return cleaned DataFrame."""
     df = pd.DataFrame(
         {
             "full_valued": [1, 2, 3],
@@ -143,7 +143,7 @@ def test_clean_table_cols() -> None:
 
 
 def test_get_trades() -> None:
-    """It returns list of trade tuples."""
+    """Return a list of trade tuples."""
     df = pd.DataFrame(
         {
             "Data": ["10/10/2019", "12/11/2019"],
@@ -161,7 +161,7 @@ def test_get_trades() -> None:
 
 
 def test_group_trades() -> None:
-    """It returns DataFrame of grouped trades."""
+    """Return a DataFrame of grouped trades."""
     df = pd.DataFrame(
         {
             "Data Negócio": ["1", "1", "2", "2", "2", "2"],
@@ -207,7 +207,7 @@ def test_group_trades() -> None:
 def test_calculate_taxes_2019(
     mock_get_emoluments_rates: Mock, mock_get_trading_rate: Mock
 ) -> None:
-    """It returns calculated taxes."""
+    """Return calculated taxes."""
     df = pd.DataFrame(
         {
             "Data Negócio": [
@@ -235,7 +235,7 @@ def test_calculate_taxes_2019(
 
 
 def test_buy_sell_columns() -> None:
-    """It returns DataFrame with separated buy/sell columns."""
+    """Return DataFrame with separated buy/sell columns."""
     df = pd.DataFrame(
         {
             "Data Negócio": ["1", "1", "2", "2", "2"],
@@ -265,7 +265,7 @@ def test_buy_sell_columns() -> None:
 
 
 def test_group_buys_sells() -> None:
-    """It returns DataFrame with grouped buy/sell trades."""
+    """Return a DataFrame with grouped buy/sell trades."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4", "BOVA11", "BOVA11", "PETR4"],
@@ -297,7 +297,7 @@ def test_group_buys_sells() -> None:
 
 
 def test_average_price() -> None:
-    """It returns DataFrame with average price column."""
+    """Return a DataFrame with average price column."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],
@@ -323,22 +323,24 @@ def test_average_price() -> None:
 def test_goods_and_rights(
     mock_average_price: Mock, mock_groups_buys_sells: Mock, mock_buy_sell_columns: Mock
 ) -> None:
-    """It returns DataFrame."""
+    """Return a DataFrame."""
     df = cei.goods_and_rights(pd.DataFrame())
     assert type(df) is pd.DataFrame
 
 
 @patch("builtins.print")
 def test_output_taxes(mock_print: Mock) -> None:
-    """It prints out taxes."""
+    """Print out taxes."""
     cei.output_taxes(pd.DataFrame())
     mock_print.assert_called_once()
 
 
-@patch("locale.setlocale")
+@patch("irpf_cei.formatting.get_currency_format")
 @patch("builtins.print")
-def test_output_goods_and_rights(mock_print: Mock, mock_setlocale: Mock) -> None:
-    """It prints out goods and rights."""
+def test_output_goods_and_rights(
+    mock_print: Mock, mock_get_currency_format: Mock
+) -> None:
+    """Print out goods and rights."""
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],
