@@ -26,7 +26,7 @@ pytest = "^5.4.3"
 codecov = "^2.1.7"
 mypy = "^0.782"
 coverage = {extras = ["toml"], version = "^5.2"}
-pytest-mock = "^3.1.1"
+pytest-mock = "^3.2.0"
 pyfakefs = "^4.0.2"
 typeguard = "^2.9.1"
 reorder-python-imports = "^2.3.1"
