@@ -32,7 +32,7 @@ jobs:
 
       - name: Detect and tag new version
         id: check-version
-        uses: salsify/action-detect-and-tag-new-version@v1.0.3
+        uses: salsify/action-detect-and-tag-new-version@v2.0.1
         with:
           version-command: |
             poetry version | awk '{ print $2 }'
