@@ -4,9 +4,13 @@ version = "2.1.0"
 description = "Programa auxiliar gratuito para calcular custos de ações, ETFs e FIIs."
 authors = ["Thiago Carvalho D'Ávila <thiagocavila@gmail.com>"]
 license = "MIT"
-readme = "README.md"
+readme = "README.rst"
 repository = "https://github.com/staticdev/irpf-cei"
 homepage = "https://github.com/staticdev/irpf-cei"
+documentation = "https://irpf-cei.readthedocs.io"
+
+[tool.poetry.urls]
+Changelog = "https://github.com/staticdev/irpf-cei/releases"
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -32,6 +36,9 @@ typeguard = "^2.9.1"
 reorder-python-imports = "^2.3.1"
 pre-commit = "^2.6.0"
 pygments = "^2.6.1"
+xdoctest = "^0.13.0"
+sphinx = "^3.1.2"
+sphinx-autobuild = "^0.7.1"
 
 [tool.poetry.scripts]
 irpf-cei = "irpf_cei.__main__:main"
