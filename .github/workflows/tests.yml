@@ -74,7 +74,7 @@ jobs:
 
       - name: Run Nox
         run: |
-          nox --force-color
+          nox --force-color --python=${{ matrix.python-version }}
 
       - name: Upload documentation
         if: matrix.session == 'docs'
