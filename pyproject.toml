@@ -28,7 +28,7 @@ safety = "^1.8.7"
 pytest = "^6.0.1"
 mypy = "^0.782"
 coverage = {extras = ["toml"], version = "^5.2"}
-pytest-mock = "^3.2.0"
+pytest-mock = "^3.3.0"
 pyfakefs = "^4.1.0"
 typeguard = "^2.9.1"
 reorder-python-imports = "^2.3.5"
