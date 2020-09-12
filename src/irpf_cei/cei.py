@@ -14,7 +14,8 @@ import irpf_cei.b3
 import irpf_cei.formatting
 
 
-FILE_ENCODING = "iso-8859-1"
+# TODO watch upstream issue https://github.com/pandas-dev/pandas/issues/35753
+# FILE_ENCODING = "iso-8859-1"
 IRPF_INVESTIMENT_CODES = {
     "ETF": "74 (ETF)",
     "FII": "73 (FII)",
@@ -71,7 +72,7 @@ def validate_header(filepath: str) -> Tuple[int, str]:
     try:
         basic_df = pd.read_excel(
             filepath,
-            encoding=FILE_ENCODING,
+            # encoding=FILE_ENCODING,
             usecols="B",
             date_parser=date_parse,
             skiprows=4,
@@ -103,7 +104,7 @@ def read_xls(filename: str) -> pd.DataFrame:
     """
     df = pd.read_excel(
         filename,
-        encoding=FILE_ENCODING,
+        # encoding=FILE_ENCODING,
         usecols="B:K",
         parse_dates=["Data Negócio"],
         date_parser=date_parse,
