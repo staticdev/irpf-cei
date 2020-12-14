@@ -16,7 +16,7 @@ Changelog = "https://github.com/staticdev/irpf-cei/releases"
 python = "^3.8"
 pandas = "^1.0.3"
 click = "^7.1.1"
-xlrd = "^1.2.0"
+xlrd = ">=1.2,<3.0"
 inquirer = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
