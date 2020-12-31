@@ -713,9 +713,7 @@ def get_emoluments_rates(
                 rates.append(period.rate)
                 break
         else:
-            sys.exit(
-                "Nenhum período de emolumentos encontrado para a data: {}".format(date)
-            )
+            sys.exit(f"Nenhum período de emolumentos encontrado para a data: {date}")
     for trade in auction_trades:
         rates[trade] = EMOLUMENTOS_AUCTION_RATE
     return rates

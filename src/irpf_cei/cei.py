@@ -14,8 +14,6 @@ import irpf_cei.b3
 import irpf_cei.formatting
 
 
-# TODO watch upstream issue https://github.com/pandas-dev/pandas/issues/35753
-# FILE_ENCODING = "iso-8859-1"
 IRPF_INVESTIMENT_CODES = {
     "ETF": "74 (ETF)",
     "FII": "73 (FII)",
@@ -25,7 +23,7 @@ IRPF_INVESTIMENT_CODES = {
 
 
 def get_xls_filename() -> str:
-    """Returns first xls filename in current folder or Downloads folder."""
+    """Return first xls filename in current folder or Downloads folder."""
     filenames = glob.glob("InfoCEI*.xls")
     if filenames:
         return filenames[0]
@@ -44,7 +42,7 @@ def date_parse(value: str) -> datetime.datetime:
 
 
 def validate_period(first: str, second: str) -> int:
-    """Considers the year from the first trade date."""
+    """Consider the year from the first trade date."""
     if first.startswith("01/01") and second.startswith("31/12"):
         first_year = int(first[-4:])
         second_year = int(second[-4:])
@@ -61,7 +59,7 @@ def validate_period(first: str, second: str) -> int:
 
 
 def validate_header(filepath: str) -> Tuple[int, str]:
-    """Validates file header.
+    """Validate file header.
 
     Arguments:
         filepath: CEI report's full path
@@ -72,7 +70,6 @@ def validate_header(filepath: str) -> Tuple[int, str]:
     try:
         basic_df = pd.read_excel(
             filepath,
-            # encoding=FILE_ENCODING,
             usecols="B",
             date_parser=date_parse,
             skiprows=4,
@@ -81,9 +78,9 @@ def validate_header(filepath: str) -> Tuple[int, str]:
     except (pd.errors.EmptyDataError, xlrd.XLRDError):
         sys.exit(
             (
-                "Erro: arquivo {} não se encontra íntegro ou no formato de "
+                f"Erro: arquivo {filepath} não se encontra íntegro ou no formato de "
                 "relatórios do CEI."
-            ).format(filepath)
+            )
         )
 
     periods = basic_df["Período de"].iloc[0].split(" a ")
@@ -94,7 +91,7 @@ def validate_header(filepath: str) -> Tuple[int, str]:
 
 
 def read_xls(filename: str) -> pd.DataFrame:
-    """Reads xls.
+    """Read xls.
 
     Args:
         filename (str): name of XLS file.
@@ -104,7 +101,6 @@ def read_xls(filename: str) -> pd.DataFrame:
     """
     df = pd.read_excel(
         filename,
-        # encoding=FILE_ENCODING,
         usecols="B:K",
         parse_dates=["Data Negócio"],
         date_parser=date_parse,
@@ -116,7 +112,7 @@ def read_xls(filename: str) -> pd.DataFrame:
 
 # Source: https://realpython.com/python-rounding/
 def round_down_money(n: float, decimals: int = 2) -> float:
-    """Rounds float on second decimal cases.
+    """Round float on second decimal cases.
 
     Args:
         n (float): number.
@@ -132,7 +128,7 @@ def round_down_money(n: float, decimals: int = 2) -> float:
 
 
 def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
-    """Drops columns without values.
+    """Drop columns without values.
 
     Args:
         source_df (pd.DataFrame): full columns DataFrame.
@@ -144,7 +140,7 @@ def clean_table_cols(source_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
-    """Returns trades representations.
+    """Return trades representations.
 
     Args:
         df (pd.DataFrame): trades DataFrame.
@@ -162,7 +158,7 @@ def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
 
 
 def group_trades(df: pd.DataFrame) -> pd.DataFrame:
-    """Groups trades by day, asset and action.
+    """Group trades by day, asset and action.
 
     Args:
         df (pd.DataFrame): ungrouped trades.
@@ -184,7 +180,7 @@ def group_trades(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def calculate_taxes(df: pd.DataFrame, auction_trades: List[int]) -> pd.DataFrame:
-    """Calculates emolumentos and liquidação taxes based on reference year.
+    """Calculate emolumentos and liquidação taxes based on reference year.
 
     Args:
         df (pd.DataFrame): grouped trades.
@@ -229,7 +225,7 @@ def buy_sell_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def group_buys_sells(df: pd.DataFrame) -> pd.DataFrame:
-    """Groups buys and sells by asset.
+    """Group buys and sells by asset.
 
     Args:
         df (pd.DataFrame): ungrouped buys and sells.
@@ -254,7 +250,7 @@ def group_buys_sells(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def average_price(df: pd.DataFrame) -> pd.DataFrame:
-    """Computes average price.
+    """Compute average price.
 
     Args:
         df (pd.DataFrame): buys and sells without average price.
@@ -269,7 +265,7 @@ def average_price(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def goods_and_rights(source_df: pd.DataFrame) -> pd.DataFrame:
-    """Calls methods for goods and rights.
+    """Call methods for goods and rights.
 
     Args:
         source_df (pd.DataFrame): raw DataFrame.
@@ -284,7 +280,7 @@ def goods_and_rights(source_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def output_taxes(tax_df: pd.DataFrame) -> None:
-    """Prints tax DataFrame.
+    """Print tax DataFrame.
 
     Args:
         tax_df (pd.DataFrame): calculated tax columns.
@@ -296,36 +292,28 @@ def output_taxes(tax_df: pd.DataFrame) -> None:
 def output_goods_and_rights(
     result_df: pd.DataFrame, ref_year: int, institution: str
 ) -> None:
-    """Returns a list of assets."""
+    """Return a list of assets."""
     pd.set_option("float_format", irpf_cei.formatting.get_currency_format())
     print("========= Bens e Direitos =========")
     for row in result_df.iterrows():
         idx = row[0]
         content = row[1]
+        desc = content["Especificação do Ativo"]
         code = content["Código"]
+        qtd = str(content["Quantidade Compra"] - content["Quantidade Venda"])
+        avg_price = str(content["Preço Médio (R$)"]).replace(".", ",")
+        cnpj = irpf_cei.b3.get_cnpj_institution(institution)
+        result = str(
+            content["Custo Total Compra (R$)"] - content["Custo Total Venda (R$)"]
+        ).replace(".", ",")
         asset_info = irpf_cei.b3.get_asset_info(code)
         print(
             (
-                "============= Ativo {} =============\n"
-                "Código: {}\n"
-                "CNPJ: {}\n"
-                "Discriminação (sugerida): {}, código: {}, quantidade: {}, "
-                "preço médio de compra: R$ {}, corretora: {} - CNPJ {}\n"
-                "Situação em 31/12/{}: R$ {}\n"
-            ).format(
-                idx + 1,
-                IRPF_INVESTIMENT_CODES[asset_info.category],
-                asset_info.cnpj if asset_info.cnpj else "Não encontrado",
-                content["Especificação do Ativo"],
-                code,
-                str(content["Quantidade Compra"] - content["Quantidade Venda"]),
-                str(content["Preço Médio (R$)"]).replace(".", ","),
-                institution,
-                irpf_cei.b3.get_cnpj_institution(institution),
-                ref_year,
-                str(
-                    content["Custo Total Compra (R$)"]
-                    - content["Custo Total Venda (R$)"]
-                ).replace(".", ","),
+                f"============= Ativo {idx + 1} =============\n"
+                f"Código: {IRPF_INVESTIMENT_CODES[asset_info.category]}\n"
+                f"CNPJ: {asset_info.cnpj if asset_info.cnpj else 'Não encontrado'}\n"
+                f"Discriminação (sugerida): {desc}, código: {code}, quantidade: {qtd}, "
+                f"preço médio de compra: R$ {avg_price}, corretora: {institution} - "
+                f"CNPJ {cnpj}\nSituação em 31/12/{ref_year}: R$ {result}\n"
             )
         )
