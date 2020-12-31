@@ -89,19 +89,23 @@ def test_get_xls_filename_download_folder(
 
 def test_validate_period_success() -> None:
     """Return reference year."""
-    assert cei.validate_period("01/01/2020", "31/12/2020") == 2020
+    first_date = "01/01/2019"
+    second_date = "31/12/2020"
+
+    assert cei.validate_period(first_date, second_date) == 2020
 
 
 def test_validate_period_wrong_start_finish() -> None:
     """Raise `SystemExit` from wrong start date."""
-    with pytest.raises(SystemExit):
-        assert cei.validate_period("01/12/2020", "31/12/2020")
+    first_date = "01/01/2018"
+    second_date = "31/12/2020"
 
-
-def test_validate_period_different_years() -> None:
-    """Raise `SystemExit` from different years."""
-    with pytest.raises(SystemExit):
-        assert cei.validate_period("01/01/2019", "31/12/2020")
+    with pytest.raises(SystemExit) as ex:
+        cei.validate_period(first_date, second_date)
+    assert str(ex.value) == (
+        f"Erro: o período de {first_date} a {second_date} não é válido, favor "
+        "verificar instruções na documentação."
+    )
 
 
 def test_validate_header_empty_file(fs: Mock, cwd: Mock) -> None:
