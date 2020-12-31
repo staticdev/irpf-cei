@@ -75,7 +75,7 @@ def validate_header(filepath: str) -> Tuple[int, str]:
             skiprows=4,
         )
     # exits if empty
-    except (pd.errors.EmptyDataError, xlrd.XLRDError):
+    except (ValueError, xlrd.XLRDError):
         sys.exit(
             (
                 f"Erro: arquivo {filepath} não se encontra íntegro ou no formato de "
