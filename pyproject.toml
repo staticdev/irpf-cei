@@ -8,6 +8,10 @@ readme = "README.rst"
 repository = "https://github.com/staticdev/irpf-cei"
 homepage = "https://github.com/staticdev/irpf-cei"
 documentation = "https://irpf-cei.readthedocs.io"
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
 
 [tool.poetry.urls]
 Changelog = "https://github.com/staticdev/irpf-cei/releases"
@@ -44,7 +48,6 @@ pep8-naming = "^0.11.1"
 pre-commit-hooks = "^3.4.0"
 nox-poetry = "0.5.0"
 sphinx-rtd-theme = "^0.5.0"
-pip = "^20.3.3"
 
 [tool.poetry.scripts]
 irpf-cei = "irpf_cei.__main__:main"
