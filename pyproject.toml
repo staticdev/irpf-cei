@@ -8,6 +8,10 @@ readme = "README.rst"
 repository = "https://github.com/staticdev/irpf-cei"
 homepage = "https://github.com/staticdev/irpf-cei"
 documentation = "https://irpf-cei.readthedocs.io"
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
 
 [tool.poetry.urls]
 Changelog = "https://github.com/staticdev/irpf-cei/releases"
