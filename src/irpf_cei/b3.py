@@ -40,7 +40,37 @@ EMOLUMENTOS_PERIODS = [
         datetime.datetime(2019, 11, 4), datetime.datetime(2019, 12, 2), 0.0000411
     ),
     RatePeriod(
-        datetime.datetime(2019, 12, 3), datetime.datetime(2020, 1, 2), 0.00003802
+        datetime.datetime(2019, 12, 3), datetime.datetime(2020, 1, 1), 0.00003802
+    ),
+    RatePeriod(datetime.datetime(2020, 1, 1), datetime.datetime(2020, 2, 1), 0.0000366),
+    RatePeriod(
+        datetime.datetime(2020, 2, 1), datetime.datetime(2020, 3, 1), 0.00003462
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 3, 1), datetime.datetime(2020, 4, 1), 0.00003248
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 4, 1), datetime.datetime(2020, 5, 1), 0.00003006
+    ),
+    RatePeriod(datetime.datetime(2020, 5, 1), datetime.datetime(2020, 6, 3), 0.0000334),
+    RatePeriod(
+        datetime.datetime(2020, 6, 1), datetime.datetime(2020, 7, 1), 0.00003291
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 7, 1), datetime.datetime(2020, 8, 1), 0.00003089
+    ),
+    RatePeriod(datetime.datetime(2020, 8, 1), datetime.datetime(2020, 9, 1), 0.0000318),
+    RatePeriod(
+        datetime.datetime(2020, 9, 1), datetime.datetime(2020, 10, 1), 0.00003125
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 10, 1), datetime.datetime(2020, 11, 1), 0.00003219
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 11, 1), datetime.datetime(2020, 12, 1), 0.00003247
+    ),
+    RatePeriod(
+        datetime.datetime(2020, 12, 1), datetime.datetime(2021, 1, 1), 0.00003020
     ),
 ]
 EMOLUMENTOS_AUCTION_RATE = 0.00007

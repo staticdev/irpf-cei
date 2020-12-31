@@ -43,17 +43,14 @@ def date_parse(value: str) -> datetime.datetime:
 
 def validate_period(first: str, second: str) -> int:
     """Consider the year from the first trade date."""
-    if first.startswith("01/01") and second.startswith("31/12"):
-        first_year = int(first[-4:])
-        second_year = int(second[-4:])
-    else:
-        return sys.exit("Erro: emitir relatório do dia 1 de janeiro a 31 de dezembro.")
-    if first_year == second_year and first_year >= 2019:
-        return first_year
+    first_year = int(first[-4:])
+    second_year = int(second[-4:])
+    if first_year <= second_year and first_year > 2018 and second_year < 2021:
+        return second_year
     return sys.exit(
         (
-            "Erro: o período de {} a {} não é válido, favor verificar instruções "
-            "na documentação."
+            f"Erro: o período de {first} a {second} não é válido, favor verificar "
+            "instruções na documentação."
         )
     )
 
