@@ -499,7 +499,7 @@ tox_to_nox = ["jinja2", "tox"]
 
 [[package]]
 name = "nox-poetry"
-version = "0.5.0"
+version = "0.6.0"
 description = "nox-poetry"
 category = "dev"
 optional = false
@@ -507,6 +507,7 @@ python-versions = ">=3.6.1,<4.0.0"
 
 [package.dependencies]
 nox = ">=2020.5.24,<2021.0.0"
+tomlkit = ">=0.7.0,<0.8.0"
 
 [[package]]
 name = "numpy"
@@ -1007,6 +1008,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "tomlkit"
+version = "0.7.0"
+description = "Style preserving TOML library"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
 name = "tornado"
 version = "6.0.4"
 description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
@@ -1115,7 +1124,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "da56dfea5db1156a140a9ba94bc07fe651503a80664c7ec858c15a9f87b9d919"
+content-hash = "70a537b875ebb68d21da4bb6d5eecdfe9ab55495e99c6ecbde308d62b57c6082"
 
 [metadata.files]
 alabaster = [
@@ -1388,8 +1397,8 @@ nox = [
     {file = "nox-2020.8.22.tar.gz", hash = "sha256:efa5adcf1134012f96bcd0a496ccebd4c9e9da53a831888a2a779462440eebcf"},
 ]
 nox-poetry = [
-    {file = "nox-poetry-0.5.0.tar.gz", hash = "sha256:747fbf668cff21216847737f161cc22c1676c9c896caf476a910c310f0f6b8eb"},
-    {file = "nox_poetry-0.5.0-py3-none-any.whl", hash = "sha256:58e63a9572b7a45464af411cade4b5b34769bdbfdd8bedbeee2b73f6b9f86d0f"},
+    {file = "nox-poetry-0.6.0.tar.gz", hash = "sha256:8966a24a00f4b53c36dea4fde2e63481632984c557217276f77986b607170dcd"},
+    {file = "nox_poetry-0.6.0-py3-none-any.whl", hash = "sha256:28da429cc7591f13cc5dd881bf81a7b3b9d33683598d3284048bb2be7cf6d9d3"},
 ]
 numpy = [
     {file = "numpy-1.19.4-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:e9b30d4bd69498fc0c3fe9db5f62fffbb06b8eb9321f92cc970f2969be5e3949"},
@@ -1536,6 +1545,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 readchar = [
@@ -1661,6 +1672,10 @@ stevedore = [
 toml = [
     {file = "toml-0.10.1-py2.py3-none-any.whl", hash = "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"},
     {file = "toml-0.10.1.tar.gz", hash = "sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f"},
+]
+tomlkit = [
+    {file = "tomlkit-0.7.0-py2.py3-none-any.whl", hash = "sha256:6babbd33b17d5c9691896b0e68159215a9387ebfa938aa3ac42f4a4beeb2b831"},
+    {file = "tomlkit-0.7.0.tar.gz", hash = "sha256:ac57f29693fab3e309ea789252fcce3061e19110085aa31af5446ca749325618"},
 ]
 tornado = [
     {file = "tornado-6.0.4-cp35-cp35m-win32.whl", hash = "sha256:5217e601700f24e966ddab689f90b7ea4bd91ff3357c3600fa1045e26d68e55d"},
