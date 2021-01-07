@@ -314,7 +314,7 @@ def test_average_price() -> None:
             "Código": ["BOVA11", "PETR4"],
             "Quantidade Compra": [360, 0],
             "Custo Total Compra (R$)": [712.823, 0],
-            "Preço Médio (R$)": [1.980, np.nan],
+            "Preço Médio (R$)": [1.980064, np.nan],
         }
     )
     result_df = cei.average_price(df)

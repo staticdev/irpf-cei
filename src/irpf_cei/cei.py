@@ -255,9 +255,7 @@ def average_price(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: buys and sells with average price.
     """
-    df["Preço Médio (R$)"] = (
-        df["Custo Total Compra (R$)"] / df["Quantidade Compra"]
-    ).round(decimals=3)
+    df["Preço Médio (R$)"] = df["Custo Total Compra (R$)"] / df["Quantidade Compra"]
     return df
 
 
@@ -297,12 +295,11 @@ def output_goods_and_rights(
         content = row[1]
         desc = content["Especificação do Ativo"]
         code = content["Código"]
-        qtd = str(content["Quantidade Compra"] - content["Quantidade Venda"])
-        avg_price = str(content["Preço Médio (R$)"]).replace(".", ",")
+        qtd = content["Quantidade Compra"] - content["Quantidade Venda"]
+        avg_price = content["Preço Médio (R$)"]
+        avg_price_str = irpf_cei.formatting.fmt_money(avg_price, 3)
         cnpj = irpf_cei.b3.get_cnpj_institution(institution)
-        result = str(
-            content["Custo Total Compra (R$)"] - content["Custo Total Venda (R$)"]
-        ).replace(".", ",")
+        result = irpf_cei.formatting.fmt_money(avg_price * qtd, 2)
         asset_info = irpf_cei.b3.get_asset_info(code)
         print(
             (
@@ -310,7 +307,7 @@ def output_goods_and_rights(
                 f"Código: {IRPF_INVESTIMENT_CODES[asset_info.category]}\n"
                 f"CNPJ: {asset_info.cnpj if asset_info.cnpj else 'Não encontrado'}\n"
                 f"Discriminação (sugerida): {desc}, código: {code}, quantidade: {qtd}, "
-                f"preço médio de compra: R$ {avg_price}, corretora: {institution} - "
-                f"CNPJ {cnpj}\nSituação em 31/12/{ref_year}: R$ {result}\n"
+                f"preço médio de compra: R$ {avg_price_str}, corretora: {institution} -"
+                f" CNPJ {cnpj}\nSituação em 31/12/{ref_year}: R$ {result}\n"
             )
         )
