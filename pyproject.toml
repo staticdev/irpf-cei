@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "irpf-cei"
-version = "3.0.0"
+version = "3.1.0"
 description = "Programa auxiliar gratuito para calcular custos de ações, ETFs e FIIs."
 authors = ["Thiago Carvalho D'Ávila <thiagocavila@gmail.com>"]
 license = "MIT"
