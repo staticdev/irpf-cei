@@ -1,5 +1,6 @@
 """Formatting module."""
 import locale
+import math
 from typing import Any
 from typing import Callable
 
@@ -26,3 +27,15 @@ def get_currency_format() -> Callable[[Any], str]:
         Callable[[Any], str]: function from current locale.
     """
     return locale.currency
+
+
+def fmt_money(amount: float, ndigits: int = 2) -> str:
+    """Return padded and rounded value."""
+    if math.isnan(amount):
+        return "N/A"
+    rounded = round(amount, ndigits)
+    result = str(rounded).replace(".", ",")
+    rounded_digits = result.split(",")[1]
+    missing_digits = ndigits - len(rounded_digits)
+    padded_result = result + "0" * missing_digits
+    return padded_result
