@@ -7,6 +7,8 @@ categories:
     label: "removal"
   - title: ":beetle: Fixes"
     label: "bug"
+  - title: ":raising_hand: Help wanted"
+    label: "help wanted"
   - title: ":racehorse: Performance"
     label: "performance"
   - title: ":rotating_light: Testing"
@@ -24,6 +26,6 @@ categories:
       - "dependencies"
       - "build"
 template: |
-  ## Mudanças
+  ## Changes
 
   $CHANGES
