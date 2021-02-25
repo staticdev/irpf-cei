@@ -639,7 +639,7 @@ snowballstemmer = "*"
 
 [[package]]
 name = "pyfakefs"
-version = "4.3.3"
+version = "4.4.0"
 description = "pyfakefs implements a fake file system that mocks the Python file system modules."
 category = "dev"
 optional = false
@@ -1123,7 +1123,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a8a05099916e3b61c2d32e4a9e3f9424e4188f06165b6d6194cfae67e3dace27"
+content-hash = "3053e559f0d861340ab36196575f4a582b649c089584e7ee5985c4b51f93a0e3"
 
 [metadata.files]
 alabaster = [
@@ -1524,8 +1524,8 @@ pydocstyle = [
     {file = "pydocstyle-5.1.1.tar.gz", hash = "sha256:19b86fa8617ed916776a11cd8bc0197e5b9856d5433b777f51a3defe13075325"},
 ]
 pyfakefs = [
-    {file = "pyfakefs-4.3.3-py3-none-any.whl", hash = "sha256:b2bc190ea65b5b6274c6d1a90c4d71ede9b3178e1ff9bb74c86daf69ffccd185"},
-    {file = "pyfakefs-4.3.3.tar.gz", hash = "sha256:ffb2ab264a0b83af548a2db0c509798e208361df39601ba898ae65cecfb59cbb"},
+    {file = "pyfakefs-4.4.0-py3-none-any.whl", hash = "sha256:1ac3b2845dabe69af56c20691b9347914581195ccdde352535fb7d4ff0055c19"},
+    {file = "pyfakefs-4.4.0.tar.gz", hash = "sha256:082d863e0e2a74351f697da404e329a91e18e5055942e59d1b836e8459b2c94c"},
 ]
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
