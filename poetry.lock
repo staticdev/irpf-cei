@@ -499,14 +499,15 @@ tox_to_nox = ["jinja2", "tox"]
 
 [[package]]
 name = "nox-poetry"
-version = "0.8.1"
+version = "0.8.3"
 description = "nox-poetry"
 category = "dev"
 optional = false
 python-versions = ">=3.6.1,<4.0.0"
 
 [package.dependencies]
-nox = ">=2020.5.24,<2021.0.0"
+nox = ">=2020.8.22"
+packaging = ">=20.9"
 tomlkit = ">=0.7.0,<0.8.0"
 
 [[package]]
@@ -519,7 +520,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "packaging"
-version = "20.8"
+version = "20.9"
 description = "Core utilities for Python packages"
 category = "dev"
 optional = false
@@ -1123,7 +1124,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "8753f5146f77c992d9b5a79a7f9a264b05d343b48d4ffeeec14245301024f552"
+content-hash = "55bfaaeef1e0b52396b671aeca4b2d85c9699737c832f2f9e96c42f2116a65fb"
 
 [metadata.files]
 alabaster = [
@@ -1427,8 +1428,8 @@ nox = [
     {file = "nox-2020.12.31.tar.gz", hash = "sha256:58a662070767ed4786beb46ce3a789fca6f1e689ed3ac15c73c4d0094e4f9dc4"},
 ]
 nox-poetry = [
-    {file = "nox-poetry-0.8.1.tar.gz", hash = "sha256:e613716b67166de1dbe787ba8f0a6fe64a6c48b8fa553ad9fc399a9e51478bcc"},
-    {file = "nox_poetry-0.8.1-py3-none-any.whl", hash = "sha256:5a391ff3ab5fa4023f4cdf38a214dd72465d8731f2635657e50f0f6e24f8a404"},
+    {file = "nox-poetry-0.8.3.tar.gz", hash = "sha256:2b8dc89f8eb3049d5c733d1a54ad48f8dc7716978f2aea87b0e90758c306923e"},
+    {file = "nox_poetry-0.8.3-py3-none-any.whl", hash = "sha256:cbc3c9e2b6ce04a9d1f9148c2d0e9c0f39da66c55f23b85173bdfc52dbacce05"},
 ]
 numpy = [
     {file = "numpy-1.19.5-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:cc6bd4fd593cb261332568485e20a0712883cf631f6f5e8e86a52caa8b2b50ff"},
@@ -1467,8 +1468,8 @@ numpy = [
     {file = "numpy-1.19.5.zip", hash = "sha256:a76f502430dd98d7546e1ea2250a7360c065a5fdea52b2dffe8ae7180909b6f4"},
 ]
 packaging = [
-    {file = "packaging-20.8-py2.py3-none-any.whl", hash = "sha256:24e0da08660a87484d1602c30bb4902d74816b6985b93de36926f5bc95741858"},
-    {file = "packaging-20.8.tar.gz", hash = "sha256:78598185a7008a470d64526a8059de9aaa449238f280fc9eb6b13ba6c4109093"},
+    {file = "packaging-20.9-py2.py3-none-any.whl", hash = "sha256:67714da7f7bc052e064859c05c595155bd1ee9f69f76557e21f051443c20947a"},
+    {file = "packaging-20.9.tar.gz", hash = "sha256:5b327ac1320dc863dca72f4514ecc086f31186744b84a230374cc1fd776feae5"},
 ]
 pandas = [
     {file = "pandas-1.2.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:4d821b9b911fc1b7d428978d04ace33f0af32bb7549525c8a7b08444bce46b74"},
