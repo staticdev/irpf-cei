@@ -25,7 +25,7 @@ inquirer = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
-flake8 = "^3.8.4"
+flake8 = "^3.9.0"
 flake8-bandit = "^2.1.2"
 flake8-bugbear = "^21.3.2"
 safety = "^1.10.0"
