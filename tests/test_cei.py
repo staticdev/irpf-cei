@@ -1,13 +1,11 @@
 """Test cases for the CEI module."""
 import datetime
 import os
-from unittest.mock import Mock
-from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
 import pytest
-from pytest_mock import MockFixture
+from pytest_mock import MockerFixture
 
 from irpf_cei import cei
 
@@ -19,7 +17,7 @@ def test_date_parse() -> None:
 
 
 @pytest.fixture
-def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
+def mock_pandas_read_excel(mocker: MockerFixture) -> MockerFixture:
     """Fixture for mocking pandas.read_excel."""
     mock = mocker.patch("pandas.read_excel")
     header = pd.DataFrame(
@@ -37,7 +35,7 @@ def mock_pandas_read_excel(mocker: MockFixture) -> Mock:
     return mock
 
 
-def test_read_xls(mock_pandas_read_excel: Mock) -> None:
+def test_read_xls(mock_pandas_read_excel: MockerFixture) -> None:
     """Call read_excel."""
     cei.read_xls("my.xls")
     mock_pandas_read_excel.assert_called_once()
@@ -59,29 +57,29 @@ def test_round_down_money_one_digit() -> None:
 
 
 @pytest.fixture
-def cwd(fs: Mock, monkeypatch: Mock) -> None:
+def cwd(fs: MockerFixture, monkeypatch: MockerFixture) -> None:
     """Fixture for pyfakefs fs."""
     fs.cwd = "/path"
     monkeypatch.setenv("HOME", "/home")
 
 
-def test_get_xls_filename_not_found(fs: Mock, cwd: Mock) -> None:
+def test_get_xls_filename_not_found(fs: MockerFixture, cwd: MockerFixture) -> None:
     """Raise `SystemExit` when file is not found."""
     with pytest.raises(SystemExit):
         assert cei.get_xls_filename()
 
 
-def test_get_xls_filename_current_folder(fs: Mock, cwd: Mock) -> None:
+def test_get_xls_filename_current_folder(fs: MockerFixture, cwd: MockerFixture) -> None:
     """Return filename found in current folder."""
     fs.create_file("/path/InfoCEI.xls")
     assert cei.get_xls_filename() == "InfoCEI.xls"
 
 
-@patch("os.path.expanduser", return_value="/home")
 def test_get_xls_filename_download_folder(
-    mock_os_expanduser: Mock, fs: Mock, cwd: Mock
+    mocker: MockerFixture, fs: MockerFixture, cwd: MockerFixture
 ) -> None:
     """Return filename found in downloads folder."""
+    mocker.patch("os.path.expanduser", return_value="/home")
     path = os.path.join("/home", "Downloads", "InfoCEI.xls")
     fs.create_file(path)
     assert cei.get_xls_filename() == path
@@ -108,7 +106,7 @@ def test_validate_period_wrong_start_finish() -> None:
     )
 
 
-def test_validate_header_empty_file(fs: Mock, cwd: Mock) -> None:
+def test_validate_header_empty_file(fs: MockerFixture, cwd: MockerFixture) -> None:
     """Raise `SystemExit` from empty file."""
     path = os.path.join("path", "InfoCEI.xls")
     fs.create_file(path)
@@ -117,7 +115,7 @@ def test_validate_header_empty_file(fs: Mock, cwd: Mock) -> None:
 
 
 @pytest.fixture
-def mock_validate_period(mocker: MockFixture) -> Mock:
+def mock_validate_period(mocker: MockerFixture) -> MockerFixture:
     """Fixture for mocking irpf_cei.cei.validate_period."""
     mock = mocker.patch("irpf_cei.cei.validate_period")
     mock.return_value = 2019
@@ -125,7 +123,7 @@ def mock_validate_period(mocker: MockFixture) -> Mock:
 
 
 def test_validate_header(
-    mock_pandas_read_excel: MockFixture, mock_validate_period: MockFixture
+    mock_pandas_read_excel: MockerFixture, mock_validate_period: MockerFixture
 ) -> None:
     """Return year and institution."""
     assert cei.validate_header("/my/path/InfoCEI.xls") == (2019, "INSTITUTION")
@@ -203,15 +201,13 @@ def test_group_trades() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
-@patch("irpf_cei.b3.get_trading_rate", return_value=0.000275)
-@patch(
-    "irpf_cei.b3.get_emoluments_rates",
-    return_value=[0.00004105, 0.00004105, 0.00004105],
-)
-def test_calculate_taxes_2019(
-    mock_get_emoluments_rates: Mock, mock_get_trading_rate: Mock
-) -> None:
+def test_calculate_taxes_2019(mocker: MockerFixture) -> None:
     """Return calculated taxes."""
+    mocker.patch("irpf_cei.b3.get_trading_rate", return_value=0.000275)
+    mocker.patch(
+        "irpf_cei.b3.get_emoluments_rates",
+        return_value=[0.00004105, 0.00004105, 0.00004105],
+    )
     df = pd.DataFrame(
         {
             "Data Negócio": [
@@ -321,30 +317,31 @@ def test_average_price() -> None:
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 
-@patch("irpf_cei.cei.buy_sell_columns")
-@patch("irpf_cei.cei.group_buys_sells")
-@patch("irpf_cei.cei.average_price", return_value=pd.DataFrame())
 def test_goods_and_rights(
-    mock_average_price: Mock, mock_groups_buys_sells: Mock, mock_buy_sell_columns: Mock
+    mocker: MockerFixture,
 ) -> None:
     """Return a DataFrame."""
+    mocker.patch("irpf_cei.cei.buy_sell_columns")
+    mocker.patch("irpf_cei.cei.group_buys_sells")
+    mocker.patch("irpf_cei.cei.average_price", return_value=pd.DataFrame())
+
     df = cei.goods_and_rights(pd.DataFrame())
     assert type(df) is pd.DataFrame
 
 
-@patch("builtins.print")
-def test_output_taxes(mock_print: Mock) -> None:
+def test_output_taxes(mocker: MockerFixture) -> None:
     """Print out taxes."""
+    mock_print = mocker.patch("builtins.print")
+
     cei.output_taxes(pd.DataFrame())
     mock_print.assert_called_once()
 
 
-@patch("irpf_cei.formatting.get_currency_format")
-@patch("builtins.print")
-def test_output_goods_and_rights(
-    mock_print: Mock, mock_get_currency_format: Mock
-) -> None:
+def test_output_goods_and_rights(mocker: MockerFixture) -> None:
     """Print out goods and rights."""
+    mocker.patch("irpf_cei.formatting.get_currency_format")
+    mock_print = mocker.patch("builtins.print")
+
     df = pd.DataFrame(
         {
             "Código": ["BOVA11", "PETR4"],
