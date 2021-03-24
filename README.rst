@@ -22,7 +22,7 @@ IRPF CEI
 .. |Tests| image:: https://github.com/staticdev/irpf-cei/workflows/Tests/badge.svg
    :target: https://github.com/staticdev/irpf-cei/actions?workflow=Tests
    :alt: Tests
-.. |Codecov| image:: https://codecov.io/gh/staticdev/irpf-cei/branch/master/graph/badge.svg
+.. |Codecov| image:: https://codecov.io/gh/staticdev/irpf-cei/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/staticdev/irpf-cei
    :alt: Codecov
 .. |pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
