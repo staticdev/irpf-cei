@@ -1,28 +1,27 @@
 """Test cases for formatting module."""
 import locale
-from unittest.mock import Mock
-from unittest.mock import patch
 
 import numpy as np
+from pytest_mock import MockerFixture
 
 from irpf_cei import formatting
 
 
-@patch("locale.setlocale")
-def test_set_locale_success(mock_locale_setlocale: Mock) -> None:
+def test_set_locale_success(mocker: MockerFixture) -> None:
     """Return empty string."""
+    mocker.patch("locale.setlocale")
     assert formatting.set_locale() == ""
 
 
-@patch("locale.setlocale", side_effect=locale.Error())
-def test_set_locale_error(mock_locale_setlocale: Mock) -> None:
+def test_set_locale_error(mocker: MockerFixture) -> None:
     """Return pt_BR locale."""
+    mocker.patch("locale.setlocale", side_effect=locale.Error())
     assert formatting.set_locale() == "pt_BR.utf8"
 
 
-@patch("locale.currency")
-def test_get_currency_format(mock_locale_currency: Mock) -> None:
+def test_get_currency_format(mocker: MockerFixture) -> None:
     """Give no error."""
+    mocker.patch("locale.currency")
     assert formatting.get_currency_format()
 
 
