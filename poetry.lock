@@ -315,15 +315,17 @@ flake8 = "*"
 
 [[package]]
 name = "flake8-rst-docstrings"
-version = "0.0.14"
+version = "0.1.1"
 description = "Python docstring reStructuredText (RST) validator"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.3"
 
 [package.dependencies]
 flake8 = ">=3.0.0"
-restructuredtext_lint = "*"
+pydocstyle = ">=3.0.0"
+pygments = "*"
+restructuredtext-lint = "*"
 
 [[package]]
 name = "gitdb"
@@ -1126,7 +1128,7 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "24a5d0ba056cead12df7b5319bf5ad6e10d6138fd3479adbdde56a9ee7f29938"
+content-hash = "3d264183ade81efbded086c98d6fc2cd1d9130ec76906492255f14a08bd0616f"
 
 [metadata.files]
 alabaster = [
@@ -1294,7 +1296,8 @@ flake8-polyfill = [
     {file = "flake8_polyfill-1.0.2-py2.py3-none-any.whl", hash = "sha256:12be6a34ee3ab795b19ca73505e7b55826d5f6ad7230d31b18e106400169b9e9"},
 ]
 flake8-rst-docstrings = [
-    {file = "flake8-rst-docstrings-0.0.14.tar.gz", hash = "sha256:8f8bcb18f1408b506dd8ba2c99af3eac6128f6911d4bf6ff874b94caa70182a2"},
+    {file = "flake8-rst-docstrings-0.1.1.tar.gz", hash = "sha256:df563cd091c9fc51791b8ffb82e97486c520d646eae27c627aca84b0c0b9ab43"},
+    {file = "flake8_rst_docstrings-0.1.1-py3-none-any.whl", hash = "sha256:e732b46fa27393b0e2b6d6efb143bfbf782a91e164566c2c872aa7e6fb1c62a4"},
 ]
 gitdb = [
     {file = "gitdb-4.0.5-py3-none-any.whl", hash = "sha256:91f36bfb1ab7949b3b40e23736db18231bf7593edada2ba5c3a174a7b23657ac"},
