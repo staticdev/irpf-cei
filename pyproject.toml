@@ -35,7 +35,7 @@ coverage = {extras = ["toml"], version = "^5.5"}
 pytest-mock = "^3.4.0"
 pyfakefs = "^4.4.0"
 typeguard = "^2.12.0"
-reorder-python-imports = "^2.4.0"
+reorder-python-imports = "^2.5.0"
 pre-commit = "^2.12.1"
 pygments = "^2.8.1"
 xdoctest = "^0.15.4"
