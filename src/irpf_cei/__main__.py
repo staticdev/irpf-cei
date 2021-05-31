@@ -60,13 +60,10 @@ def select_trades(trades: List[Tuple[str, int]]) -> Any:
 @click.version_option()
 def main() -> None:
     """Sequecence of operations for trades."""
-    needed_locale = irpf_cei.formatting.set_locale()
-    if needed_locale:
+    response = irpf_cei.formatting.set_pt_br_locale()
+    if not response:
         click.secho(
-            (
-                f"Erro: locale {needed_locale} não encontrado, "
-                f"confira a documentação para mais informações."
-            ),
+            f"Erro: {response.value['message']}",
             fg="red",
             err=True,
         )
