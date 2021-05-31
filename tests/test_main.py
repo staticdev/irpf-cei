@@ -4,6 +4,7 @@ import pytest
 from pytest_mock import MockerFixture
 
 from irpf_cei import __main__
+from irpf_cei import responses as res
 
 
 def test_select_trades_empty(mocker: MockerFixture) -> None:
@@ -113,7 +114,9 @@ def test_main_succeeds(
     mock_cei_output_goods_and_rights: MockerFixture,
 ) -> None:
     """Exit with a status code of zero."""
-    mocker.patch("irpf_cei.formatting.set_locale", return_value="")
+    mocker.patch(
+        "irpf_cei.formatting.set_pt_br_locale", return_value=res.ResponseSuccess()
+    )
     result = runner.invoke(__main__.main)
     assert result.output.startswith("Nome do arquivo: ")
     mock_cei_calculate_taxes.assert_called_once()
@@ -139,7 +142,11 @@ def test_main_locale_fail(
     mock_cei_output_goods_and_rights: MockerFixture,
 ) -> None:
     """Exit with `SystemExit` when locale not found."""
-    mocker.patch("irpf_cei.formatting.set_locale", return_value="xyz")
+    locale_fail = res.ResponseFailure(
+        res.ResponseTypes.SYSTEM_ERROR, "locale xyz não encontrado."
+    )
+    mocker.patch("irpf_cei.formatting.set_pt_br_locale", return_value=locale_fail)
     result = runner.invoke(__main__.main)
-    assert result.output.startswith("Erro: locale xyz não encontrado")
+
+    assert result.output.startswith("Erro: locale xyz não encontrado.")
     assert type(result.exception) == SystemExit

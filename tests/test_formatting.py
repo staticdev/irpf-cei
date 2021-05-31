@@ -7,16 +7,22 @@ from pytest_mock import MockerFixture
 from irpf_cei import formatting
 
 
-def test_set_locale_success(mocker: MockerFixture) -> None:
-    """Return empty string."""
+def test_set_pt_br_locale_success(mocker: MockerFixture) -> None:
+    """Return success."""
     mocker.patch("locale.setlocale")
-    assert formatting.set_locale() == ""
+    assert bool(formatting.set_pt_br_locale()) is True
 
 
-def test_set_locale_error(mocker: MockerFixture) -> None:
+def test_set_pt_br_locale_error(mocker: MockerFixture) -> None:
     """Return pt_BR locale."""
     mocker.patch("locale.setlocale", side_effect=locale.Error())
-    assert formatting.set_locale() == "pt_BR.utf8"
+    response = formatting.set_pt_br_locale()
+
+    assert bool(response) is False
+    assert (
+        response.value["message"]
+        == "locale pt_BR não encontrado, confira a documentação para mais informações."
+    )
 
 
 def test_get_currency_format(mocker: MockerFixture) -> None:

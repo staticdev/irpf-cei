@@ -3,21 +3,25 @@ import locale
 import math
 from typing import Any
 from typing import Callable
+from typing import Union
+
+import irpf_cei.responses as res
 
 
-def set_locale() -> str:
-    """Sets locale.
-
-    Returns:
-        str: return needed locale.
-    """
+def set_pt_br_locale() -> Union[res.ResponseFailure, res.ResponseSuccess]:
+    """Sets pt_BR locale."""
     # one gets available locale from shell `locale -a`
-    loc = "pt_BR.utf8"
-    try:
-        locale.setlocale(locale.LC_ALL, loc)
-    except locale.Error:
-        return loc
-    return ""
+    supported_locales = ["pt_BR.utf8", "pt_BR.UTF-8"]
+    for loc in supported_locales:
+        try:
+            locale.setlocale(locale.LC_ALL, loc)
+            return res.ResponseSuccess()
+        except locale.Error:
+            pass
+    return res.ResponseFailure(
+        res.ResponseTypes.SYSTEM_ERROR,
+        "locale pt_BR não encontrado, confira a documentação para mais informações.",
+    )
 
 
 def get_currency_format() -> Callable[[Any], str]:
