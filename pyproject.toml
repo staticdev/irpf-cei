@@ -33,7 +33,7 @@ pytest = "^6.2.4"
 mypy = "^0.812"
 coverage = {extras = ["toml"], version = "^5.5"}
 pytest-mock = "^3.6.1"
-pyfakefs = "^4.4.0"
+pyfakefs = "^4.5.0"
 typeguard = "^2.12.1"
 reorder-python-imports = "^2.5.0"
 pre-commit = "^2.13.0"
