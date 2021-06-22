@@ -30,7 +30,7 @@ flake8-bandit = "^2.1.2"
 flake8-bugbear = "^21.4.3"
 safety = "^1.10.0"
 pytest = "^6.2.4"
-mypy = "^0.902"
+mypy = "^0.910"
 coverage = {extras = ["toml"], version = "^5.5"}
 pytest-mock = "^3.6.1"
 pyfakefs = "^4.5.0"
