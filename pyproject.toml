@@ -2,7 +2,7 @@
 name = "irpf-cei"
 version = "3.4.0"
 description = "Programa auxiliar gratuito para calcular custos de ações, ETFs e fundos imobiliários."
-authors = ["Thiago Carvalho D'Ávila <thiagocavila@gmail.com>"]
+authors = ["staticdev <staticdev-support@protonmail.com>"]
 license = "MIT"
 readme = "README.rst"
 repository = "https://github.com/staticdev/irpf-cei"
