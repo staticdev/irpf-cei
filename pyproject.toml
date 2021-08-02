@@ -31,7 +31,6 @@ flake8-bugbear = "^21.4.3"
 safety = "^1.10.0"
 pytest = "^6.2.4"
 mypy = "^0.910"
-coverage = {extras = ["toml"], version = "^5.5"}
 pytest-mock = "^3.6.1"
 pyfakefs = "^4.5.0"
 typeguard = "^2.12.1"
@@ -48,6 +47,7 @@ pep8-naming = "^0.12.0"
 pre-commit-hooks = "^4.0.1"
 nox-poetry = "0.8.6"
 sphinx-rtd-theme = "^0.5.2"
+coverage = {version = "6.0b1", extras = ["toml"]}
 
 [tool.poetry.scripts]
 irpf-cei = "irpf_cei.__main__:main"
