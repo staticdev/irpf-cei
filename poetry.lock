@@ -125,14 +125,14 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "blessed"
-version = "1.17.6"
+version = "1.19.0"
 description = "Easy, practical library for making terminal apps, by providing an elegant, well-documented interface to Colors, Keyboard input, and screen Positioning capabilities."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7"
 
 [package.dependencies]
-jinxed = {version = ">=0.5.4", markers = "platform_system == \"Windows\""}
+jinxed = {version = ">=1.1.0", markers = "platform_system == \"Windows\""}
 six = ">=1.9.0"
 wcwidth = ">=0.1.4"
 
@@ -401,14 +401,14 @@ python-versions = "*"
 
 [[package]]
 name = "inquirer"
-version = "2.7.0"
+version = "2.8.0"
 description = "Collection of common interactive command line user interfaces, based on Inquirer.js"
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-blessed = "1.17.6"
+blessed = "1.19.0"
 python-editor = "1.0.4"
 readchar = "2.0.1"
 
@@ -1207,8 +1207,8 @@ black = [
     {file = "black-21.11b1.tar.gz", hash = "sha256:a042adbb18b3262faad5aff4e834ff186bb893f95ba3a8013f09de1e5569def2"},
 ]
 blessed = [
-    {file = "blessed-1.17.6-py2.py3-none-any.whl", hash = "sha256:8371d69ac55558e4b1591964873d6721136e9ea17a730aeb3add7d27761b134b"},
-    {file = "blessed-1.17.6.tar.gz", hash = "sha256:a9a774fc6eda05248735b0d86e866d640ca2fef26038878f7e4d23f7749a1e40"},
+    {file = "blessed-1.19.0-py2.py3-none-any.whl", hash = "sha256:1f2d462631b2b6d2d4c3c65b54ef79ad87a6ca2dd55255df2f8d739fcc8a1ddb"},
+    {file = "blessed-1.19.0.tar.gz", hash = "sha256:4db0f94e5761aea330b528e84a250027ffe996b5a94bf03e502600c9a5ad7a61"},
 ]
 cached-property = [
     {file = "cached-property-1.5.2.tar.gz", hash = "sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130"},
@@ -1355,8 +1355,8 @@ iniconfig = [
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
 ]
 inquirer = [
-    {file = "inquirer-2.7.0-py2.py3-none-any.whl", hash = "sha256:d15e15de1ad5696f1967e7a23d8e2fce69d2e41a70b008948d676881ed94c3a5"},
-    {file = "inquirer-2.7.0.tar.gz", hash = "sha256:e819188de0ca7985a99c282176c6f50fb08b0d33867fd1965d3f3e97d6c8f83f"},
+    {file = "inquirer-2.8.0-py2.py3-none-any.whl", hash = "sha256:237c14a68bcf0b2950899aa11bcc342de613e9389e4bf6fcd2ef97fcb3b1590a"},
+    {file = "inquirer-2.8.0.tar.gz", hash = "sha256:08cdb7386ee01c76f91cd9813525f8723234f224dd3407019ac340ff89fdd731"},
 ]
 jinja2 = [
     {file = "Jinja2-3.0.1-py3-none-any.whl", hash = "sha256:1f06f2da51e7b56b8f238affdd6b4e2c61e39598a378cc49345bc1bd42a978a4"},
