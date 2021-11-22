@@ -1,7 +1,6 @@
 """Test cases for formatting module."""
 import locale
 
-import numpy as np
 from pytest_mock import MockerFixture
 
 from irpf_cei import formatting
@@ -51,7 +50,7 @@ def test_fmt_money_with_padding() -> None:
 
 def test_fmt_money_is_nan() -> None:
     """Return N/A."""
-    num = np.nan
+    num = float("nan")
     digits = 2
     expected = "N/A"
 
