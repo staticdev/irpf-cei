@@ -2,7 +2,6 @@
 import datetime
 import os
 
-import numpy as np
 import pandas as pd
 import pytest
 from pytest_mock import MockerFixture
@@ -24,9 +23,9 @@ def mock_pandas_read_excel(mocker: MockerFixture) -> MockerFixture:
         {
             "Período de": [
                 "01/01/2019 a 31/12/2019",
-                np.nan,
-                np.nan,
-                np.nan,
+                float("nan"),
+                float("nan"),
+                float("nan"),
                 "INSTITUTION",
             ]
         }
@@ -310,7 +309,7 @@ def test_average_price() -> None:
             "Código": ["BOVA11", "PETR4"],
             "Quantidade Compra": [360, 0],
             "Custo Total Compra (R$)": [712.823, 0],
-            "Preço Médio (R$)": [1.980064, np.nan],
+            "Preço Médio (R$)": [1.980064, float("nan")],
         }
     )
     result_df = cei.average_price(df)
@@ -349,7 +348,7 @@ def test_output_goods_and_rights(mocker: MockerFixture) -> None:
             "Custo Total Compra (R$)": [712.823, 0],
             "Quantidade Venda": [80, 80],
             "Custo Total Venda (R$)": [215.14, 116.43],
-            "Preço Médio (R$)": [1.980, np.nan],
+            "Preço Médio (R$)": [1.980, float("nan")],
             "Especificação do Ativo": ["ISHARES", "PETRO"],
         }
     )
