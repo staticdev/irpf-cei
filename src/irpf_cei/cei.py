@@ -48,10 +48,8 @@ def validate_period(first: str, second: str) -> int:
     if first_year <= second_year and first_year > 2018 and second_year < 2021:
         return second_year
     return sys.exit(
-        (
-            f"Erro: o período de {first} a {second} não é válido, favor verificar "
-            "instruções na documentação."
-        )
+        f"Erro: o período de {first} a {second} não é válido, favor verificar "
+        "instruções na documentação."
     )
 
 
@@ -74,10 +72,8 @@ def validate_header(filepath: str) -> Tuple[int, str]:
     # exits if empty
     except (ValueError, xlrd.XLRDError):
         sys.exit(
-            (
-                f"Erro: arquivo {filepath} não se encontra íntegro ou no formato de "
-                "relatórios do CEI."
-            )
+            f"Erro: arquivo {filepath} não se encontra íntegro ou no formato de "
+            "relatórios do CEI."
         )
 
     periods = basic_df["Período de"].iloc[0].split(" a ")
@@ -146,7 +142,7 @@ def get_trades(df: pd.DataFrame) -> List[Tuple[str, int]]:
         trades: list of df indexes and string representations.
     """
     df["total_cost_rs"] = df["Valor Total (R$)"].apply(
-        lambda x: "R$ " + str("{:.2f}".format(x).replace(".", ","))
+        lambda x: "R$ " + str(f"{x:.2f}".replace(".", ","))
     )
     df = df.drop(columns=["Valor Total (R$)"])
     list_of_list = df.astype(str).values.tolist()
@@ -302,12 +298,10 @@ def output_goods_and_rights(
         result = irpf_cei.formatting.fmt_money(avg_price * qtd, 2)
         asset_info = irpf_cei.b3.get_asset_info(code)
         print(
-            (
-                f"============= Ativo {idx + 1} =============\n"
-                f"Código: {IRPF_INVESTIMENT_CODES[asset_info.category]}\n"
-                f"CNPJ: {asset_info.cnpj if asset_info.cnpj else 'Não encontrado'}\n"
-                f"Discriminação (sugerida): {desc}, código: {code}, quantidade: {qtd}, "
-                f"preço médio de compra: R$ {avg_price_str}, corretora: {institution} -"
-                f" CNPJ {cnpj}\nSituação em 31/12/{ref_year}: R$ {result}\n"
-            )
+            f"============= Ativo {idx + 1} =============\n"
+            f"Código: {IRPF_INVESTIMENT_CODES[asset_info.category]}\n"
+            f"CNPJ: {asset_info.cnpj if asset_info.cnpj else 'Não encontrado'}\n"
+            f"Discriminação (sugerida): {desc}, código: {code}, quantidade: {qtd}, "
+            f"preço médio de compra: R$ {avg_price_str}, corretora: {institution} -"
+            f" CNPJ {cnpj}\nSituação em 31/12/{ref_year}: R$ {result}\n"
         )
