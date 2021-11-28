@@ -56,10 +56,11 @@ irpf-cei = "irpf_cei.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
+tests = ["tests", "*/tests"]
 
 [tool.coverage.run]
 branch = true
-source = ["irpf_cei"]
+source = ["irpf_cei", "tests"]
 
 [tool.coverage.report]
 show_missing = true
