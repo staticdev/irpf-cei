@@ -170,7 +170,14 @@ def xdoctest(session: Session) -> None:
 @session(name="docs-build", python="3.10")
 def docs_build(session: Session) -> None:
     """Build the documentation."""
-    args = session.posargs or ["docs", "docs/_build"]
+    args = session.posargs or [
+        "-b",
+        "linkcheck",
+        "-W",
+        "--keep-going",
+        "docs",
+        "docs/_build",
+    ]
     session.install(".")
     session.install("sphinx", "furo")
 
